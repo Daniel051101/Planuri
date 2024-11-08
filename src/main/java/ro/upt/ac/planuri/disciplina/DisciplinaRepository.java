@@ -1,5 +1,11 @@
 package ro.upt.ac.planuri.disciplina;
 
-public class DisciplinaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
+public interface DisciplinaRepository extends JpaRepository<Disciplina,Integer>
+{
+	Disciplina findById(int id);
 }
+
