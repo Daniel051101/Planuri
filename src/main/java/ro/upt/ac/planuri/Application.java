@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import ro.upt.ac.planuri.plan.Companie;
-import ro.upt.ac.planuri.plan.CompanieRepository;
+import ro.upt.ac.planuri.plan.PlanUniversitar;
+import ro.upt.ac.planuri.plan.PlanUniversitarRepository;
 
 @EnableWebMvc
 @SpringBootApplication
@@ -26,30 +26,30 @@ public class Application
 	}//Acesta metoda porneste aplicatia SpringBoot
 
 	
-	@Bean
-	public CommandLineRunner loadDataCompanii(CompanieRepository repository)
-	{
-	    return (args) -> {	
-			log.info("starting initialization...");
-			
-			Companie c1=new Companie();
-	        c1.setNume("Continental");
-	        c1.setReprezentant("Christian von Albrichsfeld");
-	        c1.setCalitate("CEO");
-	        c1.setAdresa("str. Siemens nr. 1, Timisoara");
-	        c1.setTelefon("0700123456");
-	        repository.save(c1);
-
-			Companie c2=new Companie();
-	        c2.setNume("Nokia");
-	        c2.setReprezentant("Florin-Costin Ciocan");
-	        c2.setCalitate("PMP");
-	        c2.setAdresa("Splaiul Nicolae Titulescu nr. 8, Timisoara");
-	        c2.setTelefon("0700123456");
-	        repository.save(c2);
-
-			log.info("ending initialization...");
-	    };
-	}	
+//	@Bean
+//	public CommandLineRunner loadDataCompanii(PlanUniversitarRepository repository)
+//	{
+//	    return (args) -> {	
+//			log.info("starting initialization...");
+//			
+//			PlanUniversitar c1=new PlanUniversitar();
+//	        c1.setNume("Continental");
+//	        c1.setReprezentant("Christian von Albrichsfeld");
+//	        c1.setCalitate("CEO");
+//	        c1.setAdresa("str. Siemens nr. 1, Timisoara");
+//	        c1.setTelefon("0700123456");
+//	        repository.save(c1);
+//
+//	        PlanUniversitar c2=new PlanUniversitar();
+//	        c2.setNume("Nokia");
+//	        c2.setReprezentant("Florin-Costin Ciocan");
+//	        c2.setCalitate("PMP");
+//	        c2.setAdresa("Splaiul Nicolae Titulescu nr. 8, Timisoara");
+//	        c2.setTelefon("0700123456");
+//	        repository.save(c2);
+//
+//			log.info("ending initialization...");
+//	    };
+//	}	
 	
 }

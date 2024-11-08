@@ -4,7 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CompanieRepository extends JpaRepository<Companie,Integer>
+public interface PlanUniversitarRepository extends JpaRepository<PlanUniversitar,Integer>
 {
-	Companie findById(int id);
+	PlanUniversitar findById(int id);
 }
+

@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Extractor 
 {	
+	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public static void main(String[] args) 
 	{
 		System.out.println("Starting...");
