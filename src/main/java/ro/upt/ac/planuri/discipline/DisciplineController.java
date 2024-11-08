@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class DisciplineController
 {
 	@Autowired
-	DisciplinaRepository disciplinaRepository;
+	DisciplineRepository disciplineRepository;
 
 	@GetMapping("/")
 	public String index()
@@ -34,21 +34,21 @@ public class DisciplineController
 		{
 			return "discipline-create";
 		}
-		disciplinaRepository.save(discipline);
+		disciplineRepository.save(discipline);
 		return "redirect:/discipline-read";
 	}
 	
 	@GetMapping("/discipline-read")
 	public String read(Model model) 
 	{
-	    model.addAttribute("discipline", disciplinaRepository.findAll());
+	    model.addAttribute("discipline", disciplineRepository.findAll());
 	    return "discipline-read";
 	}
 	
 	@GetMapping("/discipline-edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) 
 	{
-	    Discipline discipline = disciplinaRepository.findById(id);
+	    Discipline discipline = disciplineRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
 	    model.addAttribute("plan", discipline);
@@ -64,17 +64,17 @@ public class DisciplineController
 	        return "discipline-update";
 	    }
 	        
-	    disciplinaRepository.save(discipline);
+	    disciplineRepository.save(discipline);
 	    return "redirect:/discipline-read";
 	}
 	
 	@GetMapping("/discipline-delete/{id}")
 	public String delete(@PathVariable("id") int id, Model model) 
 	{
-		Discipline discipline = disciplinaRepository.findById(id);
+		Discipline discipline = disciplineRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
-		disciplinaRepository.delete(discipline);
+		disciplineRepository.delete(discipline);
 	    return "redirect:/discipline-read";
 	}	
 }
