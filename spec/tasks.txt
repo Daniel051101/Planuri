@@ -24,7 +24,8 @@
 - forma de evaluare
 - ...
 
-ljlkjlj
+08.11.2024
+-problema cu enum in clasa Disciplina (trebuie sa fie definita in propria fila)
 
 
 
