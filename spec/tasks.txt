@@ -5,6 +5,7 @@
 - se ia ca model entitatea companie (3 clase + 3 template-uri)
 
 - modelare entitate plan
+
 - universitate
 - facultate
 - domeniu_fundamental
@@ -17,6 +18,7 @@
 - discipline_facultative[]
 
 - modelare entitate disciplina
+
 - cod
 - nr_credite
 - forma de evaluare
