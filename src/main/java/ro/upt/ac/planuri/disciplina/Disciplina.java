@@ -1,26 +1,24 @@
 package ro.upt.ac.planuri.disciplina;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-public enum FE{
-	E, //Examen
-	D, //Evaluare distribuita
-	C, //Colocviu
-	P_E, //proiect autonom cu examinare ca si in cazul disciplinelor cu examen
-	P_D //proiect autonom cu examinare
-}
+//public enum FE{
+//	E, //Examen
+//	D, //Evaluare distribuita
+//	C, //Colocviu
+//	P_E, //proiect autonom cu examinare ca si in cazul disciplinelor cu examen
+//	P_D //proiect autonom cu examinare
+//}
 
-public enum CF{
-	DC, //Disciplina complementara
-	DD, //Disciplina in domeniu
-	DF, //Disciplina fundamentala
-	DS //Disciplina de specialitate
-}
+//public enum CF{
+//	DC, //Disciplina complementara
+//	DD, //Disciplina in domeniu
+//	DF, //Disciplina fundamentala
+//	DS //Disciplina de specialitate
+//}
 
 @Entity
 public class Disciplina 
@@ -32,7 +30,7 @@ public class Disciplina
 	
 	private String cod_diciplina;
 	private int numar_credite; 
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	private FE forma_evaluare ; //(E,D,C,P-E,P-D)forma de evaluare
 	private int act_autoinstruire; //numar ore activitati de autoinstruire
 	private int act_tutorat ; //numar ore activitati de tutorat
@@ -128,6 +126,14 @@ public class Disciplina
 	
 	public void setVolum_pregatire_individuala(int volum_pregatire_individuala) {
 		this.volum_pregatire_individuala = volum_pregatire_individuala;
+	}
+
+	public FE getForma_evaluare() {
+		return forma_evaluare;
+	}
+
+	public void setForma_evaluare(FE forma_evaluare) {
+		this.forma_evaluare = forma_evaluare;
 	}
 	
 }
