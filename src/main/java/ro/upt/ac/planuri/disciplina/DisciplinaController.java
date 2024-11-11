@@ -15,11 +15,11 @@ public class DisciplinaController
 	@Autowired
 	DisciplinaRepository disciplinaRepository;
 
-	@GetMapping("/")
-	public String index()
-	{
-		return "index";
-	}
+//	@GetMapping("/")
+//	public String index()
+//	{
+//		return "index";
+//	}
 
 	@GetMapping("/disciplina-create")
 	public String create(Disciplina disciplina)

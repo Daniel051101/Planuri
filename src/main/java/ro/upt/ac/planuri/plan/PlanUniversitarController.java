@@ -15,11 +15,11 @@ public class PlanUniversitarController
 	@Autowired
 	PlanUniversitarRepository planUniversitarRepository;
 
-	@GetMapping("/")
-	public String index()
-	{
-		return "index";
-	}
+//	@GetMapping("/")
+//	public String index()
+//	{
+//		return "index";
+//	}
 
 	@GetMapping("/plan-create")
 	public String create(PlanUniversitar planUniversitar)

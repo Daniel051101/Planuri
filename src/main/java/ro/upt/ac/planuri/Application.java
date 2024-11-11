@@ -1,24 +1,24 @@
 package ro.upt.ac.planuri;
 
-import java.sql.Date;
+//import java.sql.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import ro.upt.ac.planuri.plan.PlanUniversitar;
-import ro.upt.ac.planuri.plan.PlanUniversitarRepository;
+//import ro.upt.ac.planuri.plan.PlanUniversitar;
+//import ro.upt.ac.planuri.plan.PlanUniversitarRepository;
 
 @EnableWebMvc
 @SpringBootApplication
 public class Application 
 {	
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
+	//private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) 
 	{
