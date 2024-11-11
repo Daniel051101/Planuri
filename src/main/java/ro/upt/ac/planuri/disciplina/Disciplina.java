@@ -27,11 +27,10 @@ public class Disciplina
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	
 	private String cod_diciplina;
 	private int numar_credite; 
 	//@Enumerated(EnumType.STRING)
-	private FE forma_evaluare ; //(E,D,C,P-E,P-D)forma de evaluare
+	private FE forma_evaluare ; //(E,D,C,P-E,P-D) forma de evaluare
 	private int act_autoinstruire; //numar ore activitati de autoinstruire
 	private int act_tutorat ; //numar ore activitati de tutorat
 	private int teme_control ; //teme de control/evaluare pe parcurs

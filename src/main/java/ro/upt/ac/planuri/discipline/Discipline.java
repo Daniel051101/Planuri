@@ -12,10 +12,6 @@ public class Discipline
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	public void setId(int id2) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 }

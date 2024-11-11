@@ -1,6 +1,7 @@
 package ro.upt.ac.planuri.disciplina;
 
-public enum FE {
+public enum FE 
+{
 	E, //Examen
 	D, //Evaluare distribuita
 	C, //Colocviu

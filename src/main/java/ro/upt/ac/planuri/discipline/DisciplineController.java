@@ -60,7 +60,6 @@ public class DisciplineController
 	{
 	    if(result.hasErrors()) 
 	    {
-	    	discipline.setId(id);
 	        return "discipline-update";
 	    }
 	        
