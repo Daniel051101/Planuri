@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlanUniversitarRepository extends JpaRepository<PlanUniversitar,Integer>
+public interface PlanInvatamantRepository extends JpaRepository<PlanInvatamant,Integer>
 {
-	PlanUniversitar findById(int id);
+	PlanInvatamant findById(int id);
 }
 

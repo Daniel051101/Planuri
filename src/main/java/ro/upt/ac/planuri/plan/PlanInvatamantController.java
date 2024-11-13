@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class PlanUniversitarController
+public class PlanInvatamantController
 {
 	@Autowired
-	PlanUniversitarRepository planUniversitarRepository;
+	PlanInvatamantRepository planInvatamantRepository;
 
 //	@GetMapping("/")
 //	public String index()
@@ -22,59 +22,59 @@ public class PlanUniversitarController
 //	}
 
 	@GetMapping("/plan-create")
-	public String create(PlanUniversitar planUniversitar)
+	public String create(PlanInvatamant planInvatamant)
 	{
 		return "plan-create";
 	}
 
 	@PostMapping("/plan-create-save")
-	public String createSave(@Validated PlanUniversitar planUniversitar, BindingResult result, Model model)
+	public String createSave(@Validated PlanInvatamant planInvatamant, BindingResult result, Model model)
 	{
 		if(result.hasErrors())
 		{
 			return "plan-create";
 		}
-		planUniversitarRepository.save(planUniversitar);
+		planInvatamantRepository.save(planInvatamant);
 		return "redirect:/plan-read";
 	}
 	
 	@GetMapping("/plan-read")
 	public String read(Model model) 
 	{
-	    model.addAttribute("plan", planUniversitarRepository.findAll());
+	    model.addAttribute("plan", planInvatamantRepository.findAll());
 	    return "plan-read";
 	}
 	
 	@GetMapping("/plan-edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) 
 	{
-	    PlanUniversitar planUniversitar = planUniversitarRepository.findById(id);
+	    PlanInvatamant planInvatamant = planInvatamantRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
-	    model.addAttribute("plan", planUniversitar);
+	    model.addAttribute("plan", planInvatamant);
 	    return "plan-update";
 	}
 	
 	@PostMapping("/plan-update/{id}")
-	public String update(@PathVariable("id") int id, @Validated PlanUniversitar planUniversitar, BindingResult result, Model model) 
+	public String update(@PathVariable("id") int id, @Validated PlanInvatamant planInvatamant, BindingResult result, Model model) 
 	{
 	    if(result.hasErrors()) 
 	    {
-	        planUniversitar.setId(id);
+	        planInvatamant.setId(id);
 	        return "companie-update";
 	    }
 	        
-	    planUniversitarRepository.save(planUniversitar);
+	    planInvatamantRepository.save(planInvatamant);
 	    return "redirect:/plan-read";
 	}
 	
 	@GetMapping("/plan-delete/{id}")
 	public String delete(@PathVariable("id") int id, Model model) 
 	{
-	    PlanUniversitar planUniversitar = planUniversitarRepository.findById(id);
+	    PlanInvatamant planInvatamant = planInvatamantRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
-	    planUniversitarRepository.delete(planUniversitar);
+	    planInvatamantRepository.delete(planInvatamant);
 	    return "redirect:/plan-read";
 	}	
 }
