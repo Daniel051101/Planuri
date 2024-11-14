@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Conventii 1.0</title>
+  <title>Plan de Invatamant 1.0</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -15,13 +15,13 @@
 		<nav aria-label="breadcrumb">
 		  <ol class="breadcrumb">
 		    <li class="breadcrumb-item"><a href="/">Acasa</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Companii</li>
+		    <li class="breadcrumb-item active" aria-current="page">Discipline</li>
 		  </ol>
 		</nav>	
-		<div th:switch="${companii}">
-		    <h2 th:case="null">Nu este nicio companie in baza de date!</h2>
+		<div th:switch="${discipline}">
+		    <h2 th:case="null">Nu este nicio disicplina in baza de date!</h2>
 	        <div th:case="*">
-	            <h2>Companii</h2>
+	            <h2>Discipline</h2>
 	            <table class="table table-small">
 	                <thead>
 	                    <tr>
@@ -29,31 +29,42 @@
 	                        <th scope="col">Editeaza</th>
 	                        <th scope="col">Sterge</th>
 	                        
-	                        <th scope="col">Nume</th>
-	                        <th scope="col">Reprezentant</th>
-	                        <th scope="col">Calitate</th>
+	                        <th scope="col">Cod disciplina</th>
+	                        <th scope="col">Numar de credite transferabile</th>
+	                        <th scope="col">Forma de evaluare</th>
 	                        
-	                        <th scope="col">Adresa</th>	                      
-	                        <th scope="col">Telefon</th>
+	                        <th scope="col">Numar de ore de curs</th>	
+							<th scope="col">Numar de ore de seminar</th>
+							<th scope="col">Numar de ore de laborator</th>
+							<th scope="col">Numar de ore de proiect</th>
+							                      
+	                        <th scope="col">Volum de ore necesar activitatilor partial asistate/practica</th>
+							<th scope="col">Categorie formativa careia ii apartine disciplina</th>
+							<th scope="col">Volum de ore necesar pregatirii individuale</th>
 	                    </tr>
 	                </thead>
 	                <tbody>
-		                <tr th:each="companie : ${companii}">
-		                    <td scope="col" th:text="${companie.id}"></td>		                    
-		                    <td><a th:href="@{/companie-edit/{id}(id=${companie.id})}">Editeaza</a></td>
-		                    <td><a th:href="@{/companie-delete/{id}(id=${companie.id})}">Sterge</a></td>		                    
-		                    <td th:text="${companie.nume}"></td>
-		                    <td th:text="${companie.reprezentant}"></td>
-		                    <td th:text="${companie.calitate}"></td>
-		                    <td th:text="${companie.adresa}"></td>
-		                    <td th:text="${companie.telefon}"></td>
-		                    
+		                <tr th:each="disciplina : ${discipline}">
+		                    <td scope="col" th:text="${disicplina.id}"></td>		                    
+		                    <td><a th:href="@{/disciplina-edit/{id}(id=${disciplina.id})}">Editeaza</a></td>
+		                    <td><a th:href="@{/disciplina-delete/{id}(id=${disciplina.id})}">Sterge</a></td>		                    
+		                    <td th:text="${disciplina.codDisciplina}"></td>
+		                    <td th:text="${disciplina.numarCrediteTransferabile}"></td>
+		                    <td th:text="${disciplina.formaEvaluare}"></td>
+		                    <td th:text="${disciplina.numarOreCurs}"></td>
+		                    <td th:text="${disciplina.numarOreSeminar}"></td>
+							<td th:text="${disciplina.numarOreLaborator}"></td>
+							<td th:text="${disciplina.numarOreProiect}"></td>
+							<td th:text="${disciplina.volumOreNecesareActivitatilorPartialAsistate}"></td>
+							<td th:text="${disciplina.categorieFormativa}"></td>
+							<td th:text="${disciplina.volumOreNecesaraPregatiriIndividuale}"></td>
+							
 		                    
 		                </tr>
 	            	</tbody>
 	        	</table>
 		    </div>      
-		    <p><a href="/companie-create">Adauga o companie noua</a></p>
+		    <p><a href="/disciplina-create">Adauga o disciplina noua</a></p>
 		</div>
 	</div>
 

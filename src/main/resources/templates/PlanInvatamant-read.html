@@ -18,7 +18,7 @@
 		    <li class="breadcrumb-item active" aria-current="page">Plan de Învățământ</li>
 		  </ol>
 		</nav>	
-		<div th:switch="${PlanUniversitar}">
+		<div th:switch="${PlanInvatamant}">
 		    <h2 th:case="null">Nu este niciun plan in baza de date!</h2>
 	        <div th:case="*">
 	            <h2>Planuri</h2>
@@ -29,31 +29,33 @@
 	                        <th scope="col">Editeaza</th>
 	                        <th scope="col">Sterge</th>
 	                        
-	                        <th scope="col">Nume</th>
-	                        <th scope="col">Reprezentant</th>
-	                        <th scope="col">Calitate</th>
+	                        <th scope="col">Universitate </th>
+	                        <th scope="col">Facultatea </th>
 	                        
-	                        <th scope="col">Adresa</th>	                      
-	                        <th scope="col">Telefon</th>
+	                        <th scope="col">Domeniu fundamental</th>	                      
+	                        <th scope="col">Ramura de stiinta</th>
+							<th scope="col">Domeniul de licenta</th>
+							<th scope="col">Prigramul de studii-Licenta</th>
 	                    </tr>
 	                </thead>
 	                <tbody>
-		                <tr th:each="companie : ${companii}">
-		                    <td scope="col" th:text="${companie.id}"></td>		                    
-		                    <td><a th:href="@{/companie-edit/{id}(id=${companie.id})}">Editeaza</a></td>
-		                    <td><a th:href="@{/companie-delete/{id}(id=${companie.id})}">Sterge</a></td>		                    
-		                    <td th:text="${companie.nume}"></td>
-		                    <td th:text="${companie.reprezentant}"></td>
-		                    <td th:text="${companie.calitate}"></td>
-		                    <td th:text="${companie.adresa}"></td>
-		                    <td th:text="${companie.telefon}"></td>
+		                <tr th:each="plan : ${planuri}">
+		                    <td scope="col" th:text="${plan.id}"></td>		                    
+		                    <td><a th:href="@{/plan-edit/{id}(id=${plan.id})}">Editeaza</a></td>
+		                    <td><a th:href="@{/plan-delete/{id}(id=${plan.id})}">Sterge</a></td>		                    
+		                    <td th:text="${plan.universitate}"></td>
+		                    <td th:text="${plan.facultate}"></td>
+		                    <td th:text="${plan.domeniuFundamental}"></td>
+		                    <td th:text="${plan.ramuraDeStiinta}"></td>
+		                    <td th:text="${plam.domeniuDeLicenta}"></td>
+							<td th:text="${plam.pragramulDeStudiiLicenta}"></td>
 		                    
 		                    
 		                </tr>
 	            	</tbody>
 	        	</table>
 		    </div>      
-		    <p><a href="/companie-create">Adauga o companie noua</a></p>
+		    <p><a href="/planInvatamant-create">Adauga o companie noua</a></p>
 		</div>
 	</div>
 
