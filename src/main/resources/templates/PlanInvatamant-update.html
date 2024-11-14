@@ -21,7 +21,7 @@
 	<h2>Planuri de Invatamant</h2>
 	<hr>
 	
-	<form action="#" th:action="@{/plan-update/{id}(id=${plan.id})}" th:object="${plan}" method="post">	  
+	<form action="#" th:action="@{/PlanInvatamant-update/{id}(id=${PlanInvatamant.id})}" th:object="${PlanInvatamant}" method="post">	  
 		<div class="row row-cols-4">
 			<div class="col-sm">
 		    	<label for="universitate">Universitate</label>			    
@@ -62,11 +62,11 @@
 				
 				<div class="row row-cols-4">
 					<div class="col-sm">
-					    <label for="ramuraDeStiinte">Ramura de stiinte</label>
+					    <label for="ramuraDeStiinta">Ramura de stiinta</label>
 			    	</div>
 					<div class="col-sm">
-					    <input type="text" th:field="*{ramuraDeStiinte}" id="ramuraDeStiinte" placeholder="RamuraDeStiinte">
-					    <span th:if="${#fields.hasErrors('ramuraDeStiinte')}" th:errors="*{ramuraDeStiinte}"></span>
+					    <input type="text" th:field="*{ramuraDeStiinta}" id="ramuraDeStiinta" placeholder="RamuraDeStiinta">
+					    <span th:if="${#fields.hasErrors('ramuraDeStiinta')}" th:errors="*{ramuraDeStiinta}"></span>
 			    	</div>
 				
 					<div class="col-sm">

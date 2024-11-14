@@ -35,27 +35,27 @@
 	                        <th scope="col">Domeniu fundamental</th>	                      
 	                        <th scope="col">Ramura de stiinta</th>
 							<th scope="col">Domeniul de licenta</th>
-							<th scope="col">Prigramul de studii-Licenta</th>
+							<th scope="col">Programul de studii-Licenta</th>
 	                    </tr>
 	                </thead>
 	                <tbody>
-		                <tr th:each="plan : ${planuri}">
-		                    <td scope="col" th:text="${plan.id}"></td>		                    
-		                    <td><a th:href="@{/plan-edit/{id}(id=${plan.id})}">Editeaza</a></td>
-		                    <td><a th:href="@{/plan-delete/{id}(id=${plan.id})}">Sterge</a></td>		                    
-		                    <td th:text="${plan.universitate}"></td>
-		                    <td th:text="${plan.facultate}"></td>
-		                    <td th:text="${plan.domeniuFundamental}"></td>
-		                    <td th:text="${plan.ramuraDeStiinta}"></td>
-		                    <td th:text="${plam.domeniuDeLicenta}"></td>
-							<td th:text="${plam.pragramulDeStudiiLicenta}"></td>
+		                <tr th:each="PlanInvatamant : ${PlanInvatamant}">
+		                    <td scope="col" th:text="${PlanInvatamant.id}"></td>		                    
+		                    <td><a th:href="@{/PlanInvatamant-edit/{id}(id=${PlanInvatamant.id})}">Editeaza</a></td>
+		                    <td><a th:href="@{/PlanInvatamant-delete/{id}(id=${PlanInvatamant.id})}">Sterge</a></td>		                    
+		                    <td th:text="${PlanInvatamant.universitate}"></td>
+		                    <td th:text="${PlanInvatamant.facultate}"></td>
+		                    <td th:text="${PlanInvatamant.domeniuFundamental}"></td>
+		                    <td th:text="${PlanInvatamant.ramuraDeStiinta}"></td>
+		                    <td th:text="${PlanInvatamant.domeniuDeLicenta}"></td>
+							<td th:text="${PlanInvatamant.programDeStudiiLicenta}"></td>
 		                    
 		                    
 		                </tr>
 	            	</tbody>
 	        	</table>
 		    </div>      
-		    <p><a href="/planInvatamant-create">Adauga o companie noua</a></p>
+		    <p><a href="/PlanInvatamant-create">Adauga un plan de invatamant nou</a></p>
 		</div>
 	</div>
 

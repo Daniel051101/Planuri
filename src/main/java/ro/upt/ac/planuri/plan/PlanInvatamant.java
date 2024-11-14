@@ -10,14 +10,15 @@ public class PlanInvatamant
 {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	public int id;
 	
 	private String universitate;
 	private String facultate;
+	
 	private String domeniuFundamental;
-	private String ramuraDeStiinte;
-	private String domeniulDeLicenta;
-	private String programulDeStudiiLicenta;
+	private String ramuraDeStiinta;
+	private String domeniuDeLicenta;
+	private String programDeStudiiLicenta;
 	
 	public PlanInvatamant()
 	{
@@ -47,28 +48,28 @@ public class PlanInvatamant
 		this.domeniuFundamental = domeniuFundamental;
 	}
 
-	public String getRamuraDeStiinte() {
-		return ramuraDeStiinte;
+	public String getRamuraDeStiinta() {
+		return ramuraDeStiinta;
 	}
 
-	public void setRamuraDeStiinte(String ramuraDeStiinte) {
-		this.ramuraDeStiinte = ramuraDeStiinte;
+	public void setRamuraDeStiinta(String ramuraDeStiinta) {
+		this.ramuraDeStiinta = ramuraDeStiinta;
 	}
 
-	public String getDomeniulDeLicenta() {
-		return domeniulDeLicenta;
+	public String getDomeniuDeLicenta() {
+		return domeniuDeLicenta;
 	}
 
-	public void setDomeniulDeLicenta(String domeniulDeLicenta) {
-		this.domeniulDeLicenta = domeniulDeLicenta;
+	public void setDomeniuDeLicenta(String domeniuDeLicenta) {
+		this.domeniuDeLicenta = domeniuDeLicenta;
 	}
 
-	public String getProgramulDeStudiiLicenta() {
-		return programulDeStudiiLicenta;
+	public String getProgramDeStudiiLicenta() {
+		return programDeStudiiLicenta;
 	}
 
-	public void setProgramulDeStudiiLicenta(String programulDeStudiiLicenta) {
-		this.programulDeStudiiLicenta = programulDeStudiiLicenta;
+	public void setProgramDeStudiiLicenta(String programDeStudiiLicenta) {
+		this.programDeStudiiLicenta = programDeStudiiLicenta;
 	}
 
 	public void setId(int id2) {
