@@ -21,60 +21,60 @@ public class DisciplinaController
 //		return "index";
 //	}
 
-	@GetMapping("/disciplina-create")
+	@GetMapping("/Disciplina-create")
 	public String create(Disciplina disciplina)
 	{
-		return "disciplina-create";
+		return "Disciplina-create";
 	}
 
-	@PostMapping("/disciplina-create-save")
+	@PostMapping("/Disciplina-create-save")
 	public String createSave(@Validated Disciplina disciplina, BindingResult result, Model model)
 	{
 		if(result.hasErrors())
 		{
-			return "disciplina-create";
+			return "Disciplina-create";
 		}
 		disciplinaRepository.save(disciplina);
-		return "redirect:/disciplina-read";
+		return "redirect:/Disciplina-read";
 	}
 	
-	@GetMapping("/disciplina-read")
+	@GetMapping("/Disciplina-read")
 	public String read(Model model) 
 	{
-	    model.addAttribute("disciplina", disciplinaRepository.findAll());
-	    return "disciplina-read";
+	    model.addAttribute("Disciplina", disciplinaRepository.findAll());
+	    return "Disciplina-read";
 	}
 	
-	@GetMapping("/disciplina-edit/{id}")
+	@GetMapping("/Disciplina-edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) 
 	{
 	    Disciplina disciplina = disciplinaRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
-	    model.addAttribute("plan", disciplina);
-	    return "disciplina-update";
+	    model.addAttribute("disciplina", disciplina);
+	    return "Disciplina-update";
 	}
 	
-	@PostMapping("/disciplina-update/{id}")
+	@PostMapping("/Disciplina-update/{id}")
 	public String update(@PathVariable("id") int id, @Validated Disciplina disciplina, BindingResult result, Model model) 
 	{
 	    if(result.hasErrors()) 
 	    {
 	    	disciplina.setId(id);
-	        return "disciplina-update";
+	        return "Disciplina-update";
 	    }
 	        
 	    disciplinaRepository.save(disciplina);
-	    return "redirect:/disciplina-read";
+	    return "redirect:/Disciplina-read";
 	}
 	
-	@GetMapping("/disciplina-delete/{id}")
+	@GetMapping("/Disciplina-delete/{id}")
 	public String delete(@PathVariable("id") int id, Model model) 
 	{
 		Disciplina disciplina = disciplinaRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
 		disciplinaRepository.delete(disciplina);
-	    return "redirect:/disciplina-read";
+	    return "redirect:/Disciplina-read";
 	}	
 }

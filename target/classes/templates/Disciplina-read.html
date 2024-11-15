@@ -18,7 +18,7 @@
 		    <li class="breadcrumb-item active" aria-current="page">Discipline</li>
 		  </ol>
 		</nav>	
-		<div th:switch="${discipline}">
+		<div th:switch="${Disciplina}">
 		    <h2 th:case="null">Nu este nicio disicplina in baza de date!</h2>
 	        <div th:case="*">
 	            <h2>Discipline</h2>
@@ -44,27 +44,27 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-		                <tr th:each="disciplina : ${discipline}">
-		                    <td scope="col" th:text="${disicplina.id}"></td>		                    
-		                    <td><a th:href="@{/disciplina-edit/{id}(id=${disciplina.id})}">Editeaza</a></td>
-		                    <td><a th:href="@{/disciplina-delete/{id}(id=${disciplina.id})}">Sterge</a></td>		                    
-		                    <td th:text="${disciplina.codDisciplina}"></td>
-		                    <td th:text="${disciplina.numarCrediteTransferabile}"></td>
-		                    <td th:text="${disciplina.formaEvaluare}"></td>
-		                    <td th:text="${disciplina.numarOreCurs}"></td>
-		                    <td th:text="${disciplina.numarOreSeminar}"></td>
-							<td th:text="${disciplina.numarOreLaborator}"></td>
-							<td th:text="${disciplina.numarOreProiect}"></td>
-							<td th:text="${disciplina.volumOreNecesareActivitatilorPartialAsistate}"></td>
-							<td th:text="${disciplina.categorieFormativa}"></td>
-							<td th:text="${disciplina.volumOreNecesaraPregatiriIndividuale}"></td>
+		                <tr th:each="Disciplina : ${Disciplina}">
+		                    <td scope="col" th:text="${Disciplina.id}"></td>		                    
+		                    <td><a th:href="@{/Disciplina-edit/{id}(id=${Disciplina.id})}">Editeaza</a></td>
+		                    <td><a th:href="@{/Disciplina-delete/{id}(id=${Disciplina.id})}">Sterge</a></td>		                    
+		                    <td th:text="${Disciplina.codDisciplina}"></td>
+		                    <td th:text="${Disciplina.numarCrediteTransferabile}"></td>
+		                    <td th:text="${Disciplina.formaEvaluare}"></td>
+		                    <td th:text="${Disciplina.numarOreCurs}"></td>
+		                    <td th:text="${Disciplina.numarOreSeminar}"></td>
+							<td th:text="${Disciplina.numarOreLaborator}"></td>
+							<td th:text="${Disciplina.numarOreProiect}"></td>
+							<td th:text="${Disciplina.volumOreNecesareActivitatilorPartialAsistate}"></td>
+							<td th:text="${Disciplina.categorieFormativa}"></td>
+							<td th:text="${Disciplina.volumOreNecesaraPregatiriIndividuale}"></td>
 							
 		                    
 		                </tr>
 	            	</tbody>
 	        	</table>
 		    </div>      
-		    <p><a href="/disciplina-create">Adauga o disciplina noua</a></p>
+		    <p><a href="/Disciplina-create">Adauga o disciplina noua</a></p>
 		</div>
 	</div>
 

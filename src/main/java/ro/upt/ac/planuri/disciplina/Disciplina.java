@@ -11,9 +11,9 @@ public class Disciplina
 {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	public int id;
 	
-	private String codDiciplina;
+	private String codDisciplina;
 	private int numarCrediteTransferabile; 
 	//@Enumerated(EnumType.STRING)
 	private FE formaEvaluare ; //(E,D,C,P-E,P-D)
@@ -32,13 +32,13 @@ public class Disciplina
 	}
 
 
-	public String getCodDiciplina() {
-		return codDiciplina;
+	public String getCodDisciplina() {
+		return codDisciplina;
 	}
 
 
-	public void setCodDiciplina(String codDiciplina) {
-		this.codDiciplina = codDiciplina;
+	public void setCodDisciplina(String codDisciplina) {
+		this.codDisciplina = codDisciplina;
 	}
 
 
@@ -136,6 +136,10 @@ public class Disciplina
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+
 	
 	
 	

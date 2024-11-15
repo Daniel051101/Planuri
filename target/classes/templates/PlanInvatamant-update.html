@@ -23,24 +23,15 @@
 	
 	<form action="#" th:action="@{/PlanInvatamant-update/{id}(id=${PlanInvatamant.id})}" th:object="${PlanInvatamant}" method="post">	  
 		<div class="row row-cols-4">
-			<div class="col-sm">
-		    	<label for="universitate">Universitate</label>			    
-	    	</div>
-			<div class="col-sm">
-		    	<input type="text" th:field="*{universitate}" id="universitate" name="universitate" placeholder="Universitate">
-		    	<span th:if="${#fields.hasErrors('universitate')}" th:errors="*{universitate}"></span>
-	    	</div>
-			<div class="col-sm">
-				&nbsp;
-	    	</div>
-			<div class="col-sm">
-				&nbsp;
-	    	</div>
-    	</div>
-    	
-    	<hr>
-	    
-		<div class="row row-cols-4">
+					
+					<div class="col-sm">
+				    	<label for="universitate">Universitate</label>			    
+			    	</div>
+					<div class="col-sm">
+				    	<input type="text" th:field="*{universitate}" id="universitate" name="universitate" placeholder="Universitate">
+				    	<span th:if="${#fields.hasErrors('universitate')}" th:errors="*{universitate}"></span>
+			    	</div>
+					
 					<div class="col-sm">
 					    <label for="facultate">Facultate</label>
 			    	</div>
@@ -48,32 +39,41 @@
 					    <input type="text" th:field="*{facultate}" id="facultate" placeholder="Facultate">
 					    <span th:if="${#fields.hasErrors('facultate')}" th:errors="*{facultate}"></span>
 			    	</div>
+					
+
+		    	</div>
+
+				<hr>
+			    
+				<div class="row row-cols-4">
 				
 					<div class="col-sm">
 					    <label for="domeniuFundamental">Domeniu Fundamental</label>
 			    	</div>
 					<div class="col-sm">
-					    <input type="text" th:field="*{domeniuFundamental}" id="domeniuFundamental" placeholder="DomeniuFundamental">
+					    <input type="text" th:field="*{domeniuFundamental}" id="domeniuFundamental" placeholder="Domeniu fundamental">
 					    <span th:if="${#fields.hasErrors('domeniuFundamental')}" th:errors="*{domeniuFundamental}"></span>
 			    	</div>
+					
+					<div class="col-sm">
+					    <label for="ramuraDeStiinta">Ramura de stiinta</label>
+			    	</div>
+					<div class="col-sm">
+					    <input type="text" th:field="*{ramuraDeStiinta}" id="ramuraDeStiinta" placeholder="Ramura de stiinta">
+					    <span th:if="${#fields.hasErrors('ramuraDeStiinta')}" th:errors="*{ramuraDeStiinta}"></span>
+			    	</div>
+					
 			    </div>
 
 				<hr>
 				
 				<div class="row row-cols-4">
-					<div class="col-sm">
-					    <label for="ramuraDeStiinta">Ramura de stiinta</label>
-			    	</div>
-					<div class="col-sm">
-					    <input type="text" th:field="*{ramuraDeStiinta}" id="ramuraDeStiinta" placeholder="RamuraDeStiinta">
-					    <span th:if="${#fields.hasErrors('ramuraDeStiinta')}" th:errors="*{ramuraDeStiinta}"></span>
-			    	</div>
-				
+					
 					<div class="col-sm">
 					    <label for="domeniuDeLicenta">Domeniu de licenta</label>
 			    	</div>
 					<div class="col-sm">
-					    <input type="text" th:field="*{domeniuDeLicenta}" id="domeniuDeLicenta" placeholder="DomeniuDeLicenta">
+					    <input type="text" th:field="*{domeniuDeLicenta}" id="domeniuDeLicenta" placeholder="Domeniu de licenta">
 					    <span th:if="${#fields.hasErrors('domeniuDeLicenta')}" th:errors="*{domeniuDeLicenta}"></span>
 			    	</div>
 					
@@ -81,9 +81,10 @@
 						<label for="programDeStudiiLicenta">Program de studii - Licenta</label>
 					</div>
 					<div class="col-sm">
-						<input type="text" th:field="*{programDeStudiiLicenta}" id="programDeStudiiLicenta" placeholder="ProgramDeStudiiLicenta">
+						<input type="text" th:field="*{programDeStudiiLicenta}" id="programDeStudiiLicenta" placeholder="Program de studii - Licenta">
 						<span th:if="${#fields.hasErrors('programDeStudiiLicenta')}" th:errors="*{programDeStudiiLicenta}"></span>
 					</div>
+					
 			    </div>
 		
 		<hr>
