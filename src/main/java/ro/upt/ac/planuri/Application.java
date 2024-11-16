@@ -15,6 +15,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import ro.upt.ac.planuri.plan.PlanInvatamant;
 import ro.upt.ac.planuri.plan.PlanInvatamantRepository;
 
+//import ro.upt.ac.planuri.disciplina.Disciplina;
+//import ro.upt.ac.planuri.disciplina.DisciplinaRepository;
+
 @EnableWebMvc
 @SpringBootApplication
 
@@ -29,7 +32,9 @@ public class Application
 
 	
 	@Bean
-	public CommandLineRunner loadDataCompanii(PlanInvatamantRepository repository)
+	public CommandLineRunner loadDataPlanInvatamant(PlanInvatamantRepository repository)
+//	public CommandLineRunner loadDataDisciplina(DisciplinaRepository repository)
+
 	{
 	    return (args) -> {	
 			log.info("starting initialization...");
@@ -78,6 +83,21 @@ public class Application
  		    c5.setDomeniuDeLicenta("CALCULATOARE ȘI TEHNOLOGIA INFORMAȚIEI");
 			c5.setProgramDeStudiiLicenta("TEHNOLOGIA INFORMATIE");
     		repository.save(c5);
+    		
+//    		Disciplina d1=new Disciplina();
+//    		d1.setNumeDisciplina("Analiza Matematica");
+//    		d1.setCodDisciplina("L011.23.01.C1");
+//    		d1.setNumarCrediteTransferabile(5);
+//    		d1.setFormaEvaluare(0);
+//    		d1.setNumarOreCurs(28);
+//    		d1.setNumarOreSeminar(28);
+//    		d1.setNumarOreLaborator(0);
+//    		d1.setNumarOreProiect(0);
+//    		d1.setVolumOreNecesareActivitatilorPartialAsistate(0);
+//    		d1.setCategorieFormativa(0);
+//    		d1.setVolumOreNecesaraPregatiriIndividuale(69);
+//    		repository.save(d1);
+    		
 
 	        
 

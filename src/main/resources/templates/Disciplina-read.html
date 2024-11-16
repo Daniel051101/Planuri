@@ -29,6 +29,7 @@
 	                        <th scope="col">Editeaza</th>
 	                        <th scope="col">Sterge</th>
 	                        
+							<th scope="col">Nume disciplina</th>
 	                        <th scope="col">Cod disciplina</th>
 	                        <th scope="col">Numar de credite transferabile</th>
 	                        <th scope="col">Forma de evaluare</th>
@@ -47,7 +48,8 @@
 		                <tr th:each="Disciplina : ${Disciplina}">
 		                    <td scope="col" th:text="${Disciplina.id}"></td>		                    
 		                    <td><a th:href="@{/Disciplina-edit/{id}(id=${Disciplina.id})}">Editeaza</a></td>
-		                    <td><a th:href="@{/Disciplina-delete/{id}(id=${Disciplina.id})}">Sterge</a></td>		                    
+		                    <td><a th:href="@{/Disciplina-delete/{id}(id=${Disciplina.id})}">Sterge</a></td>	
+							<td th:text="${Disciplina.numeDisciplina}"></td>
 		                    <td th:text="${Disciplina.codDisciplina}"></td>
 		                    <td th:text="${Disciplina.numarCrediteTransferabile}"></td>
 		                    <td th:text="${Disciplina.formaEvaluare}"></td>

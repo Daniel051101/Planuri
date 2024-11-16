@@ -25,6 +25,14 @@
 		<div class="row row-cols-4">
 			
 			<div class="col-sm">
+				<label for="numeDisciplina">Nume disciplina</label>			    
+			</div>
+			<div class="col-sm">
+				<input type="text" th:field="*{numeDisciplina}" id="numeDisciplina" name="numeDisciplina" placeholder="NumeDisciplina">
+				<span th:if="${#fields.hasErrors('numeDisciplina')}" th:errors="*{numeDisciplina}"></span>
+			</div>
+			
+			<div class="col-sm">
 		    	<label for="codDisciplina">Cod disciplina</label>			    
 	    	</div>
 			<div class="col-sm">
@@ -32,7 +40,15 @@
 		    	<span th:if="${#fields.hasErrors('codDisciplina')}" th:errors="*{codDisciplina}"></span>
 	    	</div>
 			
-			<div class="col-sm">
+			
+			
+    	</div>
+
+		<hr>
+		
+		<div class="row row-cols-4">
+			
+		<div class="col-sm">
 			    <label for="numarCrediteTransferabile">Numar de credite tranferabile</label>
 	    	</div>
 			<div class="col-sm">
@@ -55,8 +71,8 @@
 			    <span th:if="${#fields.hasErrors('formaEvaluare')}" th:errors="*{formaEvaluare}"></span>
 	    	</div>
 			
-    	</div>
-
+		</div>
+		
 		<hr>
 		
 		<div class="row row-cols-4">
@@ -77,7 +93,15 @@
 			    <span th:if="${#fields.hasErrors('numarOreSeminar')}" th:errors="*{numarOreSeminar}"></span>
 	    	</div>
 			
-			<div class="col-sm">
+			
+			
+	    </div>
+		
+		<hr>
+		
+		<div class="row row-cols-4">
+			
+		<div class="col-sm">
 				<label for="numarOreLaborator">Numar de ore de laborator</label>
 			</div>
 			<div class="col-sm">
@@ -93,7 +117,7 @@
 				 <span th:if="${#fields.hasErrors('numarOreProiect')}" th:errors="*{numarOreProiect}"></span>
 			</div>
 			
-	    </div>
+		</div>
 		
 		<hr>
 		

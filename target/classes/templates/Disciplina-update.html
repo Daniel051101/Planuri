@@ -25,6 +25,14 @@
 		<div class="row row-cols-4">
 					
 			<div class="col-sm">
+				<label for="numeDisciplina">Nume disciplina</label>			    
+			</div>
+			<div class="col-sm">
+				<input type="text" th:field="*{numeDisciplina}" id="numeDisciplina" name="numeDisciplina" placeholder="NumeDisciplina">
+				<span th:if="${#fields.hasErrors('numeDisciplina')}" th:errors="*{numeDisciplina}"></span>
+			</div>
+			
+			<div class="col-sm">
 			  	<label for="codDisciplina">Cod disciplina</label>			    
 			</div>
 			<div class="col-sm">
