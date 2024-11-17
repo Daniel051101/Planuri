@@ -18,10 +18,10 @@ public class Extractor
 	public static void main(String[] args) 
 	{
 		System.out.println("Starting...");
-		int i=0,j=0;
+		int i=0, j=0;
 		try
 		{
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx ");
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -30,6 +30,7 @@ public class Extractor
 			XSSFFormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator(); 
 			
 			Iterator<Row> rowIterator = sheet.iterator();
+			
 			i=0;
 			while (rowIterator.hasNext()) 
 			{
@@ -44,12 +45,24 @@ public class Extractor
 					j++;
 					Cell cell = cellIterator.next();
 					
-					if(i>=19 && (j==2 || j==14 || j==26 || j==38))
-					{					
+					//Universitate si facultate
+					if ((i==2 || i==3) && j==1)
+						System.out.print(cell.getStringCellValue() + " ");
+					
+					//Detali plan invatamant
+					if ((i>=5 && i<=8) && j==7)
+						System.out.print(cell.getStringCellValue() + " ");
+					
+					//Nume disciplina
+					if ((i==18 || i==21 || i==24 || i==27 || i==30 || i==33 || i==36 || i==39) && (j==2 || j==14 || j==26 || j==38))
+						System.out.print(cell.getStringCellValue() + " ");
+					
+					//Datele disciplinei
+					if ((i==20 || i==23 || i==26 || i==29 || i==32 || i==35 || i==38 || i==41) && (j!=1 && j!=3 && j!=4 && j!=11 && j!=15 && j!=16 && j!=23 && j!=27 && j!=28 && j!=35 && j!=39 && j!=40 && j!=47))
 						switch (cell.getCellType()) 
 						{
 							case NUMERIC:
-								System.out.print(cell.getNumericCellValue() + " ");
+								System.out.print((int)cell.getNumericCellValue() + " ");
 								break;
 							case STRING:
 								System.out.print(cell.getStringCellValue() + " ");
@@ -63,7 +76,7 @@ public class Extractor
 								            System.out.print(cell.getBooleanCellValue()+" ");
 								            break;
 								        case NUMERIC:
-								            System.out.print(cell.getNumericCellValue()+" ");
+								            System.out.print((int)cell.getNumericCellValue()+" ");
 								            break;
 								        case STRING:
 								            System.out.print(cell.getStringCellValue()+" ");
@@ -77,7 +90,41 @@ public class Extractor
 							default:
 								System.out.print("-");
 						}
-					}
+					
+//					if(i>=19 && (j==2 || j==14 || j==26 || j==38))
+//					{					
+//						switch (cell.getCellType()) 
+//						{
+//							case NUMERIC:
+//								System.out.print(cell.getNumericCellValue() + " ");
+//								break;
+//							case STRING:
+//								System.out.print(cell.getStringCellValue() + " ");
+//								break;
+//							case FORMULA:
+//								try 
+//								{
+//									switch (evaluator.evaluateFormulaCell(cell))
+//									{
+//								        case BOOLEAN:
+//								            System.out.print(cell.getBooleanCellValue()+" ");
+//								            break;
+//								        case NUMERIC:
+//								            System.out.print(cell.getNumericCellValue()+" ");
+//								            break;
+//								        case STRING:
+//								            System.out.print(cell.getStringCellValue()+" ");
+//								            break;
+//									}
+//								}
+//								catch(Exception e)
+//								{
+//								}
+//								break;
+//							default:
+//								System.out.print("-");
+//						}
+//					}
 				}
 				System.out.println("");
 			}
