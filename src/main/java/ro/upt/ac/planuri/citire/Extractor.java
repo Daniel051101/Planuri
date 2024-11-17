@@ -54,11 +54,11 @@ public class Extractor
 						System.out.print(cell.getStringCellValue() + " ");
 					
 					//Nume disciplina
-					if ((i==18 || i==21 || i==24 || i==27 || i==30 || i==33 || i==36 || i==39) && (j==2 || j==14 || j==26 || j==38))
-						System.out.print(cell.getStringCellValue() + " ");
+					if ((i>=18 && i<=43 && i%3==0) && (j==2 || j==14 || j==26 || j==38))
+						System.out.print(cell.getStringCellValue() + " /");
 					
 					//Datele disciplinei
-					if ((i==20 || i==23 || i==26 || i==29 || i==32 || i==35 || i==38 || i==41) && (j!=1 && j!=3 && j!=4 && j!=11 && j!=15 && j!=16 && j!=23 && j!=27 && j!=28 && j!=35 && j!=39 && j!=40 && j!=47))
+					if ((i>=18 && i<=43 && i%3==2) && (j!=1 && j!=3 && j!=4 && j!=11 && j!=15 && j!=16 && j!=23 && j!=27 && j!=28 && j!=35 && j!=39 && j!=40 && j!=47))
 						switch (cell.getCellType()) 
 						{
 							case NUMERIC:
@@ -90,6 +90,8 @@ public class Extractor
 							default:
 								System.out.print("-");
 						}
+					
+					
 					
 //					if(i>=19 && (j==2 || j==14 || j==26 || j==38))
 //					{					
@@ -125,7 +127,10 @@ public class Extractor
 //								System.out.print("-");
 //						}
 //					}
+					
 				}
+				if (i==45)
+						break;
 				System.out.println("");
 			}
 			file.close();
