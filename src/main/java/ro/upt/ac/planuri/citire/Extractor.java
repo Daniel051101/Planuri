@@ -89,46 +89,9 @@ public class Extractor
 								break;
 							default:
 								System.out.print("-");
-						}
-					
-					
-					
-//					if(i>=19 && (j==2 || j==14 || j==26 || j==38))
-//					{					
-//						switch (cell.getCellType()) 
-//						{
-//							case NUMERIC:
-//								System.out.print(cell.getNumericCellValue() + " ");
-//								break;
-//							case STRING:
-//								System.out.print(cell.getStringCellValue() + " ");
-//								break;
-//							case FORMULA:
-//								try 
-//								{
-//									switch (evaluator.evaluateFormulaCell(cell))
-//									{
-//								        case BOOLEAN:
-//								            System.out.print(cell.getBooleanCellValue()+" ");
-//								            break;
-//								        case NUMERIC:
-//								            System.out.print(cell.getNumericCellValue()+" ");
-//								            break;
-//								        case STRING:
-//								            System.out.print(cell.getStringCellValue()+" ");
-//								            break;
-//									}
-//								}
-//								catch(Exception e)
-//								{
-//								}
-//								break;
-//							default:
-//								System.out.print("-");
-//						}
-//					}
-					
+						}					
 				}
+				
 				if (i==45)
 						break;
 				System.out.println("");
@@ -142,6 +105,41 @@ public class Extractor
 		
 		System.out.println("Stopping... "+i+" "+j);
 	}
-	
-
 }
+
+
+
+//if(i>=19 && (j==2 || j==14 || j==26 || j==38))
+//{					
+//	switch (cell.getCellType()) 
+//	{
+//		case NUMERIC:
+//			System.out.print(cell.getNumericCellValue() + " ");
+//			break;
+//		case STRING:
+//			System.out.print(cell.getStringCellValue() + " ");
+//			break;
+//		case FORMULA:
+//			try 
+//			{
+//				switch (evaluator.evaluateFormulaCell(cell))
+//				{
+//			        case BOOLEAN:
+//			            System.out.print(cell.getBooleanCellValue()+" ");
+//			            break;
+//			        case NUMERIC:
+//			            System.out.print(cell.getNumericCellValue()+" ");
+//			            break;
+//			        case STRING:
+//			            System.out.print(cell.getStringCellValue()+" ");
+//			            break;
+//				}
+//			}
+//			catch(Exception e)
+//			{
+//			}
+//			break;
+//		default:
+//			System.out.print("-");
+//	}
+//}
