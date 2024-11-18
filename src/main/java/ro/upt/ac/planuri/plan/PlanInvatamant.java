@@ -72,11 +72,11 @@ public class PlanInvatamant
 		this.programDeStudiiLicenta = programDeStudiiLicenta;
 	}
 
-	public void setId(int id2) {
-		// TODO Auto-generated method stub
-		
+	public int getId() {
+		return id;
 	}
 
-	
-
+	public void setId(int id) {
+		this.id = id;
+	}
 }

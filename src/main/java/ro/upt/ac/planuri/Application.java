@@ -1,26 +1,20 @@
 package ro.upt.ac.planuri;
 
-//import java.sql.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 import ro.upt.ac.planuri.plan.PlanInvatamant;
 import ro.upt.ac.planuri.plan.PlanInvatamantRepository;
-
-//import ro.upt.ac.planuri.disciplina.Disciplina;
-//import ro.upt.ac.planuri.disciplina.DisciplinaRepository;
+import ro.upt.ac.planuri.disciplina.Disciplina;
+import ro.upt.ac.planuri.disciplina.DisciplinaRepository;
+import ro.upt.ac.planuri.disciplina.TFormaEvaluare;
 
 @EnableWebMvc
 @SpringBootApplication
-
 public class Application 
 {	
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
@@ -30,11 +24,8 @@ public class Application
 		SpringApplication.run(Application.class, args);
 	}
 
-	
 	@Bean
 	public CommandLineRunner loadDataPlanInvatamant(PlanInvatamantRepository repository)
-//	public CommandLineRunner loadDataDisciplina(DisciplinaRepository repository)
-
 	{
 	    return (args) -> {	
 			log.info("starting initialization...");
@@ -84,25 +75,32 @@ public class Application
 			c5.setProgramDeStudiiLicenta("TEHNOLOGIA INFORMATIE");
     		repository.save(c5);
     		
-//    		Disciplina d1=new Disciplina();
-//    		d1.setNumeDisciplina("Analiza Matematica");
-//    		d1.setCodDisciplina("L011.23.01.C1");
-//    		d1.setNumarCrediteTransferabile(5);
-//    		d1.setFormaEvaluare(0);
-//    		d1.setNumarOreCurs(28);
-//    		d1.setNumarOreSeminar(28);
-//    		d1.setNumarOreLaborator(0);
-//    		d1.setNumarOreProiect(0);
-//    		d1.setVolumOreNecesareActivitatilorPartialAsistate(0);
-//    		d1.setCategorieFormativa(0);
-//    		d1.setVolumOreNecesaraPregatiriIndividuale(69);
-//    		repository.save(d1);
-    		
-
-	        
 
 			log.info("ending initialization...");
 	    };
-	}	
+	}
 	
+	@Bean
+	public CommandLineRunner loadDataDisciplina(DisciplinaRepository repository)
+	{
+		 return (args) -> {	
+				log.info("starting initialization...");
+	    		
+				Disciplina d1=new Disciplina();
+	    		d1.setNumeDisciplina("Analiza Matematica");
+	    		d1.setCodDisciplina("L011.23.01.C1");
+	    		d1.setNumarCrediteTransferabile(5);
+	    		d1.setFormaEvaluare(TFormaEvaluare.C.getNumeLung());
+	    		d1.setNumarOreCurs(28);
+	    		d1.setNumarOreSeminar(28);
+	    		d1.setNumarOreLaborator(0);
+	    		d1.setNumarOreProiect(0);
+	    		d1.setVolumOreNecesareActivitatilorPartialAsistate(0);
+	    		//d1.setCategorieFormativa(0);
+	    		d1.setVolumOreNecesaraPregatiriIndividuale(69);
+	    		repository.save(d1);      
+
+	    		log.info("ending initialization...");
+		};
+	}
 }

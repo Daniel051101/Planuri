@@ -21,7 +21,7 @@
 	<h2>Discipline</h2>
 	<hr>
 	
-	<form action="#" th:action="@{/Disciplina-update/{id}(id=${Disciplina.id})}" th:object="${Disciplina}" method="post">	  
+	<form action="#" th:action="@{/disciplina-update/{id}(id=${disciplina.id})}" th:object="${disciplina}" method="post">
 		<div class="row row-cols-4">
 					
 			<div class="col-sm">
@@ -54,16 +54,15 @@
 			 <div class="col-sm">
 				<select th:field="*{formaEvaluare}" id="formaEvaluare" class="form-select">
 					<option value="" disabled selected>Alege forma de evaluare</option>
-					<option value="E">Examen</option>
-					<option value="D">Evaluare distribuita</option>
-					<option value="C">Colocviu</option>
-					<option value="P_E">Proiect autonom cu examinare ca si in cazul disciplinelor cu examen</option>
-					<option value="P_D">Proiect autonom cu examinare</option>
+					<option value="Examen">Examen</option>
+					<option value="Evaluare distribuita">Evaluare distribuita</option>
+					<option value="Colocviu">Colocviu</option>
+					<option value="Proiect autonom cu examinare ca si in cazul disciplinelor cu examen">Proiect autonom cu examinare ca si in cazul disciplinelor cu examen</option>
+					<option value="Proiect autonom cu examinare">Proiect autonom cu examinare</option>
 				</select>
 			  <span th:if="${#fields.hasErrors('formaEvaluare')}" th:errors="*{formaEvaluare}"></span>
-			  </div>
-					
-		      </div>
+			  </div>	
+		    </div>
 
 			<hr>
 				

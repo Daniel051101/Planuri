@@ -21,7 +21,7 @@
 	<h2>Discipline</h2>
 	<hr>
 	
-	<form action="#" th:action="@{/Disciplina-create-save}" th:object="${disciplina}" method="post">
+	<form action="#" th:action="@{/disciplina-create-save}" th:object="${disciplina}" method="post">
 		<div class="row row-cols-4">
 			
 			<div class="col-sm">
@@ -39,9 +39,6 @@
 		    	<input type="text" th:field="*{codDisciplina}" id="codDisciplina" name="codDisciplina" placeholder="CodDisciplina">
 		    	<span th:if="${#fields.hasErrors('codDisciplina')}" th:errors="*{codDisciplina}"></span>
 	    	</div>
-			
-			
-			
     	</div>
 
 		<hr>
@@ -92,8 +89,6 @@
 			    <input type="text" th:field="*{numarOreSeminar}" id="numarOreSeminar" placeholder="NumarOreSeminar">
 			    <span th:if="${#fields.hasErrors('numarOreSeminar')}" th:errors="*{numarOreSeminar}"></span>
 	    	</div>
-			
-			
 			
 	    </div>
 		

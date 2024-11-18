@@ -15,17 +15,15 @@ public class Disciplina
 	
 	private String numeDisciplina;
 	private String codDisciplina;
-	private int numarCrediteTransferabile; 
-	//@Enumerated(EnumType.STRING)
-	private FE formaEvaluare ; //(E,D,C,P-E,P-D)
+	private int numarCrediteTransferabile;
+	private String formaEvaluare;
 	private int numarOreCurs; 
 	private int numarOreSeminar ;
 	private int numarOreLaborator ;
 	private int numarOreProiect ;
-	private int volumOreNecesareActivitatilorPartialAsistate ;
-	private CF categorieFormativa ;//(DC, DD, DF, DS) categorie formativa careia ii apartine disciplina
+	private int volumOreNecesareActivitatilorPartialAsistate;
+	private TCategorieFormativa categorieFormativa;
 	private int volumOreNecesaraPregatiriIndividuale;
-	
 	
 	public Disciplina() //constructor
 	{
@@ -61,15 +59,14 @@ public class Disciplina
 	}
 
 
-	public FE getFormaEvaluare() {
+	public String getFormaEvaluare() {
 		return formaEvaluare;
 	}
 
 
-	public void setFormaEvaluare(FE formaEvaluare) {
+	public void setFormaEvaluare(String formaEvaluare) {
 		this.formaEvaluare = formaEvaluare;
 	}
-
 
 	public int getNumarOreCurs() {
 		return numarOreCurs;
@@ -120,13 +117,12 @@ public class Disciplina
 		this.volumOreNecesareActivitatilorPartialAsistate = volumOreNecesareActivitatilorPartialAsistate;
 	}
 
-
-	public CF getCategorieFormativa() {
+	public TCategorieFormativa getCategorieFormativa() {
 		return categorieFormativa;
 	}
 
 
-	public void setCategorieFormativa(CF categorieFormativa) {
+	public void setCategorieFormativa(TCategorieFormativa categorieFormativa) {
 		this.categorieFormativa = categorieFormativa;
 	}
 
@@ -140,19 +136,11 @@ public class Disciplina
 		this.volumOreNecesaraPregatiriIndividuale = volumOreNecesaraPregatiriIndividuale;
 	}
 
-
-	public void setId(int id2) {
-		// TODO Auto-generated method stub
-		
+	public int getId() {
+		return id;
 	}
 
-
-
-
-
-
-
-	
-	
-	
+	public void setId(int id) {
+		this.id = id;
+	}
 }
