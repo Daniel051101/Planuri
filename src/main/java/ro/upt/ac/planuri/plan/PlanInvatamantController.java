@@ -21,60 +21,60 @@ public class PlanInvatamantController
 		return "index";
 	}
 
-	@GetMapping("/PlanInvatamant-create")
+	@GetMapping("/planInvatamant-create")
 	public String create(PlanInvatamant planInvatamant)
 	{
-		return "PlanInvatamant-create";
+		return "planInvatamant-create";
 	}
 
-	@PostMapping("/PlanInvatamant-create-save")
+	@PostMapping("/planInvatamant-create-save")
 	public String createSave(@Validated PlanInvatamant planInvatamant, BindingResult result, Model model)
 	{
 		if(result.hasErrors())
 		{
-			return "PlanInvatamant-create";
+			return "planInvatamant-create";
 		}
 		planInvatamantRepository.save(planInvatamant);
-		return "redirect:/PlanInvatamant-read";
+		return "redirect:/planInvatamant-read";
 	}
 	
-	@GetMapping("/PlanInvatamant-read")
+	@GetMapping("/planInvatamant-read")
 	public String read(Model model) 
 	{
-	    model.addAttribute("PlanInvatamant", planInvatamantRepository.findAll());
-	    return "PlanInvatamant-read";
+	    model.addAttribute("planInvatamant", planInvatamantRepository.findAll());
+	    return "planInvatamant-read";
 	}
 	
-	@GetMapping("/PlanInvatamant-edit/{id}")
+	@GetMapping("/planInvatamant-edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) 
 	{
 	    PlanInvatamant planInvatamant = planInvatamantRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
-	    model.addAttribute("PlanInvatamant", planInvatamant);
-	    return "PlanInvatamant-update";
+	    model.addAttribute("planInvatamant", planInvatamant);
+	    return "planInvatamant-update";
 	}
 	
-	@PostMapping("/PlanInvatamant-update/{id}")
+	@PostMapping("/planInvatamant-update/{id}")
 	public String update(@PathVariable("id") int id, @Validated PlanInvatamant planInvatamant, BindingResult result, Model model) 
 	{
 	    if(result.hasErrors()) 
 	    {
 	        planInvatamant.setId(id);
-	        return "PlanInvatamant-update";
+	        return "planInvatamant-update";
 	    }
 	        
 	    planInvatamantRepository.save(planInvatamant);
-	    return "redirect:/PlanInvatamant-read";
+	    return "redirect:/planInvatamant-read";
 	}
 	
-	@GetMapping("/PlanInvatamant-delete/{id}")
+	@GetMapping("/planInvatamant-delete/{id}")
 	public String delete(@PathVariable("id") int id, Model model) 
 	{
 	    PlanInvatamant planInvatamant = planInvatamantRepository.findById(id);
 	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
 	    
 	    planInvatamantRepository.delete(planInvatamant);
-	    return "redirect:/PlanInvatamant-read";
+	    return "redirect:/planInvatamant-read";
 	}	
 }

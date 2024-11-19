@@ -52,16 +52,16 @@
 			 	<label for="formaEvaluare">Forma de evaluare</label>
 			 </div>
 			 <div class="col-sm">
-				<select th:field="*{formaEvaluare}" id="formaEvaluare" class="form-select">
-					<option value="" disabled selected>Alege forma de evaluare</option>
-					<option value="Examen">Examen</option>
-					<option value="Evaluare distribuita">Evaluare distribuita</option>
-					<option value="Colocviu">Colocviu</option>
-					<option value="Proiect autonom cu examinare ca si in cazul disciplinelor cu examen">Proiect autonom cu examinare ca si in cazul disciplinelor cu examen</option>
-					<option value="Proiect autonom cu examinare">Proiect autonom cu examinare</option>
-				</select>
-			  <span th:if="${#fields.hasErrors('formaEvaluare')}" th:errors="*{formaEvaluare}"></span>
-			  </div>	
+			     <select th:field="*{formaEvaluare}" id="formaEvaluare" class="form-select">
+			 		<option value="" disabled selected>Alege forma de evaluare</option>
+			 		<option value="Examen">Examen</option>
+			 		<option value="Evaluare distribuita">Evaluare distribuita</option>
+			 		<option value="Colocviu">Colocviu</option>
+			 		<option value="Proiect autonom cu examinare ca si in cazul disciplinelor cu examen">Proiect autonom cu examinare ca si in cazul disciplinelor cu examen</option>
+			 		<option value="Proiect autonom cu examinare">Proiect autonom cu examinare</option>
+			 	</select>
+			     <span th:if="${#fields.hasErrors('formaEvaluare')}" th:errors="*{formaEvaluare}"></span>
+			 </div>	
 		    </div>
 
 			<hr>
@@ -120,10 +120,10 @@
 					<div class="col-sm">
 						<select th:field="*{categorieFormativa}" id="categorieFormativa" class="form-select">
 							<option value="" disabled selected>Alege forma de evaluare</option>
-							<option value="DC">Disciplina complementara</option>
-							<option value="DD">Disciplina in domeniu</option>
-							<option value="DF">Disiciplina fundamentala</option>
-							<option value="DS">Disiciplina de specialitate</option>
+							<option value="Disciplina complementara">Disciplina complementara</option>
+							<option value="Disciplina in domeniu">Disciplina in domeniu</option>
+							<option value="Disiciplina fundamentala">Disiciplina fundamentala</option>
+							<option value="Disiciplina de specialitate">Disiciplina de specialitate</option>
 						</select>
 						<span th:if="${#fields.hasErrors('categorieFormativa')}" th:errors="*{categorieFormativa}"></span>
 					</div>	

@@ -14,11 +14,18 @@ public class PlanInvatamant
 	
 	private String universitate;
 	private String facultate;
-	
 	private String domeniuFundamental;
 	private String ramuraDeStiinta;
 	private String domeniuDeLicenta;
 	private String programDeStudiiLicenta;
+	private int codDomeniuFundamental;
+	private int codRamuraDeStiinta;
+	private int codDomeniuDeLicenta;
+	private int codStudii;
+	private String ciclu;
+	private int codulProgramuluiDeStudii; //c1c2c3
+	private int anCalendaristic; //ultimele 2 cifre ale primului an calendaristic al anului universitar
+	
 	
 	public PlanInvatamant()
 	{
@@ -78,5 +85,61 @@ public class PlanInvatamant
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getCodDomeniuFundamental() {
+		return codDomeniuFundamental;
+	}
+
+	public void setCodDomeniuFundamental(int codDomeniuFundamental) {
+		this.codDomeniuFundamental = codDomeniuFundamental;
+	}
+
+	public int getCodRamuraDeStiinta() {
+		return codRamuraDeStiinta;
+	}
+
+	public void setCodRamuraDeStiinta(int codRamuraDeStiinta) {
+		this.codRamuraDeStiinta = codRamuraDeStiinta;
+	}
+
+	public int getCodStudii() {
+		return codStudii;
+	}
+
+	public void setCodStudii(int codStudii) {
+		this.codStudii = codStudii;
+	}
+
+	public String getCiclu() {
+		return ciclu;
+	}
+
+	public void setCiclu(String ciclu) {
+		this.ciclu = ciclu;
+	}
+
+	public int getCodulProgramuluiDeStudii() {
+		return codulProgramuluiDeStudii;
+	}
+
+	public void setCodulProgramuluiDeStudii(int codulProgramuluiDeStudii) {
+		this.codulProgramuluiDeStudii = codulProgramuluiDeStudii;
+	}
+
+	public int getAnCalendaristic() {
+		return anCalendaristic;
+	}
+
+	public void setAnCalendaristic(int anCalendaristic) {
+		this.anCalendaristic = anCalendaristic;
+	}
+
+	public int getCodDomeniuDeLicenta() {
+		return codDomeniuDeLicenta;
+	}
+
+	public void setCodDomeniuDeLicenta(int codDomeniuDeLicenta) {
+		this.codDomeniuDeLicenta = codDomeniuDeLicenta;
 	}
 }

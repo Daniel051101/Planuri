@@ -11,6 +11,7 @@ import ro.upt.ac.planuri.plan.PlanInvatamant;
 import ro.upt.ac.planuri.plan.PlanInvatamantRepository;
 import ro.upt.ac.planuri.disciplina.Disciplina;
 import ro.upt.ac.planuri.disciplina.DisciplinaRepository;
+import ro.upt.ac.planuri.disciplina.TCategorieFormativa;
 import ro.upt.ac.planuri.disciplina.TFormaEvaluare;
 
 @EnableWebMvc
@@ -37,6 +38,13 @@ public class Application
 	        c1.setRamuraDeStiinta("INFORMATICĂ");
 	        c1.setDomeniuDeLicenta("INFORMATICĂ");
 			c1.setProgramDeStudiiLicenta("INFORMATICĂ");
+			c1.setCodDomeniuFundamental(10);
+			c1.setCodRamuraDeStiinta(50);
+			c1.setCodDomeniuDeLicenta(40);
+			c1.setCodStudii(10);
+			c1.setCiclu("L");
+			c1.setCodulProgramuluiDeStudii(011);
+			c1.setAnCalendaristic(23);
 	        repository.save(c1);
 
 			PlanInvatamant c2=new PlanInvatamant();
@@ -46,6 +54,13 @@ public class Application
  		    c2.setRamuraDeStiinta("INGINERIA SISTEMELOR, CALCULATOARELOR ȘI TEHNOLOGIA INFORMAȚIEI");
  		    c2.setDomeniuDeLicenta("INGINERIA SISTEMELOR");
 			c2.setProgramDeStudiiLicenta("AUTOMATICA SI INFORMATICA APLICATA");
+			c2.setCodDomeniuFundamental(10);
+			c2.setCodRamuraDeStiinta(50);
+			c2.setCodDomeniuDeLicenta(40);
+			c2.setCodStudii(10);
+			c2.setCiclu("L");
+			c2.setCodulProgramuluiDeStudii(011);
+			c2.setAnCalendaristic(23);
     		repository.save(c2);
     		
     		PlanInvatamant c3=new PlanInvatamant();
@@ -55,6 +70,13 @@ public class Application
  		    c3.setRamuraDeStiinta("INGINERIA SISTEMELOR, CALCULATOARELOR ȘI TEHNOLOGIA INFORMAȚIEI");
  		    c3.setDomeniuDeLicenta("CALCULATOARE ȘI TEHNOLOGIA INFORMAȚIEI");
 			c3.setProgramDeStudiiLicenta("CALCULATOARE (in limba engleza)");
+			c3.setCodDomeniuFundamental(10);
+			c3.setCodRamuraDeStiinta(50);
+			c3.setCodDomeniuDeLicenta(40);
+			c3.setCodStudii(10);
+			c3.setCiclu("L");
+			c3.setCodulProgramuluiDeStudii(011);
+			c3.setAnCalendaristic(23);
     		repository.save(c3);
     		
     		PlanInvatamant c4=new PlanInvatamant();
@@ -64,6 +86,13 @@ public class Application
  		    c4.setRamuraDeStiinta("INGINERIA SISTEMELOR, CALCULATOARELOR ȘI TEHNOLOGIA INFORMAȚIEI");
  		    c4.setDomeniuDeLicenta("CALCULATOARE ȘI TEHNOLOGIA INFORMAȚIEI");
 			c4.setProgramDeStudiiLicenta("CALCULATOARE");
+			c4.setCodDomeniuFundamental(10);
+			c4.setCodRamuraDeStiinta(50);
+			c4.setCodDomeniuDeLicenta(40);
+			c4.setCodStudii(10);
+			c4.setCiclu("L");
+			c4.setCodulProgramuluiDeStudii(011);
+			c4.setAnCalendaristic(23);
     		repository.save(c4);
     		
     		PlanInvatamant c5=new PlanInvatamant();
@@ -73,6 +102,13 @@ public class Application
  		    c5.setRamuraDeStiinta("INGINERIA SISTEMELOR, CALCULATOARELOR ȘI TEHNOLOGIA INFORMAȚIEI");
  		    c5.setDomeniuDeLicenta("CALCULATOARE ȘI TEHNOLOGIA INFORMAȚIEI");
 			c5.setProgramDeStudiiLicenta("TEHNOLOGIA INFORMATIE");
+			c5.setCodDomeniuFundamental(10);
+			c5.setCodRamuraDeStiinta(50);
+			c5.setCodDomeniuDeLicenta(40);
+			c5.setCodStudii(10);
+			c5.setCiclu("L");
+			c5.setCodulProgramuluiDeStudii(011);
+			c5.setAnCalendaristic(23);
     		repository.save(c5);
     		
 
@@ -96,7 +132,7 @@ public class Application
 	    		d1.setNumarOreLaborator(0);
 	    		d1.setNumarOreProiect(0);
 	    		d1.setVolumOreNecesareActivitatilorPartialAsistate(0);
-	    		//d1.setCategorieFormativa(0);
+	    		d1.setCategorieFormativa(TCategorieFormativa.DD.getNumeLung());
 	    		d1.setVolumOreNecesaraPregatiriIndividuale(69);
 	    		repository.save(d1);      
 

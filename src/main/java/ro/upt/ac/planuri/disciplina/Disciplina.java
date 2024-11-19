@@ -22,7 +22,7 @@ public class Disciplina
 	private int numarOreLaborator ;
 	private int numarOreProiect ;
 	private int volumOreNecesareActivitatilorPartialAsistate;
-	private TCategorieFormativa categorieFormativa;
+	private String categorieFormativa;
 	private int volumOreNecesaraPregatiriIndividuale;
 	
 	public Disciplina() //constructor
@@ -117,12 +117,12 @@ public class Disciplina
 		this.volumOreNecesareActivitatilorPartialAsistate = volumOreNecesareActivitatilorPartialAsistate;
 	}
 
-	public TCategorieFormativa getCategorieFormativa() {
+	public String getCategorieFormativa() {
 		return categorieFormativa;
 	}
 
 
-	public void setCategorieFormativa(TCategorieFormativa categorieFormativa) {
+	public void setCategorieFormativa(String categorieFormativa) {
 		this.categorieFormativa = categorieFormativa;
 	}
 
