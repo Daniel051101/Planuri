@@ -53,6 +53,19 @@ public class Extractor
 					if ((i>=5 && i<=8) && j==7)
 						System.out.print(cell.getStringCellValue() + " ");
 					
+					if (i==11 && (j>=1 && j<=7))
+						switch (cell.getCellType()) 
+						{
+							case NUMERIC:
+								System.out.print((int)cell.getNumericCellValue() + " ");
+								break;
+							case STRING:
+								System.out.print(cell.getStringCellValue() + " ");
+								break;
+							default:
+								System.out.print("-");
+						}
+					
 					//Nume disciplina
 					if ((i>=18 && i<=43 && i%3==0) && (j==2 || j==14 || j==26 || j==38))
 						System.out.print(cell.getStringCellValue() + " /");
