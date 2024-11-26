@@ -1,0 +1,11 @@
+Java - https://web.archive.org/web/20050420081440/http://java.sun.com/features/1998/05/birthday.html
+
+Spring Boot - https://www.geeksforgeeks.org/spring-boot/
+            - https://www.geeksforgeeks.org/introduction-to-spring-boot/
+
+Apache POI - https://web.archive.org/web/20041015142404/http://www.coyotesong.com/poi/
+
+MySQL - https://dev.mysql.com/doc/refman/8.0/en/history.html
+
+Thymeleaf - https://web.archive.org/web/20111008055319/http://www.thymeleaf.org/features.html
+

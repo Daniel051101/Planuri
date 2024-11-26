@@ -18,7 +18,7 @@ public class Extractor
 	public static void main(String[] args) 
 	{
 		System.out.println("Starting...");
-		int i=0, j=0;
+		int i=0, j=0, coloana;
 		try
 		{
 			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
@@ -40,6 +40,7 @@ public class Extractor
 				Iterator<Cell> cellIterator = row.cellIterator();
 				
 				j=0;
+				coloana=0;
 				while (cellIterator.hasNext()) 
 				{
 					j++;
@@ -66,12 +67,14 @@ public class Extractor
 								System.out.print("-");
 						}
 					
-					//Nume disciplina
-					if ((i>=18 && i<=43 && i%3==0) && (j==2 || j==14 || j==26 || j==38))
-						System.out.print(cell.getStringCellValue() + " /");
 					
+			
+					//Nume disciplina
+					if ((i>=18 && i<=43 && i%3==0) && j==coloana*12+2)
+						System.out.print(cell.getStringCellValue() + " ");
+						
 					//Datele disciplinei
-					if ((i>=18 && i<=43 && i%3==2) && (j!=1 && j!=3 && j!=4 && j!=11 && j!=15 && j!=16 && j!=23 && j!=27 && j!=28 && j!=35 && j!=39 && j!=40 && j!=47))
+					if ((i>=18 && i<=43 && i%3==2) && (j!=coloana*12+3 && j!=coloana*12+4 && j!=coloana*12+11 && (j>=coloana*12+2 && j<=coloana*12+13)))
 						switch (cell.getCellType()) 
 						{
 							case NUMERIC:
@@ -85,27 +88,37 @@ public class Extractor
 								{
 									switch (evaluator.evaluateFormulaCell(cell))
 									{
-								        case BOOLEAN:
-								            System.out.print(cell.getBooleanCellValue()+" ");
-								            break;
-								        case NUMERIC:
-								            System.out.print((int)cell.getNumericCellValue()+" ");
-								            break;
-								        case STRING:
-								            System.out.print(cell.getStringCellValue()+" ");
-								            break;
+							        	case BOOLEAN:
+								       		System.out.print(cell.getBooleanCellValue()+" ");
+								       		break;
+								       	case NUMERIC:
+								       		System.out.print((int)cell.getNumericCellValue()+" ");
+								       		break;
+								       	case STRING:
+							        		System.out.print(cell.getStringCellValue()+" ");
+							        		break;
 									}
 								}
 								catch(Exception e)
 								{
 								}
-								break;
+							break;
 							default:
 								System.out.print("-");
-						}					
+						}
+						
+					
+					
+					
 				}
 				
-				if (i==45)
+				if (i==45 && coloana!=3)
+					{
+						i=0;
+						coloana++;
+					}
+				
+				if (i==50)
 						break;
 				System.out.println("");
 			}
@@ -119,6 +132,9 @@ public class Extractor
 		System.out.println("Stopping... "+i+" "+j);
 	}
 }
+
+
+
 
 
 
