@@ -18,7 +18,7 @@ public class Extractor
 	public static void main(String[] args) 
 	{
 		System.out.println("Starting...");
-		int i=0, j=0, coloana;
+		int i=0, j=0, coloana=0;
 		try
 		{
 			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
