@@ -17,11 +17,13 @@ public enum TCategorieFormativa
 		this.numeScurt=numeScurt;
 	}
 
-	public String getNumeLung() {
+	public String getNumeLung() 
+	{
 		return numeLung;
 	}
 
-	public String getNumeScurt() {
+	public String getNumeScurt() 
+	{
 		return numeScurt;
 	}
 }

@@ -23,8 +23,10 @@ public class PlanInvatamant
 	private int codDomeniuDeLicenta;
 	private int codStudii;
 	private String ciclu;
-	private int codulProgramuluiDeStudii; //c1c2c3
-	private int anCalendaristic; //ultimele 2 cifre ale primului an calendaristic al anului universitar
+	//c1c2c3
+	private int codulProgramuluiDeStudii; 
+	//ultimele 2 cifre ale primului an calendaristic al anului universitar
+	private int anCalendaristic; 
 	
 	
 	public PlanInvatamant()

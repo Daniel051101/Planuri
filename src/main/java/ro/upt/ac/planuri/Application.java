@@ -10,7 +10,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import ro.upt.ac.planuri.plan.PlanInvatamant;
 import ro.upt.ac.planuri.plan.PlanInvatamantRepository;
 import ro.upt.ac.planuri.disciplina.Disciplina;
-import ro.upt.ac.planuri.disciplina.DisciplinaRepository;
+import ro.upt.ac.planuri.disciplina.DisciplinaId;
+import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
+import ro.upt.ac.planuri.disciplina.DisciplinaZi;
 import ro.upt.ac.planuri.disciplina.TCategorieFormativa;
 import ro.upt.ac.planuri.disciplina.TFormaEvaluare;
 
@@ -47,7 +49,7 @@ public class Application
 			c1.setAnCalendaristic(23);
 	        repository.save(c1);
 
-			PlanInvatamant c2=new PlanInvatamant();
+	        PlanInvatamant c2=new PlanInvatamant();
 			c2.setUniversitate("Universitatea Politehnica Timișoara");
     		c2.setFacultate("Facultatea de AUTOMATICĂ ȘI CALCULATOARE");
  		    c2.setDomeniuFundamental("ȘTIINȚE INGINEREȘTI");
@@ -110,19 +112,18 @@ public class Application
 			c5.setCodulProgramuluiDeStudii(011);
 			c5.setAnCalendaristic(23);
     		repository.save(c5);
-    		
 
 			log.info("ending initialization...");
 	    };
 	}
 	
 	@Bean
-	public CommandLineRunner loadDataDisciplina(DisciplinaRepository repository)
+	public CommandLineRunner loadDataDisciplina(DisciplinaZiRepository repository)
 	{
 		 return (args) -> {	
 				log.info("starting initialization...");
 	    		
-				Disciplina d1=new Disciplina();
+				DisciplinaZi d1=new DisciplinaZi();
 	    		d1.setNumeDisciplina("Analiza Matematica");
 	    		d1.setCodDisciplina("L011.23.01.C1");
 	    		d1.setNumarCrediteTransferabile(5);
@@ -135,6 +136,22 @@ public class Application
 	    		d1.setCategorieFormativa(TCategorieFormativa.DD.getNumeLung());
 	    		d1.setVolumOreNecesaraPregatiriIndividuale(69);
 	    		repository.save(d1);      
+
+				/*
+	    		DisciplinaId d2=new DisciplinaId();
+	    		d2.setNumeDisciplina("Analiza Matematica");
+	    		d2.setCodDisciplina("L011.23.01.C1");
+	    		d2.setNumarCrediteTransferabile(5);
+	    		d2.setFormaEvaluare(TFormaEvaluare.C.getNumeLung());
+	    		d2.setNumarOreActivitatiAutoinstruire(28);
+	    		d2.setNumarOreActivitatiTutorat(28);
+	    		d2.setNumarTemeDeControl(0);;
+	    		d2.setNumarActivitatiAplicativeAsistate(0);
+	    		d2.setVolumOreNecesareActivitatilorPartialAsistate(0);
+	    		d2.setCategorieFormativa(TCategorieFormativa.DD.getNumeLung());
+	    		d2.setVolumOreNecesaraPregatiriIndividuale(69);
+	    		repository.save(d2);
+	    		*/      
 
 	    		log.info("ending initialization...");
 		};

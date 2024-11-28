@@ -31,6 +31,8 @@ public class Extractor
 			
 			Iterator<Row> rowIterator = sheet.iterator();
 			
+			int n = sheet.getLastRowNum();
+			
 			i=0;
 			while (rowIterator.hasNext()) 
 			{
