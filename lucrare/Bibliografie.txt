@@ -1,4 +1,14 @@
 Java - https://web.archive.org/web/20050420081440/http://java.sun.com/features/1998/05/birthday.html
+     - Cursuri_PJ_1-7.pdf (Curs Java dr. ing. Raul Robu 2022-2023)
+     - https://docs.oracle.com/en/java/javase/23/security/java-security-overview1.html
+     - https://docs.oracle.com/en/java/index.html
+     - https://docs.oracle.com/javase/tutorial/
+     - https://docs.oracle.com/javase/tutorial/java/javaOO/
+     - https://docs.oracle.com/javase/tutorial/java/concepts/inheritance.html
+     - https://docs.oracle.com/javase/tutorial/java/concepts/package.html
+     - https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+     - https://computerhistory.org/profile/james-gosling/
+     - https://www.javatpoint.com/java-tutorial
 
 Spring Boot - https://www.geeksforgeeks.org/spring-boot/
             - https://www.geeksforgeeks.org/introduction-to-spring-boot/
