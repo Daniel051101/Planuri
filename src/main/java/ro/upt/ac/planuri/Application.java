@@ -7,14 +7,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import ro.upt.ac.planuri.plan.PlanInvatamant;
+//import ro.upt.ac.planuri.plan.PlanInvatamant;
 import ro.upt.ac.planuri.plan.PlanInvatamantRepository;
 //import ro.upt.ac.planuri.disciplina.Disciplina;
 //import ro.upt.ac.planuri.disciplina.DisciplinaId;
 import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
-import ro.upt.ac.planuri.disciplina.DisciplinaZi;
-import ro.upt.ac.planuri.disciplina.TCategorieFormativa;
-import ro.upt.ac.planuri.disciplina.TFormaEvaluare;
+//import ro.upt.ac.planuri.disciplina.DisciplinaZi;
+//import ro.upt.ac.planuri.disciplina.TCategorieFormativa;
+//import ro.upt.ac.planuri.disciplina.TFormaEvaluare;
 
 @EnableWebMvc
 @SpringBootApplication
@@ -33,37 +33,37 @@ public class Application
 	    return (args) -> {	
 			log.info("starting initialization...");
 			
-			PlanInvatamant c1=new PlanInvatamant();
-	        c1.setUniversitate("Universitatea Politehnica Timișoara");
-	        c1.setFacultate("Facultatea de AUTOMATICĂ ȘI CALCULATOARE");
-	        c1.setDomeniuFundamental("MATEMATICĂ ȘI ȘTIINȚE ALE NATURI");
-	        c1.setRamuraDeStiinta("INFORMATICĂ");
-	        c1.setDomeniuDeLicenta("INFORMATICĂ");
-			c1.setProgramDeStudiiLicenta("INFORMATICĂ");
-			c1.setCodDomeniuFundamental(10);
-			c1.setCodRamuraDeStiinta(50);
-			c1.setCodDomeniuDeLicenta(40);
-			c1.setCodStudii(10);
-			c1.setCiclu("L");
-			c1.setCodulProgramuluiDeStudii(011);
-			c1.setAnCalendaristic(23);
-	        repository.save(c1);
-
-	        PlanInvatamant c2=new PlanInvatamant();
-			c2.setUniversitate("Universitatea Politehnica Timișoara");
-    		c2.setFacultate("Facultatea de AUTOMATICĂ ȘI CALCULATOARE");
- 		    c2.setDomeniuFundamental("ȘTIINȚE INGINEREȘTI");
- 		    c2.setRamuraDeStiinta("INGINERIA SISTEMELOR, CALCULATOARELOR ȘI TEHNOLOGIA INFORMAȚIEI");
- 		    c2.setDomeniuDeLicenta("INGINERIA SISTEMELOR");
-			c2.setProgramDeStudiiLicenta("AUTOMATICA SI INFORMATICA APLICATA");
-			c2.setCodDomeniuFundamental(10);
-			c2.setCodRamuraDeStiinta(50);
-			c2.setCodDomeniuDeLicenta(40);
-			c2.setCodStudii(10);
-			c2.setCiclu("L");
-			c2.setCodulProgramuluiDeStudii(011);
-			c2.setAnCalendaristic(23);
-    		repository.save(c2);
+//			PlanInvatamant c1=new PlanInvatamant();
+//	        c1.setUniversitate("Universitatea Politehnica Timișoara");
+//	        c1.setFacultate("Facultatea de AUTOMATICĂ ȘI CALCULATOARE");
+//	        c1.setDomeniuFundamental("MATEMATICĂ ȘI ȘTIINȚE ALE NATURI");
+//	        c1.setRamuraDeStiinta("INFORMATICĂ");
+//	        c1.setDomeniuDeLicenta("INFORMATICĂ");
+//			c1.setProgramDeStudiiLicenta("INFORMATICĂ");
+//			c1.setCodDomeniuFundamental(10);
+//			c1.setCodRamuraDeStiinta(50);
+//			c1.setCodDomeniuDeLicenta(40);
+//			c1.setCodStudii(10);
+//			c1.setCiclu("L");
+//			c1.setCodulProgramuluiDeStudii(011);
+//			c1.setAnCalendaristic(23);
+//	        repository.save(c1);
+//
+//	        PlanInvatamant c2=new PlanInvatamant();
+//			c2.setUniversitate("Universitatea Politehnica Timișoara");
+//    		c2.setFacultate("Facultatea de AUTOMATICĂ ȘI CALCULATOARE");
+// 		    c2.setDomeniuFundamental("ȘTIINȚE INGINEREȘTI");
+// 		    c2.setRamuraDeStiinta("INGINERIA SISTEMELOR, CALCULATOARELOR ȘI TEHNOLOGIA INFORMAȚIEI");
+// 		    c2.setDomeniuDeLicenta("INGINERIA SISTEMELOR");
+//			c2.setProgramDeStudiiLicenta("AUTOMATICA SI INFORMATICA APLICATA");
+//			c2.setCodDomeniuFundamental(10);
+//			c2.setCodRamuraDeStiinta(50);
+//			c2.setCodDomeniuDeLicenta(40);
+//			c2.setCodStudii(10);
+//			c2.setCiclu("L");
+//			c2.setCodulProgramuluiDeStudii(011);
+//			c2.setAnCalendaristic(23);
+//    		repository.save(c2);
     		
 //    		PlanInvatamant c3=new PlanInvatamant();
 //			c3.setUniversitate("Universitatea Politehnica Timișoara");
@@ -123,19 +123,19 @@ public class Application
 		 return (args) -> {	
 				log.info("starting initialization...");
 	    		
-				DisciplinaZi d1=new DisciplinaZi();
-	    		d1.setNumeDisciplina("Analiza Matematica");
-	    		d1.setCodDisciplina("L011.23.01.C1");
-	    		d1.setNumarCrediteTransferabile(5);
-	    		d1.setFormaEvaluare(TFormaEvaluare.C.getNumeLung());
-	    		d1.setNumarOreCurs(28);
-	    		d1.setNumarOreSeminar(28);
-	    		d1.setNumarOreLaborator(0);
-	    		d1.setNumarOreProiect(0);
-	    		d1.setVolumOreNecesareActivitatilorPartialAsistate(0);
-	    		d1.setCategorieFormativa(TCategorieFormativa.DD.getNumeLung());
-	    		d1.setVolumOreNecesaraPregatiriIndividuale(69);
-	    		repository.save(d1);      
+//				DisciplinaZi d1=new DisciplinaZi();
+//	    		d1.setNumeDisciplina("Analiza Matematica");
+//	    		d1.setCodDisciplina("L011.23.01.C1");
+//	    		d1.setNumarCrediteTransferabile(5);
+//	    		d1.setFormaEvaluare(TFormaEvaluare.C.getNumeLung());
+//	    		d1.setNumarOreCurs(28);
+//	    		d1.setNumarOreSeminar(28);
+//	    		d1.setNumarOreLaborator(0);
+//	    		d1.setNumarOreProiect(0);
+//	    		d1.setVolumOreNecesareActivitatilorPartialAsistate(0);
+//	    		d1.setCategorieFormativa(TCategorieFormativa.DD.getNumeLung());
+//	    		d1.setVolumOreNecesaraPregatiriIndividuale(69);
+//	    		repository.save(d1);      
 
 				/*
 	    		DisciplinaId d2=new DisciplinaId();

@@ -20,6 +20,12 @@ public class PlanInvatamantController
 	{
 		return "index";
 	}
+	
+	@GetMapping("/login")
+	public String login()
+	{
+		return "login";
+	}
 
 	@GetMapping("/planInvatamant-create")
 	public String create(PlanInvatamant planInvatamant)
