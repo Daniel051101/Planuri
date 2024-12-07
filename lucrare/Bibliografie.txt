@@ -26,3 +26,7 @@ Thymeleaf - https://web.archive.org/web/20111008055319/http://www.thymeleaf.org/
           - https://spring.io/guides/gs/serving-web-content
 
 Bootstrap 5 - https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+
+
+Aplicatie - https://www.baeldung.com/hibernate-inheritance

@@ -5,7 +5,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
-// https://www.baeldung.com/hibernate-inheritance
 @MappedSuperclass
 abstract public class Disciplina 
 {

@@ -5,10 +5,10 @@ import jakarta.persistence.Entity;
 @Entity
 public class DisciplinaZi extends Disciplina 
 {
-	private int numarOreCurs; //la ID avem numarOreActivitatiAutoinstruire 
-	private int numarOreSeminar; //la ID avem numarOreActivitatiTutorat
-	private int numarOreLaborator; //la ID avem numarTemeDeControl
-	private int numarOreProiect; //la ID avem numarActivitatiAplicativeAsistate
+	private int numarOreCurs;
+	private int numarOreSeminar;
+	private int numarOreLaborator;
+	private int numarOreProiect;
 	
 	public DisciplinaZi()
 	{
