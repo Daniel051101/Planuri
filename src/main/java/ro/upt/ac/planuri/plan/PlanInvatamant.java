@@ -144,4 +144,23 @@ public class PlanInvatamant
 	public void setCodDomeniuDeLicenta(int codDomeniuDeLicenta) {
 		this.codDomeniuDeLicenta = codDomeniuDeLicenta;
 	}
+	
+	public String getIntervalAni()
+	{
+		int anInceput, anFinal;
+		if (programDeStudiiLicenta.equals("INFORMATICĂ"))
+		{
+			anInceput = 2000 + this.anCalendaristic;
+			anFinal = 2003 + this.anCalendaristic;
+			return anInceput + "-" + anFinal;
+		}
+		else
+		{
+			anInceput = 2000 + this.anCalendaristic;
+			anFinal = 2004 + this.anCalendaristic;
+			return anInceput + "-" + anFinal;
+		}
+		
+	}
+	
 }

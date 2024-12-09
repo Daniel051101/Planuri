@@ -1,80 +1,110 @@
 
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Plan de Învățământ 1.0</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    
+    <title>Plan Invatamant 1.0</title>
 
-<body>
-	<div class="container">
-		<nav aria-label="breadcrumb">
-		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item"><a href="/">Acasa</a></li>
-		    <li class="breadcrumb-item active" aria-current="page">Plan de Învățământ</li>
-		  </ol>
-		</nav>	
-		<div th:switch="${planInvatamant}">
-		    <h2 th:case="null">Nu este niciun plan in baza de date!</h2>
-	        <div th:case="*">
-	            <h2>Planuri</h2>
-	            <table class="table table-small">
-	                <thead>
-	                    <tr>
-	                        <th scope="col">#</th>
-	                        <th scope="col">Editeaza</th>
-	                        <th scope="col">Sterge</th>
-	                        
-	                        <th scope="col">Universitate </th>
-	                        <th scope="col">Facultatea </th>
-	                        
-	                        <th scope="col">Domeniu fundamental</th>	                      
-	                        <th scope="col">Ramura de stiinta</th>
-							<th scope="col">Domeniul de licenta</th>
-							<th scope="col">Programul de studii-Licenta</th>
-							
-							<th scope="col">Cod domeniu fundamental</th>
-							<th scope="col">Cod ramura de stiinta</th>
-							<th scope="col">Cod domeniu de licenta</th>
-							<th scope="col">Cod Studii</th>
+    <!-- Bootstrap core CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-							<th scope="col">Ciclu</th>
-							<th scope="col">Codul programului de studii</th>
-							<th scope="col">An calendaristic</th>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-							
-	                    </tr>
-	                </thead>
-	                <tbody>
-		                <tr th:each="planInvatamant : ${planInvatamant}">
-		                    <td scope="col" th:text="${planInvatamant.id}"></td>		                    
-		                    <td><a th:href="@{/planInvatamant-edit/{id}(id=${planInvatamant.id})}">Editeaza</a></td>
-		                    <td><a th:href="@{/planInvatamant-delete/{id}(id=${planInvatamant.id})}">Sterge</a></td>		                    
-		                    <td th:text="${planInvatamant.universitate}"></td>
-		                    <td th:text="${planInvatamant.facultate}"></td>
-		                    <td th:text="${planInvatamant.domeniuFundamental}"></td>
-		                    <td th:text="${planInvatamant.ramuraDeStiinta}"></td>
-		                    <td th:text="${planInvatamant.domeniuDeLicenta}"></td>
-							<td th:text="${planInvatamant.programDeStudiiLicenta}"></td>
-							<td th:text="${planInvatamant.codDomeniuFundamental}"></td>
-							<td th:text="${planInvatamant.codRamuraDeStiinta}"></td>
-							<td th:text="${planInvatamant.codDomeniuDeLicenta}"></td>
-							<td th:text="${planInvatamant.codStudii}"></td>
-							<td th:text="${planInvatamant.ciclu}"></td>
-							<td th:text="${planInvatamant.codulProgramuluiDeStudii}"></td>
-							<td th:text="${planInvatamant.anCalendaristic}"></td>
-		                </tr>
-	            	</tbody>
-	        	</table>
-		    </div>      
-		    <p><a href="/planInvatamant-create">Adauga un plan de invatamant nou</a></p>
-		</div>
-	</div>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
+    
+  </head>
+  <body>
+    
+	<header class="p-3 bg-dark text-white">
+	  <div class="container">
+	    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+	      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+	        <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">Plans</a></li>
+	        <li><a href="/disciplina-read" class="nav-link px-2 text-white">Courses</a></li>
+	      </ul>
+
+	      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+	        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+	      </form>
+
+	      <div class="text-end">
+	        <a class="btn btn-outline-light me-2" href="/login" role="button">Login</a>
+	        <a class="btn btn-warning" href="#" role="button">Sign-up</a>
+	      </div>
+	    </div>
+	  </div>
+	</header>
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Plans</h1>
+        <p>
+          <a href="/planInvatamant-create" class="btn btn-primary my-2">Create plan</a>
+          <a href="/disciplina-create" class="btn btn-secondary my-2">Create course</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <!-- Iterare prin lista de planuri -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" th:each="planInvatamant : ${planInvatamant}">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">PLAN</text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text" th:text="${planInvatamant.intervalAni}"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-secondary" href="#" role="button">View</a>
+                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamant-edit/{id}(id=${planInvatamant.id})}" role="button">Edit</a>
+                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamant-delete/{id}(id=${planInvatamant.id})}" role="button">Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-1"></p>
+  </div>
+</footer>
+      
+  </body>
 </html>
