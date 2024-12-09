@@ -101,7 +101,7 @@ public class Extractor2
 				
 				//System.out.print(r+" ");
 				System.out.println(value);
-				
+				//aici sunt blocat
 				if (cell.getCellType() == CellType.FORMULA)
 				{
 					for (int k=1; k<=12; k++)
