@@ -23,7 +23,7 @@ public class PlanInvatamant
 	private int codDomeniuDeLicenta;
 	private int codStudii;
 	private String ciclu;
-	private int codulProgramuluiDeStudii; 
+	private String codulProgramuluiDeStudii; 
 	private int anCalendaristic; 
 	
 	
@@ -119,11 +119,11 @@ public class PlanInvatamant
 		this.ciclu = ciclu;
 	}
 
-	public int getCodulProgramuluiDeStudii() {
+	public String getCodulProgramuluiDeStudii() {
 		return codulProgramuluiDeStudii;
 	}
 
-	public void setCodulProgramuluiDeStudii(int codulProgramuluiDeStudii) {
+	public void setCodulProgramuluiDeStudii(String codulProgramuluiDeStudii) {
 		this.codulProgramuluiDeStudii = codulProgramuluiDeStudii;
 	}
 
