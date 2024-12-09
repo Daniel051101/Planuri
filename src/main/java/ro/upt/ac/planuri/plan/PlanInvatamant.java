@@ -23,9 +23,7 @@ public class PlanInvatamant
 	private int codDomeniuDeLicenta;
 	private int codStudii;
 	private String ciclu;
-	//c1c2c3  codul programului de studii sau al domeniului de licență din care face parte programul; codul va fi furnizat;
 	private int codulProgramuluiDeStudii; 
-	//ultimele 2 cifre ale primului an calendaristic al anului universitar
 	private int anCalendaristic; 
 	
 	

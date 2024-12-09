@@ -26,6 +26,12 @@ public class PlanInvatamantController
 	{
 		return "login";
 	}
+	
+	@GetMapping("/signup")
+	public String signup()
+	{
+		return "signup";
+	}
 
 	@GetMapping("/planInvatamant-create")
 	public String create(PlanInvatamant planInvatamant)
@@ -50,6 +56,17 @@ public class PlanInvatamantController
 	    model.addAttribute("planInvatamant", planInvatamantRepository.findAll());
 	    return "planInvatamant-read";
 	}
+	
+	@GetMapping("/planInvatamant-view/{id}")
+	public String view(@PathVariable("id") int id, Model model) 
+	{
+	    PlanInvatamant planInvatamant = planInvatamantRepository.findById(id);
+	    //.orElseThrow(() -> new IllegalArgumentException("Invalid plan Id:" + id));
+	    
+	    model.addAttribute("planInvatamant", planInvatamant);
+	    return "planInvatamant-view";
+	}
+
 	
 	@GetMapping("/planInvatamant-edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) 
