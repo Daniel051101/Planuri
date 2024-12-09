@@ -104,9 +104,16 @@ public class Extractor2
 				
 				if (cell.getCellType() == CellType.FORMULA)
 				{
-					for (int k=c; k<=c+12; k++)
+					for (int k=1; k<=12; k++)
 					{
-						
+						Cell cell=row.getCell(c+k);
+						if(cell==null)
+						{
+							continue;
+						}
+				
+						String value=getValue(workbook,cell);
+						System.out.println(value);
 					}
 				}
 			}
