@@ -104,16 +104,21 @@ public class Extractor2
 				//aici sunt blocat
 				if (cell.getCellType() == CellType.FORMULA)
 				{
-					for (int k=1; k<=12; k++)
+					for (int k=1; k<12; k++)
 					{
-						Cell cell=row.getCell(c+k);
-						if(cell==null)
+						Cell cell1=row.getCell(c+k);
+						if(cell1==null)
 						{
 							continue;
 						}
 				
-						String value=getValue(workbook,cell);
-						System.out.println(value);
+						String value1=getValue(workbook,cell1);
+						if(value1.isEmpty() || value1.equals("0"))
+						{
+							continue;
+						}
+						
+						System.out.println(value1);
 					}
 				}
 			}
