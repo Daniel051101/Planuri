@@ -3,16 +3,24 @@ package ro.upt.ac.planuri.disciplina;
 import jakarta.persistence.Entity;
 
 @Entity
-public class DisciplinaZi extends Disciplina 
+public class DisciplinaMaster extends Disciplina
 {
-	private String categorieFormativaLicenta;
+	private String categorieFormativaMaster;
 	private int numarOreCurs;
 	private int numarOreSeminar;
 	private int numarOreLaborator;
 	private int numarOreProiect;
 	
-	public DisciplinaZi()
+	public DisciplinaMaster()
 	{
+	}
+
+	public String getCategorieFormativaMaster() {
+		return categorieFormativaMaster;
+	}
+
+	public void setCategorieFormativaMaster(String categorieFormativaMaster) {
+		this.categorieFormativaMaster = categorieFormativaMaster;
 	}
 
 	public int getNumarOreCurs() {
@@ -45,13 +53,5 @@ public class DisciplinaZi extends Disciplina
 
 	public void setNumarOreProiect(int numarOreProiect) {
 		this.numarOreProiect = numarOreProiect;
-	}
-
-	public String getCategorieFormativaLicenta() {
-		return categorieFormativaLicenta;
-	}
-
-	public void setCategorieFormativaLicenta(String categorieFormativaLicenta) {
-		this.categorieFormativaLicenta = categorieFormativaLicenta;
 	}
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 @Entity
 public class DisciplinaId extends Disciplina 
 {
+	private String categorieFormativaLicenta;
 	private int numarOreActivitatiAutoinstruire;
 	private int numarOreActivitatiTutorat;
 	private int numarTemeDeControl;
@@ -45,6 +46,12 @@ public class DisciplinaId extends Disciplina
 	public void setNumarActivitatiAplicativeAsistate(int numarActivitatiAplicativeAsistate) {
 		this.numarActivitatiAplicativeAsistate = numarActivitatiAplicativeAsistate;
 	}
-	
-	
+
+	public String getCategorieFormativaLicenta() {
+		return categorieFormativaLicenta;
+	}
+
+	public void setCategorieFormativaLicenta(String categorieFormativaLicenta) {
+		this.categorieFormativaLicenta = categorieFormativaLicenta;
+	}
 }

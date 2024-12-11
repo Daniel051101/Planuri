@@ -1,12 +1,13 @@
 package ro.upt.ac.planuri.plan;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
-@Entity
-public class PlanInvatamant 
+
+@MappedSuperclass
+abstract public class PlanInvatamant 
 {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,14 +15,12 @@ public class PlanInvatamant
 	
 	private String universitate;
 	private String facultate;
+	
 	private String domeniuFundamental;
 	private String ramuraDeStiinta;
 	private String domeniuDeLicenta;
-	private String programDeStudiiLicenta;
 	private int codDomeniuFundamental;
 	private int codRamuraDeStiinta;
-	private int codDomeniuDeLicenta;
-	private int codStudii;
 	private String ciclu;
 	private String codulProgramuluiDeStudii; 
 	private int anCalendaristic; 
@@ -71,14 +70,6 @@ public class PlanInvatamant
 		this.domeniuDeLicenta = domeniuDeLicenta;
 	}
 
-	public String getProgramDeStudiiLicenta() {
-		return programDeStudiiLicenta;
-	}
-
-	public void setProgramDeStudiiLicenta(String programDeStudiiLicenta) {
-		this.programDeStudiiLicenta = programDeStudiiLicenta;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -103,14 +94,6 @@ public class PlanInvatamant
 		this.codRamuraDeStiinta = codRamuraDeStiinta;
 	}
 
-	public int getCodStudii() {
-		return codStudii;
-	}
-
-	public void setCodStudii(int codStudii) {
-		this.codStudii = codStudii;
-	}
-
 	public String getCiclu() {
 		return ciclu;
 	}
@@ -133,32 +116,6 @@ public class PlanInvatamant
 
 	public void setAnCalendaristic(int anCalendaristic) {
 		this.anCalendaristic = anCalendaristic;
-	}
-
-	public int getCodDomeniuDeLicenta() {
-		return codDomeniuDeLicenta;
-	}
-
-	public void setCodDomeniuDeLicenta(int codDomeniuDeLicenta) {
-		this.codDomeniuDeLicenta = codDomeniuDeLicenta;
-	}
-	
-	public String getIntervalAni()
-	{
-		int anInceput, anFinal;
-		if (programDeStudiiLicenta.equals("INFORMATICĂ"))
-		{
-			anInceput = 2000 + this.anCalendaristic;
-			anFinal = 2003 + this.anCalendaristic;
-			return anInceput + "-" + anFinal;
-		}
-		else
-		{
-			anInceput = 2000 + this.anCalendaristic;
-			anFinal = 2004 + this.anCalendaristic;
-			return anInceput + "-" + anFinal;
-		}
-		
 	}
 	
 }

@@ -18,7 +18,6 @@ abstract public class Disciplina
 	private String formaEvaluare;
 	
 	private int volumOreNecesareActivitatilorPartialAsistate;
-	private String categorieFormativa;
 	private int volumOreNecesaraPregatiriIndividuale;
 	
 	public Disciplina() //constructor
@@ -64,14 +63,6 @@ abstract public class Disciplina
 
 	public void setVolumOreNecesareActivitatilorPartialAsistate(int volumOreNecesareActivitatilorPartialAsistate) {
 		this.volumOreNecesareActivitatilorPartialAsistate = volumOreNecesareActivitatilorPartialAsistate;
-	}
-
-	public String getCategorieFormativa() {
-		return categorieFormativa;
-	}
-
-	public void setCategorieFormativa(String categorieFormativa) {
-		this.categorieFormativa = categorieFormativa;
 	}
 
 	public int getVolumOreNecesaraPregatiriIndividuale() {

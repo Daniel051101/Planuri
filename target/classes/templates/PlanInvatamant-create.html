@@ -1,165 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Plan de Invatamant 1.0</title>
-	<base href="/">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creare Plan de Învățământ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-	<div class="container">
-	<nav aria-label="breadcrumb">
-	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a href="/">Acasa</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Planuri</li>
-	  </ol>
-	</nav>	
-		
-	<h2>Planuri de Invatamant</h2>
-	<hr>
-	
-	<form action="#" th:action="@{/planInvatamant-create-save}" th:object="${planInvatamant}" method="post">
-		<div class="row row-cols-4">
-			
-			<div class="col-sm">
-		    	<label for="universitate">Universitate</label>			    
-	    	</div>
-			<div class="col-sm">
-		    	<input type="text" th:field="*{universitate}" id="universitate" name="universitate" placeholder="Universitate">
-		    	<span th:if="${#fields.hasErrors('universitate')}" th:errors="*{universitate}"></span>
-	    	</div>
-			
-			<div class="col-sm">
-			    <label for="facultate">Facultate</label>
-	    	</div>
-			<div class="col-sm">
-			    <input type="text" th:field="*{facultate}" id="facultate" placeholder="Facultate">
-			    <span th:if="${#fields.hasErrors('facultate')}" th:errors="*{facultate}"></span>
-	    	</div>
-			
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <h1 class="text-center">Creare Plan de Învățământ</h1>
+  </div>
+</header>
 
-    	</div>
+<main class="container py-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form action="/planInvatamant-create" method="post">
+        <div class="mb-3">
+          <label for="universitate" class="form-label">Universitate</label>
+          <input type="text" class="form-control" id="universitate" name="universitate" required>
+        </div>
+        <div class="mb-3">
+          <label for="facultate" class="form-label">Facultate</label>
+          <input type="text" class="form-control" id="facultate" name="facultate" required>
+        </div>
+        <div class="mb-3">
+          <label for="domeniuFundamental" class="form-label">Domeniu Fundamental</label>
+          <input type="text" class="form-control" id="domeniuFundamental" name="domeniuFundamental" required>
+        </div>
+        <div class="mb-3">
+          <label for="ramuraDeStiinta" class="form-label">Ramura de Știință</label>
+          <input type="text" class="form-control" id="ramuraDeStiinta" name="ramuraDeStiinta" required>
+        </div>
+        <div class="mb-3">
+          <label for="domeniuDeLicenta" class="form-label">Domeniu de Licență</label>
+          <input type="text" class="form-control" id="domeniuDeLicenta" name="domeniuDeLicenta" required>
+        </div>
+        <div class="mb-3">
+          <label for="programDeStudiiLicenta" class="form-label">Program de Studii Licență</label>
+          <input type="text" class="form-control" id="programDeStudiiLicenta" name="programDeStudiiLicenta" required>
+        </div>
+        <div class="mb-3">
+          <label for="codDomeniuFundamental" class="form-label">Cod Domeniu Fundamental</label>
+          <input type="number" class="form-control" id="codDomeniuFundamental" name="codDomeniuFundamental" required>
+        </div>
+        <div class="mb-3">
+          <label for="codRamuraDeStiinta" class="form-label">Cod Ramură de Știință</label>
+          <input type="number" class="form-control" id="codRamuraDeStiinta" name="codRamuraDeStiinta" required>
+        </div>
+        <div class="mb-3">
+          <label for="codDomeniuDeLicenta" class="form-label">Cod Domeniu de Licență</label>
+          <input type="number" class="form-control" id="codDomeniuDeLicenta" name="codDomeniuDeLicenta" required>
+        </div>
+        <div class="mb-3">
+          <label for="codStudii" class="form-label">Cod Studii</label>
+          <input type="number" class="form-control" id="codStudii" name="codStudii" required>
+        </div>
+        <div class="mb-3">
+          <label for="ciclu" class="form-label">Ciclu</label>
+          <input type="text" class="form-control" id="ciclu" name="ciclu" required>
+        </div>
+        <div class="mb-3">
+          <label for="codulProgramuluiDeStudii" class="form-label">Codul Programului de Studii</label>
+          <input type="number" class="form-control" id="codulProgramuluiDeStudii" name="codulProgramuluiDeStudii" required>
+        </div>
+        <div class="mb-3">
+          <label for="anCalendaristic" class="form-label">An Calendaristic</label>
+          <input type="number" class="form-control" id="anCalendaristic" name="anCalendaristic" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvează</button>
+        <a href="/" class="btn btn-secondary">Anulează</a>
+      </form>
+    </div>
+  </div>
+</main>
 
-		<hr>
-	    
-		<div class="row row-cols-4">
-		
-			<div class="col-sm">
-			    <label for="domeniuFundamental">Domeniu fundamental</label>
-	    	</div>
-			<div class="col-sm">
-			    <input type="text" th:field="*{domeniuFundamental}" id="domeniuFundamental" placeholder="Domeniu fundamental">
-			    <span th:if="${#fields.hasErrors('domeniuFundamental')}" th:errors="*{domeniuFundamental}"></span>
-	    	</div>
-			
-			<div class="col-sm">
-			    <label for="ramuraDeStiinta">Ramura de stiinta</label>
-	    	</div>
-			<div class="col-sm">
-			    <input type="text" th:field="*{ramuraDeStiinta}" id="ramuraDeStiinta" placeholder="Ramura de stiinta">
-			    <span th:if="${#fields.hasErrors('ramuraDeStiinta')}" th:errors="*{ramuraDeStiinta}"></span>
-	    	</div>
-			
-	    </div>
-
-		<hr>
-		
-		<div class="row row-cols-4">
-			
-			<div class="col-sm">
-			    <label for="domeniuDeLicenta">Domeniu de licenta</label>
-	    	</div>
-			<div class="col-sm">
-			    <input type="text" th:field="*{domeniuDeLicenta}" id="domeniuDeLicenta" placeholder="Domeniu de licenta">
-			    <span th:if="${#fields.hasErrors('domeniuDeLicenta')}" th:errors="*{domeniuDeLicenta}"></span>
-	    	</div>
-			
-			<div class="col-sm">
-				<label for="programDeStudiiLicenta">Program de studii - Licenta</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{programDeStudiiLicenta}" id="programDeStudiiLicenta" placeholder="Program de studii - Licenta">
-				<span th:if="${#fields.hasErrors('programDeStudiiLicenta')}" th:errors="*{programDeStudiiLicenta}"></span>
-			</div>
-			
-	    </div>
-		
-		<hr>
-		
-		<div class="row row-cols-4">
-			
-			<div class="col-sm">
-				<label for="codDomeniuFundamental">Cod domeniu fundamental</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{codDomeniuFundamental}" id="codDomeniuFundamental" placeholder="CodDomeniuFundamental">
-				<span th:if="${#fields.hasErrors('codDomeniuFundamental')}" th:errors="*{codDomeniuFundamental}"></span>
-			</div>
-			
-			<div class="col-sm">
-				<label for="codRamuraDeStiinta">Cod ramura de stiinta</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{codRamuraDeStiinta}" id="codRamuraDeStiinta" placeholder="CodRamuraDeStiinta">
-				<span th:if="${#fields.hasErrors('codRamuraDeStiinta')}" th:errors="*{codRamuraDeStiinta}"></span>
-			</div>
-			
-			<div class="col-sm">
-				<label for="codDomeniuDeLicenta">Cod domeniu de licenta</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{codDomeniuDeLicenta}" id="codDomeniuDeLicenta" placeholder="CodDomeniuDeLicenta">
-				<span th:if="${#fields.hasErrors('codDomeniuDeLicenta')}" th:errors="*{codDomeniuDeLicenta}"></span>
-			</div>
-			
-			<div class="col-sm">
-				<label for="codStudii">Cod studii</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{codStudii}" id="codStudii" placeholder="CodStudiia">
-				<span th:if="${#fields.hasErrors('codStudii')}" th:errors="*{codStudii}"></span>
-			</div>
-			
-		</div>
-		
-		<hr>
-		
-		<div class="row row-cols-4">
-			
-			<div class="col-sm">
-				<label for="ciclu">Ciclu</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{ciclu}" id="ciclu" placeholder="Ciclu">
-				<span th:if="${#fields.hasErrors('ciclu')}" th:errors="*{ciclu}"></span>
-			</div>
-			
-			<div class="col-sm">
-				<label for="codulProgramuluiDeStudii">Codulul programului de studii</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{codulProgramuluiDeStudii}" id="codulProgramuluiDeStudii" placeholder="CodulProgramuluiDeStudii">
-				<span th:if="${#fields.hasErrors('codulProgramuluiDeStudii')}" th:errors="*{codulProgramuluiDeStudii}"></span>
-			</div>
-			
-			<div class="col-sm">
-				<label for="anCalendaristic">An calendaristic</label>
-			</div>
-			<div class="col-sm">
-				<input type="text" th:field="*{anCalendaristic}" id="anCalendaristic" placeholder="AnCalendaristic">
-				<span th:if="${#fields.hasErrors('anCalendaristic')}" th:errors="*{anCalendaristic}"></span>
-			</div>
-			
-		</div>
-		
-		<hr>
-		
-	    <input type="submit" value="Salveaza plan de invatamant">
-	</form>
-	</div>
-  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<footer class="text-muted py-3 bg-light text-center">
+  <p>&copy; 2024 Universitatea Example</p>
+</footer>
 </body>
 </html>

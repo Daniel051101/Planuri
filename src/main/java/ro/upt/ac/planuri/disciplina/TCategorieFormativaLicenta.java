@@ -1,6 +1,6 @@
 package ro.upt.ac.planuri.disciplina;
 
-public enum TCategorieFormativa 
+public enum TCategorieFormativaLicenta 
 {
 	DC("Disciplina complementara","DC"),
 	DD("Disciplina in domeniu","DD"), 
@@ -11,7 +11,7 @@ public enum TCategorieFormativa
 	private String numeLung;
 	private String numeScurt;
 
-	TCategorieFormativa(String numeLung, String numeScurt)
+	TCategorieFormativaLicenta(String numeLung, String numeScurt)
 	{
 		this.numeLung=numeLung;
 		this.numeScurt=numeScurt;

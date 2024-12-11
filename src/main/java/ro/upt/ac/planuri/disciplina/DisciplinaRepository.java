@@ -4,9 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DisciplinaZiRepository extends JpaRepository<DisciplinaZi,Integer>
+public interface DisciplinaRepository extends JpaRepository<Disciplina,Integer>
 {
-	DisciplinaZi findById(int id);
-
-	void save(DisciplinaId d2);
+	Disciplina findById(int id);
 }
