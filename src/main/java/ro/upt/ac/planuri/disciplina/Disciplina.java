@@ -20,6 +20,10 @@ abstract public class Disciplina
 	private int volumOreNecesareActivitatilorPartialAsistate;
 	private int volumOreNecesaraPregatiriIndividuale;
 	
+	private int semestru;
+	private boolean optional;
+	private boolean facultativ;
+	
 	public Disciplina() //constructor
 	{
 	}
@@ -71,6 +75,30 @@ abstract public class Disciplina
 
 	public void setVolumOreNecesaraPregatiriIndividuale(int volumOreNecesaraPregatiriIndividuale) {
 		this.volumOreNecesaraPregatiriIndividuale = volumOreNecesaraPregatiriIndividuale;
+	}
+
+	public int getSemestru() {
+		return semestru;
+	}
+
+	public void setSemestru(int semestru) {
+		this.semestru = semestru;
+	}
+
+	public boolean isOptional() {
+		return optional;
+	}
+
+	public void setOptional(boolean optional) {
+		this.optional = optional;
+	}
+
+	public boolean isFacultativ() {
+		return facultativ;
+	}
+
+	public void setFacultativ(boolean facultativ) {
+		this.facultativ = facultativ;
 	}
 
 	public int getId() {
