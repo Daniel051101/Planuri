@@ -1,6 +1,7 @@
 package ro.upt.ac.planuri.citire;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -13,6 +14,10 @@ import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 // https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
 public class ExtractorLicenta
@@ -24,7 +29,7 @@ public class ExtractorLicenta
 		int i=0, j=0;
 		try
 		{
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ");
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -36,7 +41,13 @@ public class ExtractorLicenta
 			
 			int n = sheet.getLastRowNum();
 			
+			Connection connection = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
+            String insertSQL = "INSERT INTO plan_invatamant_licenta (an_calendaristic, ciclu, cod_domeniu_fundamental, cod_ramura_de_stiinta, codul_programului_de_studii, domeniu_de_licenta, domeniu_fundamental, facultate, ramura_de_stiinta, universitate, cod_domeniu_de_licenta, cod_studii, program_de_studii_licenta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
+            PreparedStatement statement = connection.prepareStatement(insertSQL);
+			
 			int c=0, r=0;
+			
+			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
 			for(c=0; c<10; c++)
@@ -72,9 +83,36 @@ public class ExtractorLicenta
 						continue;
 					}
 					
+					values.add(value);
+					
 					//System.out.print(r+" ");
-					System.out.println(value);
+					//System.out.println(value);
 				}
+			
+			int index=0;
+			
+			while (index < values.size()) {
+                // Setăm valorile pentru fiecare coloană
+                statement.setString(10, values.get(index++)); 
+                statement.setString(8, index < values.size() ? values.get(index++) : null); 
+                statement.setString(3, index < values.size() ? values.get(index++) : null); 
+                statement.setString(4, index < values.size() ? values.get(index++) : null);
+                statement.setString(11, index < values.size() ? values.get(index++) : null); 
+                statement.setString(12, index < values.size() ? values.get(index++) : null); 
+                statement.setString(2, index < values.size() ? values.get(index++) : null); 
+                statement.setString(5, index < values.size() ? values.get(index++) : null); 
+                statement.setString(1, index < values.size() ? values.get(index++) : null); 
+                statement.setString(7, index < values.size() ? values.get(index++) : null); 
+                statement.setString(9, index < values.size() ? values.get(index++) : null); 
+                statement.setString(6, index < values.size() ? values.get(index++) : null); 
+                statement.setString(13, index < values.size() ? values.get(index++) : null); 
+                
+                // Executăm interogarea
+                statement.executeUpdate();
+               
+            }
+			
+				System.out.println("Date introduse în baza de date!");
 			
 			Map<Integer, Integer> rAdjustments=Map.of(
 					48, 69,
@@ -118,7 +156,7 @@ public class ExtractorLicenta
 
 				if (cell.getCellType() == CellType.FORMULA)
 				{
-					for (int k=1; k<12; k++)
+					for (int k=3; k<12; k++)
 					{
 						Cell cell1=row.getCell(c+k);
 						if(cell1==null)
@@ -127,18 +165,16 @@ public class ExtractorLicenta
 						}
 				
 						String value1=getValue(workbook,cell1);
-						if(value1.isEmpty() || value1.equals("0"))
-						{
-							continue;
-						}
+//						if(value1.isEmpty() || value1.equals("0"))
+//						{
+//							continue;
+//						}
 						
 						System.out.println(value1);
 					}
 					System.out.println("\n");
 				}
-				
-//				if (c==37 && r==203)
-//					System.out.print("\n" + cell.getCellType() + "\n");
+
 				
 				
 			}

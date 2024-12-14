@@ -14,13 +14,13 @@ abstract public class Disciplina
 	
 	private String numeDisciplina;
 	private String codDisciplina;
-	private int numarCrediteTransferabile;
+	private String numarCrediteTransferabile;
 	private String formaEvaluare;
 	
-	private int volumOreNecesareActivitatilorPartialAsistate;
-	private int volumOreNecesaraPregatiriIndividuale;
+	private String volumOreNecesareActivitatilorPartialAsistate;
+	private String volumOreNecesaraPregatiriIndividuale;
 	
-	private int semestru;
+	private String semestru;
 	private boolean optional;
 	private boolean facultativ;
 	
@@ -44,12 +44,12 @@ abstract public class Disciplina
 		this.codDisciplina = codDisciplina;
 	}
 
-	public int getNumarCrediteTransferabile() {
+	public String getNumarCrediteTransferabile() {
 		return numarCrediteTransferabile;
 	}
 
 
-	public void setNumarCrediteTransferabile(int numarCrediteTransferabile) {
+	public void setNumarCrediteTransferabile(String numarCrediteTransferabile) {
 		this.numarCrediteTransferabile = numarCrediteTransferabile;
 	}
 
@@ -61,27 +61,27 @@ abstract public class Disciplina
 		this.formaEvaluare = formaEvaluare;
 	}
 
-	public int getVolumOreNecesareActivitatilorPartialAsistate() {
+	public String getVolumOreNecesareActivitatilorPartialAsistate() {
 		return volumOreNecesareActivitatilorPartialAsistate;
 	}
 
-	public void setVolumOreNecesareActivitatilorPartialAsistate(int volumOreNecesareActivitatilorPartialAsistate) {
+	public void setVolumOreNecesareActivitatilorPartialAsistate(String volumOreNecesareActivitatilorPartialAsistate) {
 		this.volumOreNecesareActivitatilorPartialAsistate = volumOreNecesareActivitatilorPartialAsistate;
 	}
 
-	public int getVolumOreNecesaraPregatiriIndividuale() {
+	public String getVolumOreNecesaraPregatiriIndividuale() {
 		return volumOreNecesaraPregatiriIndividuale;
 	}
 
-	public void setVolumOreNecesaraPregatiriIndividuale(int volumOreNecesaraPregatiriIndividuale) {
+	public void setVolumOreNecesaraPregatiriIndividuale(String volumOreNecesaraPregatiriIndividuale) {
 		this.volumOreNecesaraPregatiriIndividuale = volumOreNecesaraPregatiriIndividuale;
 	}
 
-	public int getSemestru() {
+	public String getSemestru() {
 		return semestru;
 	}
 
-	public void setSemestru(int semestru) {
+	public void setSemestru(String semestru) {
 		this.semestru = semestru;
 	}
 

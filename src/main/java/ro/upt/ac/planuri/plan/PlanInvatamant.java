@@ -10,7 +10,7 @@ import jakarta.persistence.MappedSuperclass;
 abstract public class PlanInvatamant 
 {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
 	
 	private String universitate;
@@ -19,11 +19,11 @@ abstract public class PlanInvatamant
 	private String domeniuFundamental;
 	private String ramuraDeStiinta;
 	private String domeniuDeLicenta;
-	private int codDomeniuFundamental;
-	private int codRamuraDeStiinta;
+	private String codDomeniuFundamental;
+	private String codRamuraDeStiinta;
 	private String ciclu;
 	private String codulProgramuluiDeStudii; 
-	private int anCalendaristic; 
+	private String anCalendaristic; 
 	
 	
 	public PlanInvatamant()
@@ -78,19 +78,19 @@ abstract public class PlanInvatamant
 		this.id = id;
 	}
 
-	public int getCodDomeniuFundamental() {
+	public String getCodDomeniuFundamental() {
 		return codDomeniuFundamental;
 	}
 
-	public void setCodDomeniuFundamental(int codDomeniuFundamental) {
+	public void setCodDomeniuFundamental(String codDomeniuFundamental) {
 		this.codDomeniuFundamental = codDomeniuFundamental;
 	}
 
-	public int getCodRamuraDeStiinta() {
+	public String getCodRamuraDeStiinta() {
 		return codRamuraDeStiinta;
 	}
 
-	public void setCodRamuraDeStiinta(int codRamuraDeStiinta) {
+	public void setCodRamuraDeStiinta(String codRamuraDeStiinta) {
 		this.codRamuraDeStiinta = codRamuraDeStiinta;
 	}
 
@@ -110,11 +110,11 @@ abstract public class PlanInvatamant
 		this.codulProgramuluiDeStudii = codulProgramuluiDeStudii;
 	}
 
-	public int getAnCalendaristic() {
+	public String getAnCalendaristic() {
 		return anCalendaristic;
 	}
 
-	public void setAnCalendaristic(int anCalendaristic) {
+	public void setAnCalendaristic(String anCalendaristic) {
 		this.anCalendaristic = anCalendaristic;
 	}
 	

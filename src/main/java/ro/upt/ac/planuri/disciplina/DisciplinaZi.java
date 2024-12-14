@@ -6,44 +6,44 @@ import jakarta.persistence.Entity;
 public class DisciplinaZi extends Disciplina 
 {
 	private String categorieFormativaLicenta;
-	private int numarOreCurs;
-	private int numarOreSeminar;
-	private int numarOreLaborator;
-	private int numarOreProiect;
+	private String numarOreCurs;
+	private String numarOreSeminar;
+	private String numarOreLaborator;
+	private String numarOreProiect;
 	
 	public DisciplinaZi()
 	{
 	}
 
-	public int getNumarOreCurs() {
+	public String getNumarOreCurs() {
 		return numarOreCurs;
 	}
 
-	public void setNumarOreCurs(int numarOreCurs) {
+	public void setNumarOreCurs(String numarOreCurs) {
 		this.numarOreCurs = numarOreCurs;
 	}
 
-	public int getNumarOreSeminar() {
+	public String getNumarOreSeminar() {
 		return numarOreSeminar;
 	}
 
-	public void setNumarOreSeminar(int numarOreSeminar) {
+	public void setNumarOreSeminar(String numarOreSeminar) {
 		this.numarOreSeminar = numarOreSeminar;
 	}
 
-	public int getNumarOreLaborator() {
+	public String getNumarOreLaborator() {
 		return numarOreLaborator;
 	}
 
-	public void setNumarOreLaborator(int numarOreLaborator) {
+	public void setNumarOreLaborator(String numarOreLaborator) {
 		this.numarOreLaborator = numarOreLaborator;
 	}
 
-	public int getNumarOreProiect() {
+	public String getNumarOreProiect() {
 		return numarOreProiect;
 	}
 
-	public void setNumarOreProiect(int numarOreProiect) {
+	public void setNumarOreProiect(String numarOreProiect) {
 		this.numarOreProiect = numarOreProiect;
 	}
 

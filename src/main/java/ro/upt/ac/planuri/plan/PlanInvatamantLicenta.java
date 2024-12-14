@@ -5,21 +5,12 @@ import jakarta.persistence.Entity;
 @Entity
 public class PlanInvatamantLicenta extends PlanInvatamant
 {
-	private String domeniuDeLicenta;
 	private String programDeStudiiLicenta;
-	private int codDomeniuDeLicenta;	
-	private int codStudii;
+	private String codDomeniuDeLicenta;	
+	private String codStudii;
 	
 	public PlanInvatamantLicenta()
 	{
-	}
-	
-	public String getDomeniuDeLicenta() {
-		return domeniuDeLicenta;
-	}
-	
-	public void setDomeniuDeLicenta(String domeniuDeLicenta) {
-		this.domeniuDeLicenta = domeniuDeLicenta;
 	}
 	
 	public String getProgramDeStudiiLicenta() {
@@ -30,19 +21,19 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 		this.programDeStudiiLicenta = programDeStudiiLicenta;
 	}
 	
-	public int getCodDomeniuDeLicenta() {
+	public String getCodDomeniuDeLicenta() {
 		return codDomeniuDeLicenta;
 	}
 	
-	public void setCodDomeniuDeLicenta(int codDomeniuDeLicenta) {
+	public void setCodDomeniuDeLicenta(String codDomeniuDeLicenta) {
 		this.codDomeniuDeLicenta = codDomeniuDeLicenta;
 	}
 	
-	public int getCodStudii() {
+	public String getCodStudii() {
 		return codStudii;
 	}
 	
-	public void setCodStudii(int codStudii) {
+	public void setCodStudii(String codStudii) {
 		this.codStudii = codStudii;
 	}
 }
