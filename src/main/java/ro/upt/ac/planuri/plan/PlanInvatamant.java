@@ -21,7 +21,7 @@ abstract public class PlanInvatamant
 	private String codRamuraDeStiinta;
 	private String ciclu;
 	private String codulProgramuluiDeStudii; 
-	private String anCalendaristic; 
+	private int anCalendaristic; 
 	
 	
 	public PlanInvatamant()
@@ -108,11 +108,11 @@ abstract public class PlanInvatamant
 		this.codulProgramuluiDeStudii = codulProgramuluiDeStudii;
 	}
 
-	public String getAnCalendaristic() {
+	public int getAnCalendaristic() {
 		return anCalendaristic;
 	}
 
-	public void setAnCalendaristic(String anCalendaristic) {
+	public void setAnCalendaristic(int anCalendaristic) {
 		this.anCalendaristic = anCalendaristic;
 	}
 	

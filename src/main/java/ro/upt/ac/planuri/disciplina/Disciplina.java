@@ -9,22 +9,20 @@ import jakarta.persistence.MappedSuperclass;
 abstract public class Disciplina 
 {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
 	
 	private String numeDisciplina;
 	private String codDisciplina;
 	private String numarCrediteTransferabile;
 	private String formaEvaluare;
-	
 	private String volumOreNecesareActivitatilorPartialAsistate;
 	private String volumOreNecesaraPregatiriIndividuale;
+//	private String semestru;
+//	private boolean optional;
+//	private boolean facultativ;
 	
-	private String semestru;
-	private boolean optional;
-	private boolean facultativ;
-	
-	public Disciplina() //constructor
+	public Disciplina()
 	{
 	}
 	
@@ -77,29 +75,29 @@ abstract public class Disciplina
 		this.volumOreNecesaraPregatiriIndividuale = volumOreNecesaraPregatiriIndividuale;
 	}
 
-	public String getSemestru() {
-		return semestru;
-	}
+//	public String getSemestru() {
+//		return semestru;
+//	}
+//
+//	public void setSemestru(String semestru) {
+//		this.semestru = semestru;
+//	}
 
-	public void setSemestru(String semestru) {
-		this.semestru = semestru;
-	}
-
-	public boolean isOptional() {
-		return optional;
-	}
-
-	public void setOptional(boolean optional) {
-		this.optional = optional;
-	}
-
-	public boolean isFacultativ() {
-		return facultativ;
-	}
-
-	public void setFacultativ(boolean facultativ) {
-		this.facultativ = facultativ;
-	}
+//	public boolean isOptional() {
+//		return optional;
+//	}
+//
+//	public void setOptional(boolean optional) {
+//		this.optional = optional;
+//	}
+//
+//	public boolean isFacultativ() {
+//		return facultativ;
+//	}
+//
+//	public void setFacultativ(boolean facultativ) {
+//		this.facultativ = facultativ;
+//	}
 
 	public int getId() {
 		return id;
