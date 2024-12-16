@@ -5,7 +5,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
-
 @MappedSuperclass
 abstract public class PlanInvatamant 
 {
@@ -15,7 +14,6 @@ abstract public class PlanInvatamant
 	
 	private String universitate;
 	private String facultate;
-	
 	private String domeniuFundamental;
 	private String ramuraDeStiinta;
 	private String domeniuDeLicenta;

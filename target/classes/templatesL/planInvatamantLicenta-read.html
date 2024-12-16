@@ -37,7 +37,7 @@
 
 	      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	        <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
-	        <li><a href="/planInvatamant-read" class="nav-link px-2 text-white">Plans</a></li>
+	        <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Plans</a></li>
 	        <li><a href="/disciplina-read" class="nav-link px-2 text-white">Courses</a></li>
 	      </ul>
 
@@ -60,7 +60,7 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Plans</h1>
         <p>
-          <a href="/planInvatamant-create" class="btn btn-primary my-2">Create plan</a>
+          <a href="/planInvatamantLicenta-create" class="btn btn-primary my-2">Create plan</a>
           <a href="/disciplina-create" class="btn btn-secondary my-2">Create course</a>
         </p>
       </div>
@@ -71,22 +71,22 @@
     <div class="container">
       <!-- Iterare prin lista de planuri -->
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" th:each="planInvatamant : ${planInvatamant}">
+        <div class="col" th:each="planInvatamantLicenta : ${planInvatamantLicenta}">
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
               <title>Placeholder</title>
               <rect width="100%" height="100%" fill="#55595c" />
               <text x="50%" y="50%" fill="#eceeef" dy=".3em"> Text
-				<p class="card-text" th:text="${planInvatamant.programDeStudiiLicenta}"></p>
+				<p class="card-text" th:text="${planInvatamantLicenta.programDeStudiiLicenta}"></p>
 			  </text>
             </svg>
             <div class="card-body">
-              <p class="card-text" th:text="${planInvatamant.intervalAni}"></p>
+              <p class="card-text" ></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamant-view/{id}(id=${planInvatamant.id})}" role="button">View</a>
-                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamant-edit/{id}(id=${planInvatamant.id})}" role="button">Edit</a>
-                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamant-delete/{id}(id=${planInvatamant.id})}" role="button">Delete</a>
+                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantLicenta-view/{id}(id=${planInvatamantLicenta.id})}" role="button">View</a>
+                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantLicenta-edit/{id}(id=${planInvatamantLicenta.id})}" role="button">Edit</a>
+                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantLicenta-delete/{id}(id=${planInvatamantLicenta.id})}" role="button">Delete</a>
                 </div>
               </div>
             </div>

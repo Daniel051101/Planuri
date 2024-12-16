@@ -18,7 +18,7 @@
 		    <li class="breadcrumb-item active" aria-current="page">Plan de Învățământ</li>
 		  </ol>
 		</nav>	
-		<div th:switch="${planInvatamant}">
+		<div th:switch="${planInvatamantLicenta}">
 		    <h2 th:case="null">Nu este niciun plan in baza de date!</h2>
 	        <div th:case="*">
 	            <h2>Planuri</h2>
@@ -50,23 +50,23 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-		                <tr th:each="planInvatamant : ${planInvatamant}">
-		                    <td scope="col" th:text="${planInvatamant.id}"></td>		                    
-		                    <td><a th:href="@{/planInvatamant-edit/{id}(id=${planInvatamant.id})}">Editeaza</a></td>
-		                    <td><a th:href="@{/planInvatamant-delete/{id}(id=${planInvatamant.id})}">Sterge</a></td>		                    
-		                    <td th:text="${planInvatamant.universitate}"></td>
-		                    <td th:text="${planInvatamant.facultate}"></td>
-		                    <td th:text="${planInvatamant.domeniuFundamental}"></td>
-		                    <td th:text="${planInvatamant.ramuraDeStiinta}"></td>
-		                    <td th:text="${planInvatamant.domeniuDeLicenta}"></td>
-							<td th:text="${planInvatamant.programDeStudiiLicenta}"></td>
-							<td th:text="${planInvatamant.codDomeniuFundamental}"></td>
-							<td th:text="${planInvatamant.codRamuraDeStiinta}"></td>
-							<td th:text="${planInvatamant.codDomeniuDeLicenta}"></td>
-							<td th:text="${planInvatamant.codStudii}"></td>
-							<td th:text="${planInvatamant.ciclu}"></td>
-							<td th:text="${planInvatamant.codulProgramuluiDeStudii}"></td>
-							<td th:text="${planInvatamant.anCalendaristic}"></td>
+		                <tr th:each="planInvatamantLicenta : ${planInvatamantLicenta}">
+		                    <td scope="col" th:text="${planInvatamantLicenta.id}"></td>		                    
+		                    <td><a th:href="@{/planInvatamant-edit/{id}(id=${planInvatamantLicenta.id})}">Editeaza</a></td>
+		                    <td><a th:href="@{/planInvatamant-delete/{id}(id=${planInvatamantLicenta.id})}">Sterge</a></td>		                    
+		                    <td th:text="${planInvatamantLicenta.universitate}"></td>
+		                    <td th:text="${planInvatamantLicenta.facultate}"></td>
+		                    <td th:text="${planInvatamantLicenta.domeniuFundamental}"></td>
+		                    <td th:text="${planInvatamantLicenta.ramuraDeStiinta}"></td>
+		                    <td th:text="${planInvatamantLicenta.domeniuDeLicenta}"></td>
+							<td th:text="${planInvatamantLicentaprogramDeStudiiLicenta}"></td>
+							<td th:text="${planInvatamantLicenta.codDomeniuFundamental}"></td>
+							<td th:text="${planInvatamantLicenta.codRamuraDeStiinta}"></td>
+							<td th:text="${planInvatamantLicenta.codDomeniuDeLicenta}"></td>
+							<td th:text="${planInvatamantLicenta.codStudii}"></td>
+							<td th:text="${planInvatamantLicenta.ciclu}"></td>
+							<td th:text="${planInvatamantLicenta.codulProgramuluiDeStudii}"></td>
+							<td th:text="${planInvatamantLicenta.anCalendaristic}"></td>
 		                </tr>
 	            	</tbody>
 	        	</table>

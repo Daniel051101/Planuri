@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlanInvatamantRepository extends JpaRepository<PlanInvatamant,Integer>
+public interface PlanInvatamantLicentaRepository extends JpaRepository<PlanInvatamantLicenta,Integer>
 {
-	PlanInvatamant findById(int id);
+	PlanInvatamantLicenta findById(int id);
 }
 

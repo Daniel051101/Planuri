@@ -29,7 +29,7 @@ public class ExtractorLicenta
 		int i=0, j=0;
 		try
 		{
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_TI.xlsx ");
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
 			XSSFWorkbook workbook = new XSSFWorkbook(file);

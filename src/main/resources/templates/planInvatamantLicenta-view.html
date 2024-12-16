@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan de Învățământ - Detalii</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<header class="p-3 bg-dark text-white">
+		  <div class="container">
+		    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+		      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+		        <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+		        <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Plans</a></li>
+		        <li><a href="/disciplina-read" class="nav-link px-2 text-white">Courses</a></li>
+		      </ul>
+
+		      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+		        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+		      </form>
+
+		      <div class="text-end">
+		        <a class="btn btn-outline-light me-2" href="/login" role="button">Login</a>
+		        <a class="btn btn-warning" href="/signup" role="button">Sign-up</a>
+		      </div>
+		    </div>
+		  </div>
+		</header>
+
+<main class="container py-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="text-center mb-4">Detalii Plan</h2>
+      <table class="table table-bordered table-striped">
+        <tbody>
+          <tr>
+            <th>Universitate</th>
+            <td th:text="${planInvatamantLicenta.universitate}">Universitatea Example</td>
+          </tr>
+          <tr>
+            <th>Facultate</th>
+            <td th:text="${planInvatamantLicenta.facultate}">Facultatea Example</td>
+          </tr>
+          <tr>
+            <th>Domeniu Fundamental</th>
+            <td th:text="${planInvatamantLicenta.domeniuFundamental}">Domeniu Example</td>
+          </tr>
+          <tr>
+            <th>Ramura de Știință</th>
+            <td th:text="${planInvatamantLicenta.ramuraDeStiinta}">Ramură Example</td>
+          </tr>
+          <tr>
+            <th>Domeniu de Licență</th>
+            <td th:text="${planInvatamantLicenta.domeniuDeLicenta}">Domeniu Licență Example</td>
+          </tr>
+          <tr>
+            <th>Program de Studii Licență</th>
+            <td th:text="${planInvatamantLicenta.programDeStudiiLicenta}">Program Example</td>
+          </tr>
+          <tr>
+            <th>Cod Domeniu Fundamental</th>
+            <td th:text="${planInvatamantLicenta.codDomeniuFundamental}">123</td>
+          </tr>
+          <tr>
+            <th>Cod Ramură de Știință</th>
+            <td th:text="${planInvatamantLicenta.codRamuraDeStiinta}">456</td>
+          </tr>
+          <tr>
+            <th>Cod Domeniu de Licență</th>
+            <td th:text="${planInvatamantLicenta.codDomeniuDeLicenta}">789</td>
+          </tr>
+          <tr>
+            <th>Cod Studii</th>
+            <td th:text="${planInvatamantLicenta.codStudii}">101</td>
+          </tr>
+          <tr>
+            <th>Ciclu</th>
+            <td th:text="${planInvatamantLicenta.ciclu}">Licență</td>
+          </tr>
+          <tr>
+            <th>Codul Programului de Studii</th>
+            <td th:text="${planInvatamantLicenta.codulProgramuluiDeStudii}">202</td>
+          </tr>
+          <tr>
+            <th>An Calendaristic</th>
+            <td th:text="${planInvatamantLicenta.anCalendaristic}">2023</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center mt-4">
+        <a href="/planInvatamantLicenta-edit/{id}" th:href="@{/planInvatamantLicenta-edit/{id}(id=${planInvatamantLicenta.id})}" class="btn btn-primary">Edit</a>
+        <a href="/planInvatamantLicenta-delete/{id}" th:href="@{/planInvatamantLicenta-delete/{id}(id=${planInvatamantLicenta.id})}" class="btn btn-danger">Delete</a>
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="text-muted py-3 bg-light text-center">
+  <p>&copy; 2024 Universitatea Example</p>
+</footer>
+</body>
+</html>
