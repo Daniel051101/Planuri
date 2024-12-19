@@ -18,7 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 // https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
-public class ExtractorLicenta
+public class ExtractorLicentaID
 {	
 //	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public static void main(String[] args) 
@@ -28,10 +28,10 @@ public class ExtractorLicenta
 		try
 		{
 
-//			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx ");
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx ");
 //			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
 //			FileInputStream file = new FileInputStream("./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ");
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
+//			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
 //			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_TI.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
@@ -106,15 +106,15 @@ public class ExtractorLicenta
 			Map<Integer, Integer> rAdjustments=Map.of(
 					51, 70,
 					103, 141,
-				    177, 201,
-				    240, 264,
-				    303, 326,
-				    338, 349,
-				    361, n - 1
+				    177, 200,
+				    239, 262,
+				    301, 324,
+				    336, 347,
+				    359, n - 1
 					);
 					
 			Connection connection1 = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
-            String insertSQL1 = "INSERT INTO disciplina_zi (cod_disciplina, forma_evaluare, numar_credite_transferabile, nume_disciplina, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_licenta, numar_ore_curs, numar_ore_laborator, numar_ore_proiect, numar_ore_seminar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
+            String insertSQL1 = "INSERT INTO disciplina_id (cod_disciplina, forma_evaluare, numar_credite_transferabile, nume_disciplina, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_licenta, numar_activitati_aplicative_asistate, numar_ore_activitati_autoinstruire, numar_ore_activitati_tutorat, numar_teme_de_control) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
             PreparedStatement statement1 = connection1.prepareStatement(insertSQL1);
 			
 			for(c=1;c<38;c+=12)
@@ -161,7 +161,7 @@ public class ExtractorLicenta
 					System.out.println("\n");
 				}
 				
-				if (values.size() == 11)
+				if (values.size() > 5)
 				{
 					index=0;
 					while (index < values.size()) {

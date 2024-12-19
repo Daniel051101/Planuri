@@ -25,8 +25,8 @@ public class ExtractorMaster
 		int i=0, j=0;
 		try
 		{
-			FileInputStream file = new FileInputStream("./data/master/2023-2025 AC AES masterat.xlsx ");
-//			FileInputStream file = new FileInputStream("./data/master/2023-2025 AC GD masterat.xlsx ");
+//			FileInputStream file = new FileInputStream("./data/master/2023-2025 AC AES masterat.xlsx ");
+			FileInputStream file = new FileInputStream("./data/master/2023-2025 AC GD masterat.xlsx ");
 //			FileInputStream file = new FileInputStream("./data/master/2023-2025 AC ISA masterat.xlsx ");
 //			FileInputStream file = new FileInputStream("./data/master/2023-2025 AC SIAPS masterat.xlsx ");
 //			FileInputStream file = new FileInputStream("./data/master/2023-2025 AC SIIS masterat.xlsx ");
@@ -110,11 +110,11 @@ public class ExtractorMaster
             values.clear();
             
 			Map<Integer, Integer> rAdjustments=Map.of(
-					51, 63,
-					93, 111,
-				    141, 149,
-				    179, 214,
-				    226, 234,
+					51, 64,
+					93, 112,
+				    141, 150,
+				    179, 215,
+				    226, 235,
 				    246, n-1
 					);
 			
@@ -123,7 +123,7 @@ public class ExtractorMaster
             PreparedStatement statement1 = connection1.prepareStatement(insertSQL1);
             
 			for(c=1;c<14;c+=12)
-			for(r=21;r<n;r++)
+			for(r=22;r<n;r++)
 			{		
 		        if (rAdjustments.containsKey(r)) 
 		            r = rAdjustments.get(r);
@@ -165,8 +165,7 @@ public class ExtractorMaster
 					System.out.println("\n");
 				}
 				
-				
-				if (values.size()>5)
+				if (values.size() == 11)
 				{
 					index=0;
 					while (index < values.size()) {
@@ -188,10 +187,13 @@ public class ExtractorMaster
 		            // Executăm interogarea
 		            statement1.executeUpdate();
 					
-		            System.out.println("Date introduse în baza de date disciplina!");
+		            System.out.println(values.size() + "Date introduse în baza de date disciplina! \n");
 		                
-					values.clear();
+//					values.clear();
 				}
+				
+				if (values.size()>=11)
+					values.clear();
 
 			}
 		
