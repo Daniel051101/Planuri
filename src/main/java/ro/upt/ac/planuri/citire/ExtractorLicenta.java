@@ -27,12 +27,10 @@ public class ExtractorLicenta
 		int i=0, j=0;
 		try
 		{
-
-//			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx ");
-//			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
+			
 //			FileInputStream file = new FileInputStream("./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ");
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
-//			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_TI.xlsx ");
+//			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_TI.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
@@ -161,7 +159,7 @@ public class ExtractorLicenta
 					System.out.println("\n");
 				}
 				
-				if (values.size() == 11)
+				if (values.size() > 10)
 				{
 					index=0;
 					while (index < values.size()) {
