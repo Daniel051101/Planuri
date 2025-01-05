@@ -4,7 +4,7 @@
  - Apache POI
  - MySQL
  - SpringBoot
- - Thymeleaf/Angular
+ - Thymeleaf
 
 - se porneste de la fisierele cu planurile de invatamant in format Excel
 - se porneste de la fisierele Word cu planurile de invatamant
