@@ -8,16 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import ro.upt.ac.planuri.plan.PlanInvatamantRepository;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
+import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 
-//import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
-//import ro.upt.ac.planuri.disciplina.Disciplina;
-//import ro.upt.ac.planuri.disciplina.DisciplinaId;
-//import ro.upt.ac.planuri.disciplina.DisciplinaRepository;
-//import ro.upt.ac.planuri.disciplina.DisciplinaZi;
-//import ro.upt.ac.planuri.disciplina.TCategorieFormativaLicenta;
-//import ro.upt.ac.planuri.disciplina.TCategorieFormativaMaster;
-//import ro.upt.ac.planuri.disciplina.TFormaEvaluare;
 
 @EnableWebMvc
 @SpringBootApplication
@@ -31,7 +24,17 @@ public class Application
 	}
 
 	@Bean
-	public CommandLineRunner loadDataPlanInvatamant(PlanInvatamantRepository repository)
+	public CommandLineRunner loadDataPlanInvatamantLicenta(PlanInvatamantLicentaRepository repository)
+	{
+	    return (args) -> {	
+			log.info("starting initialization...");
+
+			log.info("ending initialization...");
+	    };
+	}
+	
+	@Bean
+	public CommandLineRunner loadDataPlanInvatamantMaster(PlanInvatamantMasterRepository repository)
 	{
 	    return (args) -> {	
 			log.info("starting initialization...");

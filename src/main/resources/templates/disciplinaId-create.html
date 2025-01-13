@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Plan de Invatamant 1.0</title>
+	<base href="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="/">Acasa</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Discipline Id</li>
+	  </ol>
+	</nav>	
+		
+	<h2>Discipline Id</h2>
+	<hr>
+	
+	<form action="#" th:action="@{/disciplinaId-create-save}" th:object="${disciplinaId}" method="post">
+		<div class="row row-cols-4">
+			
+			<div class="col-sm">
+				<label for="numeDisciplina">Nume disciplina</label>			    
+			</div>
+			<div class="col-sm">
+				<input type="text" th:field="*{numeDisciplina}" id="numeDisciplina" name="numeDisciplina" placeholder="NumeDisciplina">
+				<span th:if="${#fields.hasErrors('numeDisciplina')}" th:errors="*{numeDisciplina}"></span>
+			</div>
+			
+			<div class="col-sm">
+		    	<label for="codDisciplina">Cod disciplina</label>			    
+	    	</div>
+			<div class="col-sm">
+		    	<input type="text" th:field="*{codDisciplina}" id="codDisciplina" name="codDisciplina" placeholder="CodDisciplina">
+		    	<span th:if="${#fields.hasErrors('codDisciplina')}" th:errors="*{codDisciplina}"></span>
+	    	</div>
+    	</div>
+
+		<hr>
+		
+		<div class="row row-cols-4">
+			
+		<div class="col-sm">
+			    <label for="numarCrediteTransferabile">Numar de credite tranferabile</label>
+	    	</div>
+			<div class="col-sm">
+			    <input type="text" th:field="*{numarCrediteTransferabile}" id="numarCrediteTransferabile" placeholder="NumarCrediteTransferabile">
+			    <span th:if="${#fields.hasErrors('numarCrediteTransferabile')}" th:errors="*{numarCrediteTransferabile}"></span>
+	    	</div>
+			
+			<div class="col-sm">
+			    <label for="formaEvaluare">Forma de evaluare</label>
+	    	</div>
+			<div class="col-sm">
+			    <select th:field="*{formaEvaluare}" id="formaEvaluare" class="form-select">
+					<option value="" disabled selected>Alege forma de evaluare</option>
+					<option value="Examen">Examen</option>
+					<option value="Evaluare distribuita">Evaluare distribuita</option>
+					<option value="Colocviu">Colocviu</option>
+					<option value="Proiect autonom cu examinare ca si in cazul disciplinelor cu examen">Proiect autonom cu examinare ca si in cazul disciplinelor cu examen</option>
+					<option value="Proiect autonom cu examinare">Proiect autonom cu examinare</option>
+				</select>
+			    <span th:if="${#fields.hasErrors('formaEvaluare')}" th:errors="*{formaEvaluare}"></span>
+	    	</div>
+			
+		</div>
+		
+		<hr>
+		
+		<div class="row row-cols-4">
+			
+			<div class="col-sm">
+			    <label for="numarOreActivitatiAutoinstruire">Numar de ore de activitati autoinstruire</label>
+	    	</div>
+			<div class="col-sm">
+			    <input type="text" th:field="*{numarOreActivitatiAutoinstruire}" id="numarOreActivitatiAutoinstruire" placeholder="numarOreActivitatiAutoinstruire">
+			    <span th:if="${#fields.hasErrors('numarOreActivitatiAutoinstruire')}" th:errors="*{numarOreActivitatiAutoinstruire}"></span>
+	    	</div>
+		
+			<div class="col-sm">
+			    <label for="numarOreActivitatiTutorat">Numar de ore de activitati tutorat</label>
+	    	</div>
+			<div class="col-sm">
+			    <input type="text" th:field="*{numarOreActivitatiTutorat}" id="numarOreActivitatiTutorat" placeholder="numarOreActivitatiTutorat">
+			    <span th:if="${#fields.hasErrors('numarOreActivitatiTutorat')}" th:errors="*{numarOreActivitatiTutorat}"></span>
+	    	</div>
+			
+	    </div>
+		
+		<hr>
+		
+		<div class="row row-cols-4">
+			
+		<div class="col-sm">
+				<label for="numarTemeDeControl">Numar de teme de control</label>
+			</div>
+			<div class="col-sm">
+				<input type="text" th:field="*{numarTemeDeControl}" id="numarTemeDeControl" placeholder="numarTemeDeControl">
+				<span th:if="${#fields.hasErrors('numarTemeDeControl')}" th:errors="*{numarTemeDeControl}"></span>
+			</div>
+						
+			<div class="col-sm">
+				 <label for="numarActivitatiAplicativeAsistate">Numar de activitati aplicative asistate</label>
+			</div>
+			<div class="col-sm">
+				 <input type="text" th:field="*{numarActivitatiAplicativeAsistate}" id="numarActivitatiAplicativeAsistate" placeholder="numarActivitatiAplicativeAsistate">
+				 <span th:if="${#fields.hasErrors('numarActivitatiAplicativeAsistate')}" th:errors="*{numarActivitatiAplicativeAsistate}"></span>
+			</div>
+			
+		</div>
+		
+		<hr>
+		
+		<div class="row row-cols-4">
+					
+			<div class="col-sm">
+				<label for="volumOreNecesareActivitatilorPartialAsistate">Volum de ore necesar activitatilor partial sistate/practica</label>
+			</div>
+			<div class="col-sm">
+			<input type="text" th:field="*{volumOreNecesareActivitatilorPartialAsistate}" id="volumOreNecesareActivitatilorPartialAsistate" placeholder="VolumOreNecesareActivitatilorPartialAsistate">
+				<span th:if="${#fields.hasErrors('volumOreNecesareActivitatilorPartialAsistate')}" th:errors="*{volumOreNecesareActivitatilorPartialAsistate}"></span>
+			</div>
+				
+			<div class="col-sm">
+				<label for="categorieFormativaLicenta">Categorie formativa</label>
+			</div>
+			<div class="col-sm">
+				<select th:field="*{categorieFormativaLicenta}" id="categorieFormativaLicenta" class="form-select">
+					<option value="" disabled selected>Alege forma de evaluare</option>
+					<option value="Disciplina complementara">Disciplina complementara</option>
+					<option value="Disciplina in domeniu">Disciplina in domeniu</option>
+					<option value="Disiciplina fundamentala">Disiciplina fundamentala</option>
+					<option value="Disiciplina de specialitate">Disiciplina de specialitate</option>
+				</select>
+				<span th:if="${#fields.hasErrors('categorieFormativaLicenta')}" th:errors="*{categorieFormativaLicenta}"></span>
+			</div>	
+		
+			<div class="col-sm">
+				<label for="volumOreNecesaraPregatiriIndividuale">Volum de ore necesar pregatirii individuale</label>
+			</div>
+			<div class="col-sm">
+				<input type="text" th:field="*{volumOreNecesaraPregatiriIndividuale}" id="volumOreNecesaraPregatiriIndividuale" placeholder="VolumOreNecesaraPregatiriIndividuale">
+				<span th:if="${#fields.hasErrors('volumOreNecesaraPregatiriIndividuale')}" th:errors="*{volumOreNecesaraPregatiriIndividuale}"></span>
+			</div>		
+					
+		</div>
+
+		<hr>
+		
+	    <input type="submit" value="Salveaza disciplina">
+	</form>
+	</div>
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
