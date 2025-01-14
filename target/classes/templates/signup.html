@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Sign-Up</title>
+    <meta name="description" content="Pagina de creare cont pentru aplicație">
+    <meta name="author" content="Echipa">
+    <link rel="icon" href="favicon.ico">
+    <title>Înregistrare - Cont Nou</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -15,62 +17,82 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
-        background-color: #f8f9fa;
+        background: linear-gradient(135deg, #e9ecef, #dee2e6);
         margin: 0;
+        font-family: 'Arial', sans-serif;
       }
       .form-signup {
         width: 100%;
-        max-width: 400px;
-        padding: 20px;
+        max-width: 420px;
+        padding: 25px;
         background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
       }
       .form-signup h1 {
         margin-bottom: 20px;
+        color: #333;
       }
-      .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
+      .form-signup .form-control {
+        border-radius: 8px;
+      }
+      .form-signup .btn-primary {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+      .form-signup .btn-primary:hover {
+        background-color: #003d80;
+        transform: scale(1.02);
       }
       .form-text {
         font-size: 0.85rem;
         color: #6c757d;
       }
+      .form-signup .checkbox label {
+        font-size: 0.9rem;
+      }
+      .text-muted {
+        font-size: 0.85rem;
+      }
     </style>
   </head>
   <body>
     <main class="form-signup">
+      <!-- Formular de înregistrare -->
       <form>
-        <h1 class="h3 mb-3 fw-normal">Create an Account</h1>
+        <h1 class="h4 fw-bold">Creează un cont nou</h1>
 
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingName" placeholder="Full Name">
-          <label for="floatingName">Full Name</label>
+          <input type="text" class="form-control" id="floatingName" placeholder="Nume complet" aria-label="Nume complet" required>
+          <label for="floatingName">Nume complet</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
-          <label for="floatingEmail">Email address</label>
+          <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" aria-label="Adresa de email" required>
+          <label for="floatingEmail">Adresa de email</label>
+          <div class="form-text">Introduceți o adresă validă de email.</div>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Parolă" aria-label="Parolă" minlength="8" required>
+          <label for="floatingPassword">Parolă</label>
+          <div class="form-text">Parola trebuie să aibă cel puțin 8 caractere.</div>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Confirm Password">
-          <label for="floatingConfirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Confirmă Parola" aria-label="Confirmă Parola" minlength="8" required>
+          <label for="floatingConfirmPassword">Confirmă Parola</label>
         </div>
 
         <div class="checkbox mb-3">
           <label>
-            <input type="checkbox" value="terms"> I agree to the terms and conditions
+            <input type="checkbox" value="terms" required> Sunt de acord cu <a href="#">termenii și condițiile</a>.
           </label>
         </div>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" aria-label="Înregistrează-te">Înregistrează-te</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2024–2025</p>
       </form>
     </main>

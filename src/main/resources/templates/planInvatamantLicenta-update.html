@@ -3,99 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pagina de actualizare a Planului de Învățământ pentru licență la Universitatea Example.">
+  <meta name="keywords" content="plan învățământ, licență, universitate, actualizare, educație">
+  <meta name="author" content="Universitatea Example">
   <title>Edit Plan de Învățământ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/custom-styles.css">
 </head>
 <body>
-	<header class="p-3 bg-dark text-white">
-		  <div class="container">
-		    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 text-white">Acasa</a></li>
+          <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri L</a></li>
+          <li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri M</a></li>
+          <li><a href="/disciplinaZi-read" class="nav-link px-2 text-white">Cursuri Zi</a></li>
+          <li><a href="/disciplinaId-read" class="nav-link px-2 text-white">Cursuri Id</a></li>
+        </ul>
 
-		      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-		        <li><a href="/" class="nav-link px-2 text-white">Acasa</a></li>
-		        <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri L</a></li>
-				<li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri M</a></li>
-		        <li><a href="/disciplinaZi-read" class="nav-link px-2 text-white">Cursuri Zi</a></li>
-				<li><a href="/disciplinaId-read" class="nav-link px-2 text-white">Cursuri Id</a></li>
-		      </ul>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        </form>
 
-		      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-		        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-		      </form>
-
-		      <div class="text-end">
-		        <a class="btn btn-outline-light me-2" href="/login" role="button">Login</a>
-		        <a class="btn btn-warning" href="/signup" role="button">Sign-up</a>
-		      </div>
-		    </div>
-		  </div>
-		</header>
-
-<main class="container py-5">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-		<form action="/planInvatamantLicenta-update/{id}" th:action="@{/planInvatamantLicenta-update/{id}(id=${planInvatamantLicenta.id})}" method="post">
-		  <div class="mb-3">
-		    <label for="universitate" class="form-label">Universitate</label>
-		    <input type="text" class="form-control" id="universitate" name="universitate" th:value="${planInvatamantLicenta.universitate}" required>
-		  </div>
-		  <div class="mb-3">
-		    <label for="facultate" class="form-label">Facultate</label>
-		    <input type="text" class="form-control" id="facultate" name="facultate" th:value="${planInvatamantLicenta.facultate}" required>
-		  </div>
-        <div class="mb-3">
-          <label for="domeniuFundamental" class="form-label">Domeniu Fundamental</label>
-          <input type="text" class="form-control" id="domeniuFundamental" name="domeniuFundamental" th:value="${planInvatamantLicenta.domeniuFundamental}" required>
+        <div class="text-end">
+          <a class="btn btn-outline-light me-2" href="/login" role="button">Login</a>
+          <a class="btn btn-warning" href="/signup" role="button">Sign-up</a>
         </div>
-        <div class="mb-3">
-          <label for="ramuraDeStiinta" class="form-label">Ramura de Știință Licență</label>
-          <input type="text" class="form-control" id="ramuraDeStiinta" name="ramuraDeStiinta" th:value="${planInvatamantLicenta.ramuraDeStiinta}" required>
-        </div>
-        <div class="mb-3">
-          <label for="domeniuDeLicenta" class="form-label">Domeniu de Licență</label>
-          <input type="text" class="form-control" id="domeniuDeLicenta" name="domeniuDeLicenta" th:value="${planInvatamantLicenta.domeniuDeLicenta}" required>
-        </div>
-        <div class="mb-3">
-          <label for="programDeStudiiLicenta" class="form-label">Program de Studii Licență</label>
-          <input type="text" class="form-control" id="programDeStudiiLicenta" name="programDeStudiiLicenta" th:value="${planInvatamantLicenta.programDeStudiiLicenta}" required>
-        </div>
-        <div class="mb-3">
-          <label for="codDomeniuFundamental" class="form-label">Cod Domeniu Fundamental</label>
-          <input type="text" class="form-control" id="codDomeniuFundamental" name="codDomeniuFundamental" th:value="${planInvatamantLicenta.codDomeniuFundamental}" required>
-        </div>
-        <div class="mb-3">
-          <label for="codRamuraDeStiinta" class="form-label">Cod Ramură de Știință</label>
-          <input type="text" class="form-control" id="codRamuraDeStiinta" name="codRamuraDeStiinta" th:value="${planInvatamantLicenta.codRamuraDeStiinta}" required>
-        </div>
-        <div class="mb-3">
-          <label for="codDomeniuDeLicenta" class="form-label">Cod Domeniu de Licență</label>
-          <input type="text" class="form-control" id="codDomeniuDeLicenta" name="codDomeniuDeLicenta" th:value="${planInvatamantLicenta.codDomeniuDeLicenta}" required>
-        </div>
-        <div class="mb-3">
-          <label for="codStudii" class="form-label">Cod Studii</label>
-          <input type="text" class="form-control" id="codStudii" name="codStudii" th:value="${planInvatamantLicenta.codStudii}" required>
-        </div>
-        <div class="mb-3">
-          <label for="ciclu" class="form-label">Ciclu</label>
-          <input type="text" class="form-control" id="ciclu" name="ciclu" th:value="${planInvatamantLicenta.ciclu}" required>
-        </div>
-        <div class="mb-3">
-          <label for="codulProgramuluiDeStudii" class="form-label">Codul Programului de Studii</label>
-          <input type="text" class="form-control" id="codulProgramuluiDeStudii" name="codulProgramuluiDeStudii" th:value="${planInvatamantLicenta.codulProgramuluiDeStudii}" required>
-        </div>
-        <div class="mb-3">
-          <label for="anCalendaristic" class="form-label">An Calendaristic</label>
-          <input type="text" class="form-control" id="anCalendaristic" name="anCalendaristic" th:value="${planInvatamantLicenta.anCalendaristic}" required>
-        </div>
-		<button type="submit" class="btn btn-primary">Actualizează</button>
-		  <a href="/planInvatamantLicenta-read" class="btn btn-secondary">Anulează</a>
-      </form>
+      </div>
     </div>
-  </div>
-</main>
+  </header>
 
-<footer class="text-muted py-3 bg-light text-center">
-  <p>&copy; 2024 Universitatea Example</p>
-</footer>
+  <main class="container py-5">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form action="/planInvatamantLicenta-update/{id}" th:action="@{/planInvatamantLicenta-update/{id}(id=${planInvatamantLicenta.id})}" method="post">
+          <div class="mb-3">
+            <label for="universitate" class="form-label">Universitate</label>
+            <input type="text" class="form-control" id="universitate" name="universitate" th:value="${planInvatamantLicenta.universitate}" required>
+          </div>
+          <div class="mb-3">
+            <label for="facultate" class="form-label">Facultate</label>
+            <input type="text" class="form-control" id="facultate" name="facultate" th:value="${planInvatamantLicenta.facultate}" required>
+          </div>
+          <div class="mb-3">
+            <label for="domeniuFundamental" class="form-label">Domeniu Fundamental</label>
+            <input type="text" class="form-control" id="domeniuFundamental" name="domeniuFundamental" th:value="${planInvatamantLicenta.domeniuFundamental}" required>
+          </div>
+          <div class="mb-3">
+            <label for="ramuraDeStiinta" class="form-label">Ramura de Știință Licență</label>
+            <input type="text" class="form-control" id="ramuraDeStiinta" name="ramuraDeStiinta" th:value="${planInvatamantLicenta.ramuraDeStiinta}" required>
+          </div>
+          <div class="mb-3">
+            <label for="domeniuDeLicenta" class="form-label">Domeniu de Licență</label>
+            <input type="text" class="form-control" id="domeniuDeLicenta" name="domeniuDeLicenta" th:value="${planInvatamantLicenta.domeniuDeLicenta}" required>
+          </div>
+          <div class="mb-3">
+            <label for="programDeStudiiLicenta" class="form-label">Program de Studii Licență</label>
+            <input type="text" class="form-control" id="programDeStudiiLicenta" name="programDeStudiiLicenta" th:value="${planInvatamantLicenta.programDeStudiiLicenta}" required>
+          </div>
+		  <div class="row">
+          	<div class="col-md-6 mb-3">
+            	<label for="codDomeniuFundamental" class="form-label">Cod Domeniu Fundamental</label>
+            	<input type="text" class="form-control" id="codDomeniuFundamental" name="codDomeniuFundamental" th:value="${planInvatamantLicenta.codDomeniuFundamental}" required>
+          	</div>
+          	<div class="col-md-6 mb-3">
+            	<label for="codRamuraDeStiinta" class="form-label">Cod Ramură de Știință</label>
+            	<input type="text" class="form-control" id="codRamuraDeStiinta" name="codRamuraDeStiinta" th:value="${planInvatamantLicenta.codRamuraDeStiinta}" required>
+          	</div>
+		  </div>
+		  <div class="row">
+          	<div class="col-md-6 mb-3">
+            	<label for="codDomeniuDeLicenta" class="form-label">Cod Domeniu de Licență</label>
+            	<input type="text" class="form-control" id="codDomeniuDeLicenta" name="codDomeniuDeLicenta" th:value="${planInvatamantLicenta.codDomeniuDeLicenta}" required>
+          	</div>
+          	<div class="col-md-6 mb-3">
+           		<label for="codStudii" class="form-label">Cod Studii</label>
+            	<input type="text" class="form-control" id="codStudii" name="codStudii" th:value="${planInvatamantLicenta.codStudii}" required>
+          	</div>
+		  </div>
+          <div class="mb-3">
+            <label for="ciclu" class="form-label">Ciclu</label>
+            <select class="form-select" id="ciclu" name="ciclu" required>
+              <option value="L" th:selected="${planInvatamantLicenta.ciclu == 'L'}">Licență</option>
+              <option value="M" th:selected="${planInvatamantLicenta.ciclu == 'M'}">Master</option>
+            </select>
+          </div>
+		  <div class="row">
+          	<div class="col-md-6 mb-3">
+            	<label for="codulProgramuluiDeStudii" class="form-label">Codul Programului de Studii</label>
+            	<input type="text" class="form-control" id="codulProgramuluiDeStudii" name="codulProgramuluiDeStudii" th:value="${planInvatamantLicenta.codulProgramuluiDeStudii}" required>
+          	</div>
+          	<div class="col-md-6 mb-3">
+            	<label for="anCalendaristic" class="form-label">An Calendaristic</label>
+            	<input type="number" class="form-control" id="anCalendaristic" name="anCalendaristic" th:value="${planInvatamantLicenta.anCalendaristic}" required>
+          	</div>
+		  </div>
+          <button type="submit" class="btn btn-primary">Actualizează</button>
+          <a href="/planInvatamantLicenta-read" class="btn btn-secondary">Anulează</a>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-muted py-3 bg-light text-center">
+    <p>&copy; 2024 Universitatea Example</p>
+    <p><a href="/privacy-policy">Politica de Confidențialitate</a> | <a href="/contact">Contact</a></p>
+  </footer>
 </body>
 </html>

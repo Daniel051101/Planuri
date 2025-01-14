@@ -3,81 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creare Plan de Învățământ</title>
+  <title>Creare Plan de Învățământ Licenta</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <header class="p-3 bg-dark text-white">
   <div class="container">
-    <h1 class="text-center">Creare Plan de Învățământ Licenta</h1>
+    <h1 class="text-center">Creare Plan de Învățământ Licență</h1>
   </div>
 </header>
 
 <main class="container py-5">
   <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-lg-8 offset-lg-2">
       <form action="#" th:action="@{/planInvatamantLicenta-create-save}" th:object="${planInvatamantLicenta}" method="post">
         <div class="mb-3">
           <label for="universitate" class="form-label">Universitate</label>
-          <input type="text" class="form-control" id="universitate" name="universitate" required>
+          <input type="text" class="form-control" id="universitate" name="universitate" placeholder="Introduceți numele universitații" required>
         </div>
         <div class="mb-3">
           <label for="facultate" class="form-label">Facultate</label>
-          <input type="text" class="form-control" id="facultate" name="facultate" required>
+          <input type="text" class="form-control" id="facultate" name="facultate" placeholder="Introduceți numele facultății" required>
         </div>
         <div class="mb-3">
           <label for="domeniuFundamental" class="form-label">Domeniu Fundamental</label>
-          <input type="text" class="form-control" id="domeniuFundamental" name="domeniuFundamental" required>
+          <input type="text" class="form-control" id="domeniuFundamental" name="domeniuFundamental" placeholder="Introduceți domeniul fundamental" required>
         </div>
         <div class="mb-3">
           <label for="ramuraDeStiinta" class="form-label">Ramura de Știință</label>
-          <input type="text" class="form-control" id="ramuraDeStiinta" name="ramuraDeStiinta" required>
+          <input type="text" class="form-control" id="ramuraDeStiinta" name="ramuraDeStiinta" placeholder="Introduceți ramura de știință" required>
         </div>
         <div class="mb-3">
           <label for="domeniuDeLicenta" class="form-label">Domeniu de Licență</label>
-          <input type="text" class="form-control" id="domeniuDeLicenta" name="domeniuDeLicenta" required>
+          <input type="text" class="form-control" id="domeniuDeLicenta" name="domeniuDeLicenta" placeholder="Introduceți domeniul de licență" required>
         </div>
         <div class="mb-3">
           <label for="programDeStudiiLicenta" class="form-label">Program de Studii Licență</label>
-          <input type="text" class="form-control" id="programDeStudiiLicenta" name="programDeStudiiLicenta" required>
+          <input type="text" class="form-control" id="programDeStudiiLicenta" name="programDeStudiiLicenta" placeholder="Introduceți programul de studii" required>
         </div>
-        <div class="mb-3">
-          <label for="codDomeniuFundamental" class="form-label">Cod Domeniu Fundamental</label>
-          <input type="number" class="form-control" id="codDomeniuFundamental" name="codDomeniuFundamental" required>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="codDomeniuFundamental" class="form-label">Cod Domeniu Fundamental</label>
+            <input type="text" class="form-control" id="codDomeniuFundamental" name="codDomeniuFundamental" placeholder="Introduceți codul domeniului fundamental" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="codRamuraDeStiinta" class="form-label">Cod Ramură de Știință</label>
+            <input type="text" class="form-control" id="codRamuraDeStiinta" name="codRamuraDeStiinta" placeholder="Introduceți codul ramurei de stiință" required>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="codRamuraDeStiinta" class="form-label">Cod Ramură de Știință</label>
-          <input type="number" class="form-control" id="codRamuraDeStiinta" name="codRamuraDeStiinta" required>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="codDomeniuDeLicenta" class="form-label">Cod Domeniu de Licență</label>
+            <input type="text" class="form-control" id="codDomeniuDeLicenta" name="codDomeniuDeLicenta" placeholder="Introduceți codul domeniului de licență" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="codStudii" class="form-label">Cod Studii</label>
+            <input type="text" class="form-control" id="codStudii" name="codStudii" placeholder="Introduceți codul de studii" required>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="codDomeniuDeLicenta" class="form-label">Cod Domeniu de Licență</label>
-          <input type="number" class="form-control" id="codDomeniuDeLicenta" name="codDomeniuDeLicenta" required>
+		<div class="mb-3">
+		  <label for="ciclu" class="form-label">Ciclu</label>
+		  <select class="form-select" id="ciclu" name="ciclu" required>
+		    <option value="L" th:selected="${planInvatamantLicenta.ciclu == 'L'}">Licență</option>
+		    <option value="M" th:selected="${planInvatamantLicenta.ciclu == 'M'}">Master</option>
+		  </select>
+		</div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="codulProgramuluiDeStudii" class="form-label">Codul Programului de Studii</label>
+            <input type="number" class="form-control" id="codulProgramuluiDeStudii" name="codulProgramuluiDeStudii" placeholder="Introduceți codul programul de studii" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="anCalendaristic" class="form-label">An Calendaristic</label>
+            <input type="number" class="form-control" id="anCalendaristic" name="anCalendaristic" placeholder="Introduceți anul calendaristic" required>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="codStudii" class="form-label">Cod Studii</label>
-          <input type="number" class="form-control" id="codStudii" name="codStudii" required>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Salvează</button>
+          <a href="/planInvatamantLicenta-read" class="btn btn-secondary">Anulează</a>
         </div>
-        <div class="mb-3">
-          <label for="ciclu" class="form-label">Ciclu</label>
-          <input type="text" class="form-control" id="ciclu" name="ciclu" required>
-        </div>
-        <div class="mb-3">
-          <label for="codulProgramuluiDeStudii" class="form-label">Codul Programului de Studii</label>
-          <input type="number" class="form-control" id="codulProgramuluiDeStudii" name="codulProgramuluiDeStudii" required>
-        </div>
-        <div class="mb-3">
-          <label for="anCalendaristic" class="form-label">An Calendaristic</label>
-          <input type="number" class="form-control" id="anCalendaristic" name="anCalendaristic" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Salvează</button>
-        <a href="/planInvatamantLicenta-read" class="btn btn-secondary">Anulează</a>
       </form>
     </div>
   </div>
 </main>
 
 <footer class="text-muted py-3 bg-light text-center">
-  <p>&copy; 2024 Universitatea Example</p>
+  <p>&copy; 2024 Universitatea Example. Toate drepturile rezervate.</p>
 </footer>
 </body>
 </html>

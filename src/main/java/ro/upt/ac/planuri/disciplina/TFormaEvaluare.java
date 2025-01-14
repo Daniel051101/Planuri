@@ -5,8 +5,8 @@ public enum TFormaEvaluare
 	E("Examen","E"),
 	D("Evaluare distribuita","D"),
 	C("Colocviu","C"),
-	P_E("proiect autonom cu examinare ca si in cazul disciplinelor cu examen","P_E"),
-	P_D("proiect autonom cu examinare","P_D");
+	P_E("Proiect autonom cu examinare ca si in cazul disciplinelor cu examen","P_E"),
+	P_D("Proiect autonom cu examinare","P_D");
 	
 	private String numeLung;
 	private String numeScurt;

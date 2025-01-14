@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plan de Învățământ - Detalii</title>
+  <title>Plan de Învățământ Master - Detalii</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -15,7 +15,8 @@
 		        <li><a href="/" class="nav-link px-2 text-white">Acasa</a></li>
 		        <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri L</a></li>
 				<li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri M</a></li>
-		        <li><a href="/disciplinaMaster-read" class="nav-link px-2 text-white">Cursuri M</a></li>
+		        <li><a href="/disciplinaZi-read" class="nav-link px-2 text-white">Cursuri Zi</a></li>
+				<li><a href="/disciplinaId-read" class="nav-link px-2 text-white">Cursuri Id</a></li>
 		      </ul>
 
 		      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -45,7 +46,7 @@
             <td th:text="${planInvatamantMaster.facultate}"></td>
           </tr>
 		  <tr>
-		    <th>Domeniu de Licență</th>
+		    <th>Domeniul de Licenta</th>
 		    <td th:text="${planInvatamantMaster.domeniuDeLicenta}"></td>
 		  </tr>
 		  <tr>
@@ -57,7 +58,7 @@
 		    <td th:text="${planInvatamantMaster.formatInvatamant}"></td>
 		  </tr>
 		  <tr>
-		    <th>Durata studiilor</th>
+		    <th>Durata Studiilor</th>
 		    <td th:text="${planInvatamantMaster.durataStudiilor}"></td>
 		  </tr>
 		  <tr>
@@ -69,7 +70,7 @@
 		    <td th:text="${planInvatamantMaster.ramuraDeStiinta}"></td>
 		  </tr>
 		  <tr>
-		    <th>Domeniu de studii universitare de master</th>
+		    <th>Domeniu de Master</th>
 		    <td th:text="${planInvatamantMaster.domeniuStudiiMaster}"></td>
 		  </tr>
 		  <tr>
@@ -81,21 +82,21 @@
 		    <td th:text="${planInvatamantMaster.codRamuraDeStiinta}"></td>
 		  </tr>
 		  <tr>
-		    <th>Cod Domeniu Studii Universitare Master</th>
+		    <th>Cod Domeniu de Master</th>
 		    <td th:text="${planInvatamantMaster.codDomeniuStudiiMaster}"></td>
 		  </tr>
 		  <tr>
 		    <th>Ciclu</th>
 		    <td th:text="${planInvatamantMaster.ciclu}"></td>
 		  </tr>
-		  <tr>
-		    <th>Codul Programului de Studii</th>
-		    <td th:text="${planInvatamantMaster.codulProgramuluiDeStudii}"></td>
-		  </tr>
-		  <tr>
-		    <th>An Calendaristic</th>
-		    <td th:text="${planInvatamantMaster.anCalendaristic}"></td>
-		  </tr>
+          <tr>
+            <th>Codul Programului de Studii</th>
+            <td th:text="${planInvatamantMaster.codulProgramuluiDeStudii}"></td>
+          </tr>
+          <tr>
+            <th>An Calendaristic</th>
+            <td th:text="${planInvatamantMaster.anCalendaristic}"></td>
+          </tr>
         </tbody>
       </table>
       <div class="text-center mt-4">

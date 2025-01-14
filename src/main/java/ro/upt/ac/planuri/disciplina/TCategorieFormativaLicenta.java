@@ -4,7 +4,7 @@ public enum TCategorieFormativaLicenta
 {
 	DC("Disciplina complementara","DC"),
 	DD("Disciplina in domeniu","DD"), 
-	DF("Disciplina fundamentala",("DF")),
+	DF("Disciplina fundamentala","DF"),
 	DS("Disciplina de specialitate","DS"); 
 
 
