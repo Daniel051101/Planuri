@@ -19,8 +19,6 @@ abstract public class Disciplina
 	private String volumOreNecesareActivitatilorPartialAsistate;
 	private String volumOreNecesaraPregatiriIndividuale;
 //	private String semestru;
-//	private boolean optional;
-//	private boolean facultativ;
 	
 	public Disciplina()
 	{
@@ -81,22 +79,6 @@ abstract public class Disciplina
 //
 //	public void setSemestru(String semestru) {
 //		this.semestru = semestru;
-//	}
-
-//	public boolean isOptional() {
-//		return optional;
-//	}
-//
-//	public void setOptional(boolean optional) {
-//		this.optional = optional;
-//	}
-//
-//	public boolean isFacultativ() {
-//		return facultativ;
-//	}
-//
-//	public void setFacultativ(boolean facultativ) {
-//		this.facultativ = facultativ;
 //	}
 
 	public int getId() {

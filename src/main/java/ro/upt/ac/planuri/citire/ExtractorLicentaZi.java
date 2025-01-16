@@ -46,6 +46,7 @@ public class ExtractorLicentaZi
             PreparedStatement statement = connection.prepareStatement(insertSQL);
 			
 			int c=0, r=0, index=0;
+//			String currentSemester = "";
 			
 			ArrayList<String> values = new ArrayList<>();
 			
@@ -134,6 +135,18 @@ public class ExtractorLicentaZi
 				
 				if(value.isEmpty() || value.equals("0"))
 					continue;
+				
+//				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
+//				{
+//					currentSemester = value;
+//					System.out.println("Detected semester: " + currentSemester);					
+//					continue;
+//				}
+//				else
+//				{
+//					System.out.println(value);
+//					values.add(value);
+//				}
 				
 				System.out.println(value);
 				values.add(value);
