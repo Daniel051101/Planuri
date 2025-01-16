@@ -28,8 +28,8 @@ public class ExtractorLicenta
 		try
 		{
 			
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ");
-//			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
+//			FileInputStream file = new FileInputStream("./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ");
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
 //			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_TI.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
