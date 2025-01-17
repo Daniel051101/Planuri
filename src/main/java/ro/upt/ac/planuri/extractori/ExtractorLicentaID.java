@@ -1,4 +1,4 @@
-package ro.upt.ac.planuri.citire;
+package ro.upt.ac.planuri.extractori;
 
 import java.io.FileInputStream;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package ro.upt.ac.planuri.citire;
+package ro.upt.ac.planuri.extractori;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
