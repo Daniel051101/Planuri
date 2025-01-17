@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import ro.upt.ac.planuri.disciplina.DisciplinaZi;
+import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 
@@ -24,10 +26,17 @@ public class Application
 	}
 
 	@Bean
-	public CommandLineRunner loadDataPlanInvatamantLicenta(PlanInvatamantLicentaRepository repository)
+	public CommandLineRunner loadDataDiscipline(DisciplinaZiRepository repository)
 	{
-	    return (args) -> {	
+	    return (args) -> 
+	    {
 			log.info("starting initialization...");
+			
+			DisciplinaZi d1=new DisciplinaZi();
+			d1.setNumeDisciplina("POO - test");
+			d1.setCodDisciplina("POO - test");
+			d1.setNumarCrediteTransferabile("20");
+			repository.save(d1);
 
 			log.info("ending initialization...");
 	    };
