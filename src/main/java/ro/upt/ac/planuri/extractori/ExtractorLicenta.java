@@ -18,6 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 // https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
+// pentru calc ro, ti, is
 public class ExtractorLicenta
 {	
 //	@SuppressWarnings({ "resource", "incomplete-switch" })

@@ -18,7 +18,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 // https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
-public class ExtractorLicentaZi
+// pentru calc en
+public class ExtractorLicentaCalcEn
 {	
 //	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public static void main(String[] args) 
@@ -28,7 +29,7 @@ public class ExtractorLicentaZi
 		try
 		{
 			
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-EN.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
@@ -46,7 +47,6 @@ public class ExtractorLicentaZi
             PreparedStatement statement = connection.prepareStatement(insertSQL);
 			
 			int c=0, r=0, index=0;
-//			String currentSemester = "";
 			
 			ArrayList<String> values = new ArrayList<>();
 			
@@ -102,12 +102,12 @@ public class ExtractorLicentaZi
                 
 			Map<Integer, Integer> rAdjustments=Map.of(
 					51, 70,
-					103, 141,
-				    177, 200,
-				    239, 262,
-				    301, 324,
-				    336, 347,
-				    359, n - 1
+					103, 142,
+				    178, 202,
+				    241, 265,
+				    304, 327,
+				    339, 350,
+				    362, n - 1
 					);
 					
 			Connection connection1 = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
@@ -135,18 +135,6 @@ public class ExtractorLicentaZi
 				
 				if(value.isEmpty() || value.equals("0"))
 					continue;
-				
-//				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
-//				{
-//					currentSemester = value;
-//					System.out.println("Detected semester: " + currentSemester);					
-//					continue;
-//				}
-//				else
-//				{
-//					System.out.println(value);
-//					values.add(value);
-//				}
 				
 				System.out.println(value);
 				values.add(value);

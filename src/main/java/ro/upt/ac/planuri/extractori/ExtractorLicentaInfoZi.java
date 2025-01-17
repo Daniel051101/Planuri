@@ -18,7 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 // https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
-public class ExtractorLicentaID
+public class ExtractorLicentaInfoZi
 {	
 //	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public static void main(String[] args) 
@@ -27,8 +27,8 @@ public class ExtractorLicentaID
 		int i=0, j=0;
 		try
 		{
-
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx ");
+			
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
@@ -46,6 +46,7 @@ public class ExtractorLicentaID
             PreparedStatement statement = connection.prepareStatement(insertSQL);
 			
 			int c=0, r=0, index=0;
+//			String currentSemester = "";
 			
 			ArrayList<String> values = new ArrayList<>();
 			
@@ -110,7 +111,7 @@ public class ExtractorLicentaID
 					);
 					
 			Connection connection1 = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
-            String insertSQL1 = "INSERT INTO disciplina_id (cod_disciplina, forma_evaluare, numar_credite_transferabile, nume_disciplina, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_licenta, numar_activitati_aplicative_asistate, numar_ore_activitati_autoinstruire, numar_ore_activitati_tutorat, numar_teme_de_control) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
+            String insertSQL1 = "INSERT INTO disciplina_zi (cod_disciplina, forma_evaluare, numar_credite_transferabile, nume_disciplina, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_licenta, numar_ore_curs, numar_ore_laborator, numar_ore_proiect, numar_ore_seminar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
             PreparedStatement statement1 = connection1.prepareStatement(insertSQL1);
 			
 			for(c=1;c<38;c+=12)
@@ -134,6 +135,18 @@ public class ExtractorLicentaID
 				
 				if(value.isEmpty() || value.equals("0"))
 					continue;
+				
+//				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
+//				{
+//					currentSemester = value;
+//					System.out.println("Detected semester: " + currentSemester);					
+//					continue;
+//				}
+//				else
+//				{
+//					System.out.println(value);
+//					values.add(value);
+//				}
 				
 				System.out.println(value);
 				values.add(value);

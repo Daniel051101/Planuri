@@ -16,9 +16,8 @@ import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-// https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
-
-public class ExtractorLicentaCEn
+// pentru info id
+public class ExtractorLicentaInfoID
 {	
 //	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public static void main(String[] args) 
@@ -27,8 +26,8 @@ public class ExtractorLicentaCEn
 		int i=0, j=0;
 		try
 		{
-			
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-EN.xlsx ");
+
+			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
@@ -101,16 +100,16 @@ public class ExtractorLicentaCEn
                 
 			Map<Integer, Integer> rAdjustments=Map.of(
 					51, 70,
-					103, 142,
-				    178, 202,
-				    241, 265,
-				    304, 327,
-				    339, 350,
-				    362, n - 1
+					103, 141,
+				    177, 200,
+				    239, 262,
+				    301, 324,
+				    336, 347,
+				    359, n - 1
 					);
 					
 			Connection connection1 = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
-            String insertSQL1 = "INSERT INTO disciplina_zi (cod_disciplina, forma_evaluare, numar_credite_transferabile, nume_disciplina, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_licenta, numar_ore_curs, numar_ore_laborator, numar_ore_proiect, numar_ore_seminar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
+            String insertSQL1 = "INSERT INTO disciplina_id (cod_disciplina, forma_evaluare, numar_credite_transferabile, nume_disciplina, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_licenta, numar_activitati_aplicative_asistate, numar_ore_activitati_autoinstruire, numar_ore_activitati_tutorat, numar_teme_de_control) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
             PreparedStatement statement1 = connection1.prepareStatement(insertSQL1);
 			
 			for(c=1;c<38;c+=12)
