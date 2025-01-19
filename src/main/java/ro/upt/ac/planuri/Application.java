@@ -8,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import ro.upt.ac.planuri.extractori.ExtractorLicenta;
+import ro.upt.ac.planuri.extractori.ExtractorLicentaCalcEn;
+import ro.upt.ac.planuri.extractori.ExtractorLicentaInfoID;
+import ro.upt.ac.planuri.extractori.ExtractorLicentaInfoZi;
 import ro.upt.ac.planuri.extractori.ExtractorMaster;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
@@ -45,13 +49,30 @@ public class Application
 	}
 	
 	@Bean
-	public CommandLineRunner runExtractor (ExtractorMaster extractorMaster)
+	public CommandLineRunner runExtractorLicenta (ExtractorLicenta extractorLicenta, ExtractorLicentaCalcEn extractorLicentaCalcEn, ExtractorLicentaInfoID extractorLicentaInfoID, ExtractorLicentaInfoZi extractorLicentaInfoZi)
 	{
 	    return (args) -> {	
 			log.info("Starting extractor...");
 			
-			String directoryPath = "C:\\Users\\Daniel\\Documents\\GitHub\\Planuri\\data\\master";
-			extractorMaster.extractData(directoryPath);
+			extractorLicenta.processFilesLicenta();
+			
+			extractorLicentaCalcEn.extractDataLicentaCalcEn();
+			
+			extractorLicentaInfoID.extracDataLicentaInfoID();
+			
+			extractorLicentaInfoZi.extractDataLicentaInfoZi();
+
+			log.info("Extractor finished");
+	    };
+	}
+	
+	@Bean
+	public CommandLineRunner runExtractorMaster (ExtractorMaster extractorMaster)
+	{
+	    return (args) -> {	
+			log.info("Starting extractor...");
+			
+			extractorMaster.processFilesMaster();
 
 			log.info("Extractor finished");
 	    };

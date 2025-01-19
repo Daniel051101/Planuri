@@ -4,50 +4,64 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
-//import java.util.Iterator;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 
 // pentru calc ro, ti, is
+@Component
 public class ExtractorLicenta
 {	
-//	@SuppressWarnings({ "resource", "incomplete-switch" })
-	public static void main(String[] args) 
-	{
-		System.out.println("Starting...");
-		int i=0, j=0;
-		try
-		{
-			
-//			FileInputStream file = new FileInputStream("./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ");
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-RO.xlsx ");
-//			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_TI.xlsx ");
+    private static final Logger log = LoggerFactory.getLogger(ExtractorLicenta.class);
 
+	
+	public void processFilesLicenta()
+	{
+        List<String> files = Arrays.asList(
+                "./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ",
+                "./data/licenta/2023-2027_AC_PI_C-RO.xlsx ",
+                "./data/licenta/2023-2027_AC_PI_TI.xlsx "
+            );
+
+            files.forEach(filePath -> {
+                log.info("Processing file: {}", filePath);
+                extractData(filePath);
+            });
+
+            log.info("Finished processing all files.");
+	}
+	
+//	@SuppressWarnings({ "resource", "incomplete-switch" })
+	public void extractData(String filePath) 
+	{
+        log.info("Starting extraction...", filePath);
+        
+		try (FileInputStream file = new FileInputStream(filePath);
+	             XSSFWorkbook workbook = new XSSFWorkbook(file))
+		{
+		
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
-			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			XSSFSheet sheet = workbook.getSheetAt(1);
-
-//			XSSFFormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator(); 
-			
-//			Iterator<Row> rowIterator = sheet.iterator();
-			
-			int n = sheet.getLastRowNum();
 			
 			Connection connection = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
             String insertSQL = "INSERT INTO plan_invatamant_licenta (an_calendaristic, ciclu, cod_domeniu_fundamental, cod_ramura_de_stiinta, codul_programului_de_studii, domeniu_de_licenta, domeniu_fundamental, facultate, ramura_de_stiinta, universitate, cod_domeniu_de_licenta, cod_studii, program_de_studii_licenta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
             PreparedStatement statement = connection.prepareStatement(insertSQL);
 			
+            int n = sheet.getLastRowNum();
+            
 			int c=0, r=0, index=0;
 			
 			ArrayList<String> values = new ArrayList<>();
@@ -160,41 +174,47 @@ public class ExtractorLicenta
 					System.out.println("\n");
 				}
 				
-				if (values.size() > 10)
+				try
 				{
-					index=0;
-					while (index < values.size()) {
-		                // Setăm valorile pentru fiecare coloană
+					if (values.size() > 10)
+					{
+						index=0;
+						while (index < values.size()) {
+							// Setăm valorile pentru fiecare coloană
 						
-		                statement1.setString(4, values.get(index++)); 
-		                statement1.setString(1, index < values.size() ? values.get(index++) : null);
-		                statement1.setString(3, index < values.size() ? values.get(index++) : null); 
-		                statement1.setString(2, index < values.size() ? values.get(index++) : null); 
-		                statement1.setString(8, index < values.size() ? values.get(index++) : null); 
-		                statement1.setString(11, index < values.size() ? values.get(index++) : null); 
-		                statement1.setString(9, index < values.size() ? values.get(index++) : null); 
-		                statement1.setString(10, index < values.size() ? values.get(index++) : null); 
-		                statement1.setInt(6, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-		                statement1.setString(7, index < values.size() ? values.get(index++) : null); 
-		                statement1.setString(5, index < values.size() ? values.get(index++) : null);  
+							statement1.setString(4, values.get(index++)); 
+							statement1.setString(1, index < values.size() ? values.get(index++) : null);
+							statement1.setInt(3, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+							statement1.setString(2, index < values.size() ? values.get(index++) : null); 
+							statement1.setInt(8, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+							statement1.setInt(11, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+							statement1.setInt(9, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+							statement1.setInt(10, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+							statement1.setInt(6, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+							statement1.setString(7, index < values.size() ? values.get(index++) : null); 
+							statement1.setInt(5, index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
 
-					}
+						}
 		            // Executăm interogarea
 		            statement1.executeUpdate();
 					
 		            System.out.println(values.size() + " Date introduse în baza de date disciplina! \n");
 				
+					}
+					if (values.size()>=11)
+						values.clear();
+				}catch (NumberFormatException e)
+				{
+					log.error("Invalid number format for value: {}", value, e);
 				}
-			if (values.size()>=11)
-					values.clear();
 			}
+			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		
-		System.out.println("Stopping... "+i+" "+j);
 	}
 	
 	@SuppressWarnings("incomplete-switch")
@@ -205,9 +225,9 @@ public class ExtractorLicenta
 		switch (cell.getCellType()) 
 		{
 			case NUMERIC:
-				return (int)cell.getNumericCellValue() + " ";
+				return (int)cell.getNumericCellValue() + "";
 			case STRING:
-				return cell.getStringCellValue() + " ";
+				return cell.getStringCellValue() + "";
 			case FORMULA:
 				try 
 				{
