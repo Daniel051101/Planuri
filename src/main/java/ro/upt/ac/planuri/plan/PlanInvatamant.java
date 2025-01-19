@@ -17,8 +17,8 @@ abstract public class PlanInvatamant
 	private String domeniuFundamental;
 	private String ramuraDeStiinta;
 	private String domeniuDeLicenta;
-	private String codDomeniuFundamental;
-	private String codRamuraDeStiinta;
+	private int codDomeniuFundamental;
+	private int codRamuraDeStiinta;
 	private String ciclu;
 	private String codulProgramuluiDeStudii; 
 	private int anCalendaristic; 
@@ -76,19 +76,19 @@ abstract public class PlanInvatamant
 		this.id = id;
 	}
 
-	public String getCodDomeniuFundamental() {
+	public int getCodDomeniuFundamental() {
 		return codDomeniuFundamental;
 	}
 
-	public void setCodDomeniuFundamental(String codDomeniuFundamental) {
+	public void setCodDomeniuFundamental(int codDomeniuFundamental) {
 		this.codDomeniuFundamental = codDomeniuFundamental;
 	}
 
-	public String getCodRamuraDeStiinta() {
+	public int getCodRamuraDeStiinta() {
 		return codRamuraDeStiinta;
 	}
 
-	public void setCodRamuraDeStiinta(String codRamuraDeStiinta) {
+	public void setCodRamuraDeStiinta(int codRamuraDeStiinta) {
 		this.codRamuraDeStiinta = codRamuraDeStiinta;
 	}
 

@@ -12,40 +12,40 @@ abstract public class Disciplina
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
 	
-	private String numeDisciplina;
-	private String codDisciplina;
-	private String numarCrediteTransferabile;
+	private String nume;
+	private String cod;
+	private int numarCrediteTransferabile;
 	private String formaEvaluare;
-	private String volumOreNecesareActivitatilorPartialAsistate;
-	private String volumOreNecesaraPregatiriIndividuale;
+	private int volumOreNecesareActivitatilorPartialAsistate;
+	private int volumOreNecesaraPregatiriIndividuale;
 //	private String semestru;
 	
 	public Disciplina()
 	{
 	}
 	
-	public String getNumeDisciplina() {
-		return numeDisciplina;
+	public String getNume() {
+		return nume;
 	}
 
-	public void setNumeDisciplina(String numeDisciplina) {
-		this.numeDisciplina = numeDisciplina;
+	public void setNume(String nume) {
+		this.nume = nume;
 	}
 
-	public String getCodDisciplina() {
-		return codDisciplina;
+	public String getCod() {
+		return cod;
 	}
 
-	public void setCodDisciplina(String codDisciplina) {
-		this.codDisciplina = codDisciplina;
+	public void setCod(String cod) {
+		this.cod = cod;
 	}
 
-	public String getNumarCrediteTransferabile() {
+	public int getNumarCrediteTransferabile() {
 		return numarCrediteTransferabile;
 	}
 
 
-	public void setNumarCrediteTransferabile(String numarCrediteTransferabile) {
+	public void setNumarCrediteTransferabile(int numarCrediteTransferabile) {
 		this.numarCrediteTransferabile = numarCrediteTransferabile;
 	}
 
@@ -57,19 +57,19 @@ abstract public class Disciplina
 		this.formaEvaluare = formaEvaluare;
 	}
 
-	public String getVolumOreNecesareActivitatilorPartialAsistate() {
+	public int getVolumOreNecesareActivitatilorPartialAsistate() {
 		return volumOreNecesareActivitatilorPartialAsistate;
 	}
 
-	public void setVolumOreNecesareActivitatilorPartialAsistate(String volumOreNecesareActivitatilorPartialAsistate) {
+	public void setVolumOreNecesareActivitatilorPartialAsistate(int volumOreNecesareActivitatilorPartialAsistate) {
 		this.volumOreNecesareActivitatilorPartialAsistate = volumOreNecesareActivitatilorPartialAsistate;
 	}
 
-	public String getVolumOreNecesaraPregatiriIndividuale() {
+	public int getVolumOreNecesaraPregatiriIndividuale() {
 		return volumOreNecesaraPregatiriIndividuale;
 	}
 
-	public void setVolumOreNecesaraPregatiriIndividuale(String volumOreNecesaraPregatiriIndividuale) {
+	public void setVolumOreNecesaraPregatiriIndividuale(int volumOreNecesaraPregatiriIndividuale) {
 		this.volumOreNecesaraPregatiriIndividuale = volumOreNecesaraPregatiriIndividuale;
 	}
 

@@ -7,9 +7,9 @@ public class PlanInvatamantMaster extends PlanInvatamant
 {
 	private String programMaster;
 	private String formatInvatamant;
-	private String durataStudiilor;
+	private String durataStudiilor; // 2 ani
 	private String domeniuStudiiMaster;
-	private String codDomeniuStudiiMaster;
+	private int codDomeniuStudiiMaster;
 	
 	public PlanInvatamantMaster()
 	{
@@ -47,11 +47,11 @@ public class PlanInvatamantMaster extends PlanInvatamant
 		this.domeniuStudiiMaster = domeniuStudiiMaster;
 	}
 	
-	public String getCodDomeniuStudiiMaster() {
+	public int getCodDomeniuStudiiMaster() {
 		return codDomeniuStudiiMaster;
 	}
 	
-	public void setCodDomeniuStudiiMaster(String codDomeniuStudiiMaster) {
+	public void setCodDomeniuStudiiMaster(int codDomeniuStudiiMaster) {
 		this.codDomeniuStudiiMaster = codDomeniuStudiiMaster;
 	}
 }

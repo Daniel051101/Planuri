@@ -7,8 +7,8 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 {
 	private String domeniuDeLicenta;
 	private String programDeStudiiLicenta;
-	private String codDomeniuDeLicenta;	
-	private String codStudii;
+	private int codDomeniuDeLicenta;	
+	private int codStudii;
 	
 	public PlanInvatamantLicenta()
 	{
@@ -30,19 +30,19 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 		this.programDeStudiiLicenta = programDeStudiiLicenta;
 	}
 	
-	public String getCodDomeniuDeLicenta() {
+	public int getCodDomeniuDeLicenta() {
 		return codDomeniuDeLicenta;
 	}
 	
-	public void setCodDomeniuDeLicenta(String codDomeniuDeLicenta) {
+	public void setCodDomeniuDeLicenta(int codDomeniuDeLicenta) {
 		this.codDomeniuDeLicenta = codDomeniuDeLicenta;
 	}
 	
-	public String getCodStudii() {
+	public int getCodStudii() {
 		return codStudii;
 	}
 	
-	public void setCodStudii(String codStudii) {
+	public void setCodStudii(int codStudii) {
 		this.codStudii = codStudii;
 	}
 }

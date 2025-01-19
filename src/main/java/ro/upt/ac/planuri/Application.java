@@ -8,8 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import ro.upt.ac.planuri.disciplina.DisciplinaZi;
-import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
+import ro.upt.ac.planuri.extractori.ExtractorMaster;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 
@@ -24,19 +23,12 @@ public class Application
 	{
 		SpringApplication.run(Application.class, args);
 	}
-
+	
 	@Bean
-	public CommandLineRunner loadDataDiscipline(DisciplinaZiRepository repository)
+	public CommandLineRunner loadDataPlanInvatamantLicenta(PlanInvatamantLicentaRepository repository)
 	{
-	    return (args) -> 
-	    {
+	    return (args) -> {	
 			log.info("starting initialization...");
-			
-			DisciplinaZi d1=new DisciplinaZi();
-			d1.setNumeDisciplina("POO - test");
-			d1.setCodDisciplina("POO - test");
-			d1.setNumarCrediteTransferabile("20");
-			repository.save(d1);
 
 			log.info("ending initialization...");
 	    };
@@ -49,6 +41,19 @@ public class Application
 			log.info("starting initialization...");
 
 			log.info("ending initialization...");
+	    };
+	}
+	
+	@Bean
+	public CommandLineRunner runExtractor (ExtractorMaster extractorMaster)
+	{
+	    return (args) -> {	
+			log.info("Starting extractor...");
+			
+			String directoryPath = "C:\\Users\\Daniel\\Documents\\GitHub\\Planuri\\data\\master";
+			extractorMaster.extractData(directoryPath);
+
+			log.info("Extractor finished");
 	    };
 	}
 	

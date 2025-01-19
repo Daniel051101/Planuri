@@ -23,16 +23,16 @@
             <form action="#" th:action="@{/disciplinaMaster-update/{id}(id=${disciplinaMaster.id})}" th:object="${disciplinaMaster}" method="post" class="needs-validation" novalidate>
 				
 				<div class="mb-3">
-				    <label for="numeDisciplina" class="form-label">Nume disciplina</label>
-				    <input type="text" class="form-control" th:field="*{numeDisciplina}" id="numeDisciplina" placeholder="Nume disciplina" required>
-				    <div class="invalid-feedback" th:if="${#fields.hasErrors('numeDisciplina')}" th:errors="*{numeDisciplina}"></div>
+				    <label for="nume" class="form-label">Nume disciplina</label>
+				    <input type="text" class="form-control" th:field="*{nume}" id="nume" placeholder="Nume disciplina" required>
+				    <div class="invalid-feedback" th:if="${#fields.hasErrors('nume')}" th:errors="*{nume}"></div>
 				</div>
 
 				<div class="row g-3">
 				    <div class="col-md-6 mb-3">
-				        <label for="codDisciplina" class="form-label">Cod disciplina</label>
-				        <input type="text" class="form-control" th:field="*{codDisciplina}" id="codDisciplina" placeholder="Cod disciplina" required>
-				        <div class="invalid-feedback" th:if="${#fields.hasErrors('codDisciplina')}" th:errors="*{codDisciplina}"></div>
+				        <label for="cod" class="form-label">Cod disciplina</label>
+				        <input type="text" class="form-control" th:field="*{cod}" id="cod" placeholder="Cod disciplina" required>
+				        <div class="invalid-feedback" th:if="${#fields.hasErrors('cod')}" th:errors="*{cod}"></div>
 				    </div>
 					<div class="col-md-6 mb-3">
 					    <label for="numarCrediteTransferabile" class="form-label">Numar de credite transferabile</label>

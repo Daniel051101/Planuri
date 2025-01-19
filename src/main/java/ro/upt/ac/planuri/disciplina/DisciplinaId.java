@@ -6,44 +6,44 @@ import jakarta.persistence.Entity;
 public class DisciplinaId extends Disciplina 
 {
 	private String categorieFormativaLicenta;
-	private String numarOreActivitatiAutoinstruire;
-	private String numarOreActivitatiTutorat;
-	private String numarTemeDeControl;
-	private String numarActivitatiAplicativeAsistate;
+	private int numarOreActivitatiAutoinstruire;
+	private int numarOreActivitatiTutorat;
+	private int numarTemeDeControl;
+	private int numarActivitatiAplicativeAsistate;
 	
 	public DisciplinaId()
 	{
 	}
 
-	public String getNumarOreActivitatiAutoinstruire() {
+	public int getNumarOreActivitatiAutoinstruire() {
 		return numarOreActivitatiAutoinstruire;
 	}
 
-	public void setNumarOreActivitatiAutoinstruire(String numarOreActivitatiAutoinstruire) {
+	public void setNumarOreActivitatiAutoinstruire(int numarOreActivitatiAutoinstruire) {
 		this.numarOreActivitatiAutoinstruire = numarOreActivitatiAutoinstruire;
 	}
 
-	public String getNumarOreActivitatiTutorat() {
+	public int getNumarOreActivitatiTutorat() {
 		return numarOreActivitatiTutorat;
 	}
 
-	public void setNumarOreActivitatiTutorat(String numarOreActivitatiTutorat) {
+	public void setNumarOreActivitatiTutorat(int numarOreActivitatiTutorat) {
 		this.numarOreActivitatiTutorat = numarOreActivitatiTutorat;
 	}
 
-	public String getNumarTemeDeControl() {
+	public int getNumarTemeDeControl() {
 		return numarTemeDeControl;
 	}
 
-	public void setNumarTemeDeControl(String numarTemeDeControl) {
+	public void setNumarTemeDeControl(int numarTemeDeControl) {
 		this.numarTemeDeControl = numarTemeDeControl;
 	}
 
-	public String getNumarActivitatiAplicativeAsistate() {
+	public int getNumarActivitatiAplicativeAsistate() {
 		return numarActivitatiAplicativeAsistate;
 	}
 
-	public void setNumarActivitatiAplicativeAsistate(String numarActivitatiAplicativeAsistate) {
+	public void setNumarActivitatiAplicativeAsistate(int numarActivitatiAplicativeAsistate) {
 		this.numarActivitatiAplicativeAsistate = numarActivitatiAplicativeAsistate;
 	}
 
