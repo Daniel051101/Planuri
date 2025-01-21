@@ -9,8 +9,8 @@ import jakarta.persistence.MappedSuperclass;
 abstract public class PlanInvatamant 
 {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	
 	private String universitate;
 	private String facultate;
@@ -21,8 +21,7 @@ abstract public class PlanInvatamant
 	private int codRamuraDeStiinta;
 	private String ciclu;
 	private String codulProgramuluiDeStudii; 
-	private int anCalendaristic; 
-	
+	private int anCalendaristic;
 	
 	public PlanInvatamant()
 	{

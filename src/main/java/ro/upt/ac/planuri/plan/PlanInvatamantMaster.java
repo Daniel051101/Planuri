@@ -1,16 +1,25 @@
 package ro.upt.ac.planuri.plan;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import ro.upt.ac.planuri.disciplina.DisciplinaMaster;
 
 @Entity
 public class PlanInvatamantMaster extends PlanInvatamant
 {
-	private String programMaster;
+	private String programMaster; // numeProgram
 	private String formatInvatamant;
-	private String durataStudiilor; // 2 ani
+	private String durataStudiilor; // 2 ani sa fie intreg
 	private String domeniuStudiiMaster;
 	private int codDomeniuStudiiMaster;
 	
+	// un plan de invatamant are mai multe discipline
+	@OneToMany
+	private List<DisciplinaMaster> listaDisciplina=new ArrayList<DisciplinaMaster>();
+
 	public PlanInvatamantMaster()
 	{
 	}
@@ -53,5 +62,13 @@ public class PlanInvatamantMaster extends PlanInvatamant
 	
 	public void setCodDomeniuStudiiMaster(int codDomeniuStudiiMaster) {
 		this.codDomeniuStudiiMaster = codDomeniuStudiiMaster;
+	}
+
+	public List<DisciplinaMaster> getListaDisciplina() {
+		return listaDisciplina;
+	}
+
+	public void setListaDisciplina(List<DisciplinaMaster> listaDisciplina) {
+		this.listaDisciplina = listaDisciplina;
 	}
 }

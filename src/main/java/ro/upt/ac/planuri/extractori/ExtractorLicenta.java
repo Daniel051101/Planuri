@@ -1,3 +1,4 @@
+
 package ro.upt.ac.planuri.extractori;
 
 import java.io.FileInputStream;
@@ -14,7 +15,12 @@ import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +31,9 @@ import org.slf4j.LoggerFactory;
 public class ExtractorLicenta
 {	
     private static final Logger log = LoggerFactory.getLogger(ExtractorLicenta.class);
+
+    @Autowired
+    PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
 
 	
 	public void processFilesLicenta()
@@ -43,7 +52,6 @@ public class ExtractorLicenta
             log.info("Finished processing all files.");
 	}
 	
-//	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public void extractData(String filePath) 
 	{
         log.info("Starting extraction...", filePath);
@@ -110,8 +118,15 @@ public class ExtractorLicenta
                 statement.setString(6, index < values.size() ? values.get(index++) : null); 
                 statement.setString(13, index < values.size() ? values.get(index++) : null); 
 			}
+			
             // Executăm interogarea
             statement.executeUpdate();
+            
+            PlanInvatamantLicenta pil=new PlanInvatamantLicenta();
+            pil.setAnCalendaristic(r);
+            //...
+    	    planInvatamantLicentaRepository.save(pil);
+            
 			
             System.out.println("Date introduse în baza de date!");
             values.clear();
@@ -164,8 +179,8 @@ public class ExtractorLicenta
 							continue;
 				
 						String value1=getValue(workbook,cell1);
-//						if(value1.isEmpty() || value1.equals("0"))
-//							continue;
+						//if(value1.isEmpty() || value1.equals("0"))
+							//continue;
 						
 						values.add(value1);
 
@@ -179,7 +194,8 @@ public class ExtractorLicenta
 					if (values.size() > 10)
 					{
 						index=0;
-						while (index < values.size()) {
+						while (index < values.size()) 
+						{
 							// Setăm valorile pentru fiecare coloană
 						
 							statement1.setString(4, values.get(index++)); 
@@ -193,7 +209,6 @@ public class ExtractorLicenta
 							statement1.setInt(6, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
 							statement1.setString(7, index < values.size() ? values.get(index++) : null); 
 							statement1.setInt(5, index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-
 						}
 		            // Executăm interogarea
 		            statement1.executeUpdate();
@@ -217,8 +232,7 @@ public class ExtractorLicenta
 		
 	}
 	
-	@SuppressWarnings("incomplete-switch")
-	public static String getValue(XSSFWorkbook workbook,Cell cell)
+	public String getValue(XSSFWorkbook workbook,Cell cell)
 	{
 		XSSFFormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator(); 
 		
@@ -239,13 +253,17 @@ public class ExtractorLicenta
 				       		return ""+(int)cell.getNumericCellValue();
 				       	case STRING:
 			        		return cell.getStringCellValue();
+					default:
+						break;
 					}
 				}
 				catch(Exception e)
 				{
 					e.printStackTrace();
 				}
-			break;
+				break;
+			case _NONE:
+			default:
 		}
 		
 		return "0";

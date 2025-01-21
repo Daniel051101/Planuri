@@ -9,8 +9,8 @@ import jakarta.persistence.MappedSuperclass;
 abstract public class Disciplina 
 {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	
 	private String nume;
 	private String cod;
@@ -18,7 +18,7 @@ abstract public class Disciplina
 	private String formaEvaluare;
 	private int volumOreNecesareActivitatilorPartialAsistate;
 	private int volumOreNecesaraPregatiriIndividuale;
-//	private String semestru;
+	//private String semestru;
 	
 	public Disciplina()
 	{

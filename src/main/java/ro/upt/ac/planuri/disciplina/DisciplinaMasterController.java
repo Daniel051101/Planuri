@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
+import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
+
 @Controller
 public class DisciplinaMasterController
 {
 	@Autowired
 	DisciplinaMasterRepository disciplinaMasterRepository;
+
+	@Autowired
+	PlanInvatamantMasterRepository planInvatamantMasterRepository;
 
 	@GetMapping("/disciplinaMaster-create")
 	public String create(DisciplinaMaster disciplinaMaster)
@@ -38,7 +44,15 @@ public class DisciplinaMasterController
 	    model.addAttribute("disciplinaMaster", disciplinaMasterRepository.findAll());
 	    return "disciplinaMaster-read";
 	}
-	
+
+	@GetMapping("/disciplinaMaster-read/{id}")
+	public String readByPlan(@PathVariable("id") int id, Model model) 
+	{
+		PlanInvatamantMaster pim=planInvatamantMasterRepository.findById(id);
+	    model.addAttribute("disciplinaMaster",pim.getListaDisciplina());
+	    return "disciplinaMaster-read";
+	}
+
 	@GetMapping("/disciplinaMaster-edit/{id}")
 	public String edit(@PathVariable("id") int id, Model model) 
 	{

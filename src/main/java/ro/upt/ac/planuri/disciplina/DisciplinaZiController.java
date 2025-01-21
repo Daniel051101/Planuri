@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
+import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
+
 @Controller
 public class DisciplinaZiController
 {
 	@Autowired
 	DisciplinaZiRepository disciplinaZiRepository;
+	
+	@Autowired
+	PlanInvatamantLicentaRepository planInvatamantLicentaRepository; 
 
 	@GetMapping("/disciplinaZi-create")
 	public String create(DisciplinaZi disciplinaZi)
@@ -31,11 +38,19 @@ public class DisciplinaZiController
 		disciplinaZiRepository.save(disciplinaZi);
 		return "redirect:/disciplinaZi-read";
 	}
-	
+
 	@GetMapping("/disciplinaZi-read")
 	public String read(Model model) 
 	{
 	    model.addAttribute("disciplinaZi", disciplinaZiRepository.findAll());
+	    return "disciplinaZi-read";
+	}
+
+	@GetMapping("/disciplinaZi-read/{id}")
+	public String readByPlan(@PathVariable("id") int id,Model model) 
+	{
+		PlanInvatamantLicenta pim=planInvatamantLicentaRepository.findById(id);
+	    model.addAttribute("disciplinaZi",pim.getListaDisciplina());
 	    return "disciplinaZi-read";
 	}
 	
