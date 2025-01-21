@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
-import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
 
 @Controller
 public class DisciplinaZiController
@@ -49,8 +48,8 @@ public class DisciplinaZiController
 	@GetMapping("/disciplinaZi-read/{id}")
 	public String readByPlan(@PathVariable("id") int id,Model model) 
 	{
-		PlanInvatamantLicenta pim=planInvatamantLicentaRepository.findById(id);
-	    model.addAttribute("disciplinaZi",pim.getListaDisciplina());
+		PlanInvatamantLicenta pil=planInvatamantLicentaRepository.findById(id);
+	    model.addAttribute("disciplinaZi",pil.getListaDisciplinaZi());
 	    return "disciplinaZi-read";
 	}
 	

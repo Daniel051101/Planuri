@@ -5,10 +5,12 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import ro.upt.ac.planuri.disciplina.DisciplinaId;
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
 
 @Entity
-public class PlanInvatamantLicenta extends PlanInvatamant {
+public class PlanInvatamantLicenta extends PlanInvatamant 
+{
 	private String domeniuDeLicenta;
 	private String programDeStudiiLicenta;
 	private int codDomeniuDeLicenta;
@@ -16,7 +18,26 @@ public class PlanInvatamantLicenta extends PlanInvatamant {
 
 	// un plan de invatamant are mai multe discipline
 	@OneToMany
-	private List<DisciplinaZi> listaDisciplina=new ArrayList<DisciplinaZi>();
+	private List<DisciplinaZi> listaDisciplinaZi=new ArrayList<DisciplinaZi>();
+	
+	@OneToMany
+	private List<DisciplinaId> listaDisciplinaId=new ArrayList<DisciplinaId>();
+
+	public List<DisciplinaZi> getListaDisciplinaZi() {
+		return listaDisciplinaZi;
+	}
+
+	public void setListaDisciplinaZi(List<DisciplinaZi> listaDisciplinaZi) {
+		this.listaDisciplinaZi = listaDisciplinaZi;
+	}
+
+	public List<DisciplinaId> getListaDisciplinaId() {
+		return listaDisciplinaId;
+	}
+
+	public void setListaDisciplinaId(List<DisciplinaId> listaDisciplinaId) {
+		this.listaDisciplinaId = listaDisciplinaId;
+	}
 
 	public PlanInvatamantLicenta() {
 	}
@@ -53,11 +74,4 @@ public class PlanInvatamantLicenta extends PlanInvatamant {
 		this.codStudii = codStudii;
 	}
 
-	public List<DisciplinaZi> getListaDisciplina() {
-		return listaDisciplina;
-	}
-
-	public void setListaDisciplina(List<DisciplinaZi> listaDisciplina) {
-		this.listaDisciplina = listaDisciplina;
-	}
 }

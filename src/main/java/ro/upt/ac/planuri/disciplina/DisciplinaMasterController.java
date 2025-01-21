@@ -48,7 +48,7 @@ public class DisciplinaMasterController
 	@GetMapping("/disciplinaMaster-read/{id}")
 	public String readByPlan(@PathVariable("id") int id, Model model) 
 	{
-		PlanInvatamantMaster pim=planInvatamantMasterRepository.findById(id);
+		PlanInvatamantMaster pim = planInvatamantMasterRepository.findById(id);
 	    model.addAttribute("disciplinaMaster",pim.getListaDisciplina());
 	    return "disciplinaMaster-read";
 	}

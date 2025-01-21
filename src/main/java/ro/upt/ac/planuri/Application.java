@@ -39,28 +39,28 @@ public class Application
 			log.info("starting initialization...");
 			
 			
-			DisciplinaZi dz1=new DisciplinaZi();
-			dz1.setCod("L012.23.05.F1");
-			dz1.setNume("Securitatea Informatiei");
-			dz1.setNumarCrediteTransferabile(5);
-			
-			disciplinaZiRepository.save(dz1);
-
-			DisciplinaZi dz2=new DisciplinaZi();
-			dz2.setCod("L012.23.01.C1");
-			dz2.setNume("Analiza matematica");
-			dz2.setNumarCrediteTransferabile(5);
-			disciplinaZiRepository.save(dz2);
-			
-			PlanInvatamantLicenta pil1=new PlanInvatamantLicenta();
-			pil1.setAnCalendaristic(2025);
-			pil1.setCodulProgramuluiDeStudii("002");
-			
-			pil1.getListaDisciplina().add(dz1);
-			pil1.getListaDisciplina().add(dz2);
-			planInvatamantLicentaRepository.save(pil1);
-
-			log.info("ending initialization...");
+//			DisciplinaZi dz1=new DisciplinaZi();
+//			dz1.setCod("L012.23.05.F1");
+//			dz1.setNume("Securitatea Informatiei");
+//			dz1.setNumarCrediteTransferabile(5);
+//			
+//			disciplinaZiRepository.save(dz1);
+//
+//			DisciplinaZi dz2=new DisciplinaZi();
+//			dz2.setCod("L012.23.01.C1");
+//			dz2.setNume("Analiza matematica");
+//			dz2.setNumarCrediteTransferabile(5);
+//			disciplinaZiRepository.save(dz2);
+//			
+//			PlanInvatamantLicenta pil1=new PlanInvatamantLicenta();
+//			pil1.setAnCalendaristic(2025);
+//			pil1.setCodulProgramuluiDeStudii("002");
+//			
+//			pil1.getListaDisciplinaZi().add(dz1);
+//			pil1.getListaDisciplinaZi().add(dz2);
+//			planInvatamantLicentaRepository.save(pil1);
+//
+//			log.info("ending initialization...");
 	    };
 	}
 		
@@ -76,7 +76,7 @@ public class Application
 //			
 //			extractorLicentaInfoID.extracDataLicentaInfoID();
 //			
-//			extractorLicentaInfoZi.extractDataLicentaInfoZi();
+			extractorLicentaInfoZi.extractDataLicentaInfoZi();
 
 			log.info("Extractor finished");
 	    };

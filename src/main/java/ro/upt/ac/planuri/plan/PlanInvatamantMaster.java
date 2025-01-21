@@ -18,7 +18,7 @@ public class PlanInvatamantMaster extends PlanInvatamant
 	
 	// un plan de invatamant are mai multe discipline
 	@OneToMany
-	private List<DisciplinaMaster> listaDisciplina=new ArrayList<DisciplinaMaster>();
+	private List<DisciplinaMaster> listaDisciplinaMaster=new ArrayList<DisciplinaMaster>();
 
 	public PlanInvatamantMaster()
 	{
@@ -65,10 +65,10 @@ public class PlanInvatamantMaster extends PlanInvatamant
 	}
 
 	public List<DisciplinaMaster> getListaDisciplina() {
-		return listaDisciplina;
+		return listaDisciplinaMaster;
 	}
 
-	public void setListaDisciplina(List<DisciplinaMaster> listaDisciplina) {
-		this.listaDisciplina = listaDisciplina;
+	public void setListaDisciplina(List<DisciplinaMaster> listaDisciplinaMaster) {
+		this.listaDisciplinaMaster = listaDisciplinaMaster;
 	}
 }

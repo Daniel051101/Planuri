@@ -12,19 +12,27 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+		/* Forțează cardurile să aibă aceeași înălțime și lățime pe rând */
+		.row.row-cols-1 .col,
+		.row.row-cols-2 .col,
+		.row.row-cols-3 .col {
+		  display: flex;
+		}
+		
+		.card {
+		  display: flex;
+		  flex-direction: column;
+		  height: 100%; /* Cardurile au aceeași înălțime */
+		  width: 100%; /* Cardurile ocupă lățimea completă disponibilă în coloană */
+		}
+		
+		.card-body {
+		  flex-grow: 1;
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: space-between; /* Distribuie elementele uniform */
+		}
+		
     </style>
     
 </head>
@@ -35,7 +43,7 @@
 		    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
 		      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-		        <li><a href="/" class="nav-link px-2 text-white"><i class="fas fa-home"></i> Acasa</a></li>
+		        <li><a href="/" class="nav-link px-2 text-white"><i class="fas fa-home"></i> Acasă</a></li>
 		        <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri Licență</a></li>
 				<li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri Master</a></li>
 		        <li><a href="/disciplinaMaster-read" class="nav-link px-2 text-white">Discipline Master</a></li>
@@ -76,13 +84,14 @@
 				    <h5 class="card-title text-center" th:text="${planInvatamantMaster.programMaster}"></h5>
 				    <div class="d-flex justify-content-between align-items-center mt-3">
 				        <div class="btn-group">
-                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantMaster-view/{id}(id=${planInvatamantMaster.id})}" role="button">Afiseaza</a>
-                  <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantMaster-edit/{id}(id=${planInvatamantMaster.id})}" role="button">Editeaza</a>
-                  <a class="btn btn-sm btn-outline-danger" th:href="@{/planInvatamantMaster-delete/{id}(id=${planInvatamantMaster.id})}" role="button">Sterge</a>
-                </div>
-              </div>
-            </div>
-          </div>
+                  			<a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantMaster-view/{id}(id=${planInvatamantMaster.id})}" role="button">Afiseaza</a>
+                  			<a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantMaster-edit/{id}(id=${planInvatamantMaster.id})}" role="button">Editeaza</a>
+                  			<a class="btn btn-sm btn-outline-danger" th:href="@{/planInvatamantMaster-delete/{id}(id=${planInvatamantMaster.id})}" role="button">Șterge</a>
+				  			<a class="btn btn-sm btn-outline-secondary" th:href="@{/disciplinaMaster-read/{id}(id=${planInvatamantMaster.id})}" role="button">Afișare discipline</a>
+                		</div>
+              		</div>
+            	</div>
+          	</div>
         </div>
       </div>
     </div>
