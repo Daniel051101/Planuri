@@ -66,7 +66,8 @@ public class ExtractorMaster
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
 			int n = sheet.getLastRowNum();
-			int c=0, r=0, index=0;
+			int c=0, r=0, index=0, semesterNumber = 0;
+			String semesterNumberStr, durataStr;
 			
 			PlanInvatamantMaster pim = new PlanInvatamantMaster();
 			ArrayList<String> values = new ArrayList<>();
@@ -94,8 +95,19 @@ public class ExtractorMaster
 					if(value.isEmpty() || value.equals("0"))
 						continue;
 					
-					values.add(value);
-					//System.out.println(value);
+					if (value.matches("(?i)\\d+\\s+ani"))
+					{
+						durataStr = value.replaceAll("(?i)\\s+ani", "");
+											
+						values.add(durataStr);	
+						continue;
+					}
+					else
+					{
+						values.add(value);
+						//System.out.println(value);
+					}
+
 				}
             index=0;
             
@@ -110,7 +122,7 @@ public class ExtractorMaster
             pim.setDomeniuDeLicenta(index < values.size() ? values.get(index++) : null);
             pim.setProgramMaster(index < values.size() ? values.get(index++) : null);
             pim.setFormatInvatamant(index < values.size() ? values.get(index++) : null);
-            pim.setDurataStudiilor(index < values.size() ? values.get(index++) : null);
+            pim.setDurataStudiilor(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
             pim.setDomeniuFundamental(index < values.size() ? values.get(index++) : null);
             pim.setRamuraDeStiinta(index < values.size() ? values.get(index++) : null);
             pim.setDomeniuStudiiMaster(index < values.size() ? values.get(index++) : null);
@@ -120,16 +132,16 @@ public class ExtractorMaster
             values.clear();
             
 			Map<Integer, Integer> rAdjustments=Map.of(
-					52, 64,
-					94, 112,
-				    141, 150,
-				    179, 215,
-				    226, 235,
+					52, 63,
+					94, 111,
+				    141, 149,
+				    179, 214,
+				    226, 234,
 				    246, n-1
 					);
             
 			for(c=1;c<14;c+=12)
-			for(r=22;r<n;r++)
+			for(r=21;r<n;r++)
 			{		
 		        if (rAdjustments.containsKey(r)) 
 		            r = rAdjustments.get(r);
@@ -150,8 +162,22 @@ public class ExtractorMaster
 				if(value.isEmpty() || value.equals("0"))
 					continue;
 				
-				values.add(value);
-				//System.out.println(value);
+				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
+				{
+				    // Extragem doar numărul sub formă de String
+				    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
+				    
+				    // Convertim șirul în int
+				    semesterNumber = Integer.parseInt(semesterNumberStr);
+				    
+				    //System.out.println("Detected semester: " + semesterNumber);
+				    continue;
+				}
+				else
+				{
+					values.add(value);
+					//System.out.println(value);
+				}
 
 				if (cell.getCellType() == CellType.FORMULA)
 				{
@@ -184,6 +210,7 @@ public class ExtractorMaster
 						dm.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
 						dm.setCategorieFormativaMaster(index < values.size() ? values.get(index++) : null);
 						dm.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dm.setSemestru(semesterNumber);
 							
 						disciplinaMasterRepository.save(dm);
 						pim.getListaDisciplinaMaster().add(dm);

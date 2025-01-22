@@ -18,10 +18,18 @@ abstract public class Disciplina
 	private String formaEvaluare;
 	private int volumOreNecesareActivitatilorPartialAsistate;
 	private int volumOreNecesaraPregatiriIndividuale;
-	//private String semestru;
+	private int semestru;
 	
 	public Disciplina()
 	{
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getNume() {
@@ -73,19 +81,12 @@ abstract public class Disciplina
 		this.volumOreNecesaraPregatiriIndividuale = volumOreNecesaraPregatiriIndividuale;
 	}
 
-//	public String getSemestru() {
-//		return semestru;
-//	}
-//
-//	public void setSemestru(String semestru) {
-//		this.semestru = semestru;
-//	}
-
-	public int getId() {
-		return id;
+	public int getSemestru() {
+		return semestru;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSemestru(int semestru) {
+		this.semestru = semestru;
 	}
+	
 }

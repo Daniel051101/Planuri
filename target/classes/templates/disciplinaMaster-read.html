@@ -18,10 +18,9 @@
 		    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
 		      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-		        <li><a href="/" class="nav-link px-2 text-white"><i class="fas fa-home"></i> Acasa</a></li>
+		        <li><a href="/" class="nav-link px-2 text-white"><i class="fas fa-home"></i> Acasă</a></li>
 		        <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri Licență</a></li>
 				<li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri Master</a></li>
-		        <li><a href="/disciplinaMaster-read" class="nav-link px-2 text-white">Discipline Master</a></li>
 		      </ul>
 
 		      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -68,6 +67,8 @@
 					<th scope="col">Ore activitati partial asistate</th>
 					<th scope="col">Categorie formativa</th>
 					<th scope="col">Ore pregatire individuala</th>
+					<th scope="col">Semestru</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -86,6 +87,8 @@
 					<td th:text="${disciplinaMaster.volumOreNecesareActivitatilorPartialAsistate}"></td>
 					<td th:text="${disciplinaMaster.categorieFormativaMaster}"></td>
 					<td th:text="${disciplinaMaster.volumOreNecesaraPregatiriIndividuale}"></td>
+					<td th:text="${disciplinaMaster.semestru}"></td>
+
 				</tr>
 			</tbody>
 		</table>

@@ -44,8 +44,6 @@
                 <li><a href="/" class="nav-link px-2 text-white"><i class="fas fa-home"></i> Acasă</a></li>
                 <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri Licență</a></li>
                 <li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri Master</a></li>
-                <li><a href="/disciplinaZi-read" class="nav-link px-2 text-white">Discipline Zi</a></li>
-                <li><a href="/disciplinaId-read" class="nav-link px-2 text-white">Discipline Id</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -67,6 +65,8 @@
                 <h1 class="fw-light">Planuri Licenta</h1>
                 <p>
                     <a href="/planInvatamantLicenta-create" class="btn btn-primary my-2">Adauga plan</a>
+					<a href="/disciplinaZi-read" class="btn btn-primary my-2">Discipline Zi</a>
+					<a href="/disciplinaId-read" class="btn btn-primary my-2">Discipline Id</a>
                 </p>
             </div>
         </div>
@@ -80,6 +80,9 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title text-center" th:text="${planInvatamantLicenta.programDeStudiiLicenta}"></h5>
+							<p class="text-center text-muted" 
+							   th:text="${2000 + planInvatamantLicenta.anCalendaristic} + '-' + (${2000 + planInvatamantLicenta.anCalendaristic + planInvatamantLicenta.durataStudiiLicenta})">
+							</p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <div class="btn-group">
                                     <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantLicenta-view/{id}(id=${planInvatamantLicenta.id})}" role="button">Afiseaza</a>

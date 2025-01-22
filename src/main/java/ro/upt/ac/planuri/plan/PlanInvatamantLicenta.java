@@ -15,6 +15,7 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 	private String programDeStudiiLicenta;
 	private int codDomeniuDeLicenta;
 	private int codStudii;
+	private int durataStudiiLicenta;
 
 	// un plan de invatamant are mai multe discipline
 	@OneToMany
@@ -72,6 +73,14 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 
 	public void setCodStudii(int codStudii) {
 		this.codStudii = codStudii;
+	}
+
+	public int getDurataStudiiLicenta() {
+		return durataStudiiLicenta;
+	}
+
+	public void setDurataStudiiLicenta(int durataStudiiLicenta) {
+		this.durataStudiiLicenta = durataStudiiLicenta;
 	}
 
 }

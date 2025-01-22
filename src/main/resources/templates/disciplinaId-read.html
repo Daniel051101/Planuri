@@ -20,8 +20,6 @@
 	                <li><a href="/" class="nav-link px-2 text-white"><i class="fas fa-home"></i> Acasă</a></li>
 	                <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri Licență</a></li>
 	                <li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri Master</a></li>
-	                <li><a href="/disciplinaZi-read" class="nav-link px-2 text-white">Discipline Zi</a></li>
-	                <li><a href="/disciplinaId-read" class="nav-link px-2 text-white">Discipline Id</a></li>
 	            </ul>
 
 	            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -68,6 +66,8 @@
                     <th scope="col">Ore partial asistate</th>
                     <th scope="col">Categorie formativa</th>
                     <th scope="col">Ore pregatire individuala</th>
+					<th scope="col">Semestru</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -86,6 +86,8 @@
                     <td th:text="${disciplinaId.volumOreNecesareActivitatilorPartialAsistate}"></td>
                     <td th:text="${disciplinaId.categorieFormativaLicenta}"></td>
                     <td th:text="${disciplinaId.volumOreNecesaraPregatiriIndividuale}"></td>
+					<td th:text="${disciplinaId.semestru}"></td>
+
                 </tr>
             </tbody>
         </table>

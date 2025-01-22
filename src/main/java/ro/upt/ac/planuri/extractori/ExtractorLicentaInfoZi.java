@@ -41,7 +41,8 @@ public class ExtractorLicentaInfoZi
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
 			int n = sheet.getLastRowNum();
-			int c=0, r=0, index;
+			int c=0, r=0, index, semesterNumber = 0, semesterMax=0;
+			String semesterNumberStr;
 			
 			PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
 			ArrayList<String> values = new ArrayList<>();
@@ -94,17 +95,17 @@ public class ExtractorLicentaInfoZi
             values.clear();
                 
 			Map<Integer, Integer> rAdjustments=Map.of(
-					51, 70,
-					103, 141,
-				    177, 200,
-				    239, 262,
-				    301, 324,
-				    336, 347,
+					51, 69,
+					103, 140,
+				    177, 199,
+				    239, 261,
+				    301, 323,
+				    336, 346,
 				    359, n - 1
 					);
 			
 			for(c=1;c<38;c+=12)
-			for(r=18;r<n;r++)
+			for(r=17;r<n;r++)
 			{		
 		        if (rAdjustments.containsKey(r)) 
 		            r = rAdjustments.get(r);
@@ -125,21 +126,25 @@ public class ExtractorLicentaInfoZi
 				if(value.isEmpty() || value.equals("0"))
 					continue;
 				
-//				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
-//				{
-//					currentSemester = value;
-//					System.out.println("Detected semester: " + currentSemester);					
-//					continue;
-//				}
-//				else
-//				{
-//					System.out.println(value);
-//					values.add(value);
-//				}
-				
-				values.add(value);
-				
-				//System.out.println(value);
+				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
+				{
+				    // Extragem doar numărul sub formă de String
+				    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
+				    
+				    // Convertim șirul în int
+				    semesterNumber = Integer.parseInt(semesterNumberStr);
+				    
+				    if (semesterNumber > semesterMax)
+				    	semesterMax = semesterNumber;
+				    
+				    //System.out.println("Detected semester: " + semesterNumber);
+				    continue;
+				}
+				else
+				{
+					values.add(value);
+					//System.out.println(value);
+				}
 
 				if (cell.getCellType() == CellType.FORMULA)
 				{
@@ -172,6 +177,7 @@ public class ExtractorLicentaInfoZi
 						dz.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
 						dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
 						dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dz.setSemestru(semesterNumber);
 							
 						disciplinaZiRepository.save(dz);
 						pil.getListaDisciplinaZi().add(dz);
@@ -187,8 +193,9 @@ public class ExtractorLicentaInfoZi
 				}
 			
 			}
-			planInvatamantLicentaRepository.save(pil);
+			pil.setDurataStudiiLicenta(semesterMax/2);
 			
+			planInvatamantLicentaRepository.save(pil);	
 		}
 		catch(Exception e)
 		{
