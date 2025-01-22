@@ -49,7 +49,7 @@ public class DisciplinaMasterController
 	public String readByPlan(@PathVariable("id") int id, Model model) 
 	{
 		PlanInvatamantMaster pim = planInvatamantMasterRepository.findById(id);
-	    model.addAttribute("disciplinaMaster",pim.getListaDisciplina());
+	    model.addAttribute("disciplinaMaster",pim.getListaDisciplinaMaster());
 	    return "disciplinaMaster-read";
 	}
 

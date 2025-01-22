@@ -18,7 +18,6 @@ import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
-// https://howtodoinjava.com/java/library/readingwriting-excel-files-in-java-poi-tutorial/
 @Component
 public class ExtractorLicentaInfoZi 
 {	
@@ -31,11 +30,9 @@ public class ExtractorLicentaInfoZi
 //	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public void extractDataLicentaInfoZi() 
 	{
-		System.out.println("Starting...");
-		int i=0, j=0;
+		//System.out.println("Starting...");
 		try
 		{
-			
 			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
@@ -44,11 +41,9 @@ public class ExtractorLicentaInfoZi
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
 			int n = sheet.getLastRowNum();
-			
-			int c=0, r=0, index=0;
+			int c=0, r=0, index;
 			
 			PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
-			
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
@@ -93,9 +88,8 @@ public class ExtractorLicentaInfoZi
             pil.setRamuraDeStiinta(index < values.size() ? values.get(index++) : null);
             pil.setDomeniuDeLicenta(index < values.size() ? values.get(index++) : null);
             pil.setProgramDeStudiiLicenta(index < values.size() ? values.get(index++) : null);
-    		planInvatamantLicentaRepository.save(pil);
 			
-            System.out.println("Date introduse în baza de date!");
+            //System.out.println("Datele planului introduse în baza de date!");
             
             values.clear();
                 
@@ -145,7 +139,7 @@ public class ExtractorLicentaInfoZi
 				
 				values.add(value);
 				
-				System.out.println(value);
+				//System.out.println(value);
 
 				if (cell.getCellType() == CellType.FORMULA)
 				{
@@ -156,53 +150,51 @@ public class ExtractorLicentaInfoZi
 							continue;
 				
 						String value1=getValue(workbook,cell1);
-//						if(value1.isEmpty() || value1.equals("0"))
-//							continue;
-						
 						values.add(value1);
-
-						System.out.println(value1);
+						//System.out.println(value1);
 					}
-					
-					System.out.println("\n");
 				}
 				
-				if (values.size() >= 11)
-				{
-		            index=0;
-					DisciplinaZi dz = new DisciplinaZi();
-						
-					dz.setNume(values.get(index++));
-					dz.setCod(index < values.size() ? values.get(index++) : null);
-					dz.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-					dz.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
-					dz.setNumarOreCurs(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-					dz.setNumarOreSeminar(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-					dz.setNumarOreLaborator(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-					dz.setNumarOreProiect(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-					dz.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-					dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
-					dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						
-					disciplinaZiRepository.save(dz);
-						
-					pil.getListaDisciplinaZi().add(dz);
-					planInvatamantLicentaRepository.save(pil);
-						
-			        System.out.println(values.size() + "   Date introduse în baza de date disciplina! \n");
+				try {
+					if (values.size() >= 11)
+					{
+			            index=0;
+						DisciplinaZi dz = new DisciplinaZi();
+							
+						dz.setNume(values.get(index++));
+						dz.setCod(index < values.size() ? values.get(index++) : null);
+						dz.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dz.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
+						dz.setNumarOreCurs(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dz.setNumarOreSeminar(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dz.setNumarOreLaborator(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dz.setNumarOreProiect(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dz.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
+						dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							
+						disciplinaZiRepository.save(dz);
+						pil.getListaDisciplinaZi().add(dz);
+											
+				        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 
-					values.clear();
+						values.clear();
+					}
+					
+				}catch(NumberFormatException e)
+				{
+					System.out.println("Invalid format ");
 				}
 			
 			}
+			planInvatamantLicentaRepository.save(pil);
 			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
-		System.out.println("Stopping... "+i+" "+j);
+		//System.out.println("Stopping... ");
 	}
 	
 	@SuppressWarnings("incomplete-switch")

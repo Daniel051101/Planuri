@@ -70,12 +70,12 @@ public class Application
 	    return (args) -> {	
 			log.info("Starting extractor...");
 			
-//			extractorLicenta.processFilesLicenta();
-//			
-//			extractorLicentaCalcEn.extractDataLicentaCalcEn();
-//			
-//			extractorLicentaInfoID.extracDataLicentaInfoID();
-//			
+			extractorLicenta.processFilesLicenta();
+			
+			extractorLicentaCalcEn.extractDataLicentaCalcEn();
+			
+			extractorLicentaInfoID.extracDataLicentaInfoID();
+			
 			extractorLicentaInfoZi.extractDataLicentaInfoZi();
 
 			log.info("Extractor finished");
@@ -88,7 +88,7 @@ public class Application
 	    return (args) -> {	
 			log.info("Starting extractor...");
 			
-//			extractorMaster.processFilesMaster();
+			extractorMaster.processFilesMaster();
 
 			log.info("Extractor finished");
 	    };

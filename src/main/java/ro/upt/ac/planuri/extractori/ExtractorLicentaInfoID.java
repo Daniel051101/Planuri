@@ -1,11 +1,7 @@
 package ro.upt.ac.planuri.extractori;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
 import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -14,24 +10,29 @@ import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-// pentru info id
+import ro.upt.ac.planuri.disciplina.DisciplinaId;
+import ro.upt.ac.planuri.disciplina.DisciplinaIdRepository;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
+
 @Component
 public class ExtractorLicentaInfoID
 {	
-    private static final Logger log = LoggerFactory.getLogger(ExtractorLicentaCalcEn.class);
+	@Autowired
+    PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
 
+    @Autowired
+    DisciplinaIdRepository disciplinaIdRepository;
+    
 //	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public void extracDataLicentaInfoID() 
 	{
-		System.out.println("Starting...");
-		int i=0, j=0;
+		//System.out.println("Starting...");
 		try
 		{
-
 			FileInputStream file = new FileInputStream("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx ");
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
@@ -40,13 +41,9 @@ public class ExtractorLicentaInfoID
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
 			int n = sheet.getLastRowNum();
-			
-			Connection connection = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
-            String insertSQL = "INSERT INTO plan_invatamant_licenta (an_calendaristic, ciclu, cod_domeniu_fundamental, cod_ramura_de_stiinta, codul_programului_de_studii, domeniu_de_licenta, domeniu_fundamental, facultate, ramura_de_stiinta, universitate, cod_domeniu_de_licenta, cod_studii, program_de_studii_licenta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
-            PreparedStatement statement = connection.prepareStatement(insertSQL);
-			
-			int c=0, r=0, index=0;
-			
+			int c=0, r=0, index;
+		
+			PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
@@ -76,27 +73,25 @@ public class ExtractorLicentaInfoID
 					
 					//System.out.println(value);
 				}
-						
-			while (index < values.size()) {
-                // Setăm valorile pentru fiecare coloană
-                statement.setString(10, values.get(index++)); 
-                statement.setString(8, index < values.size() ? values.get(index++) : null); 
-                statement.setString(3, index < values.size() ? values.get(index++) : null); 
-                statement.setString(4, index < values.size() ? values.get(index++) : null);
-                statement.setString(11, index < values.size() ? values.get(index++) : null); 
-                statement.setString(12, index < values.size() ? values.get(index++) : null); 
-                statement.setString(2, index < values.size() ? values.get(index++) : null); 
-                statement.setString(5, index < values.size() ? values.get(index++) : null); 
-                statement.setString(1, index < values.size() ? values.get(index++) : null); 
-                statement.setString(7, index < values.size() ? values.get(index++) : null); 
-                statement.setString(9, index < values.size() ? values.get(index++) : null); 
-                statement.setString(6, index < values.size() ? values.get(index++) : null); 
-                statement.setString(13, index < values.size() ? values.get(index++) : null); 
-			}
-            // Executăm interogarea
-            statement.executeUpdate();
 			
-            System.out.println("Date introduse în baza de date!");
+			index=0;
+			
+            pil.setUniversitate(values.get(index++));
+            pil.setFacultate(index < values.size() ? values.get(index++) : null); 
+            pil.setCodDomeniuFundamental(index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+            pil.setCodRamuraDeStiinta(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+            pil.setCodDomeniuDeLicenta(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+            pil.setCodStudii(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+            pil.setCiclu(index < values.size() ? values.get(index++) : null);
+            pil.setCodulProgramuluiDeStudii(index < values.size() ? values.get(index++) : null);
+            pil.setAnCalendaristic(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+            pil.setDomeniuFundamental(index < values.size() ? values.get(index++) : null);
+            pil.setRamuraDeStiinta(index < values.size() ? values.get(index++) : null);
+            pil.setDomeniuDeLicenta(index < values.size() ? values.get(index++) : null);
+            pil.setProgramDeStudiiLicenta(index < values.size() ? values.get(index++) : null);
+			
+            //System.out.println("Date introduse în baza de date!");
+            
             values.clear();
                 
 			Map<Integer, Integer> rAdjustments=Map.of(
@@ -108,10 +103,6 @@ public class ExtractorLicentaInfoID
 				    336, 347,
 				    359, n - 1
 					);
-					
-			Connection connection1 = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
-            String insertSQL1 = "INSERT INTO disciplina_id (cod, forma_evaluare, numar_credite_transferabile, nume, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_licenta, numar_activitati_aplicative_asistate, numar_ore_activitati_autoinstruire, numar_ore_activitati_tutorat, numar_teme_de_control) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
-            PreparedStatement statement1 = connection1.prepareStatement(insertSQL1);
 			
 			for(c=1;c<38;c+=12)
 			for(r=18;r<n;r++)
@@ -135,8 +126,8 @@ public class ExtractorLicentaInfoID
 				if(value.isEmpty() || value.equals("0"))
 					continue;
 				
-				System.out.println(value);
 				values.add(value);
+				//System.out.println(value);
 
 				if (cell.getCellType() == CellType.FORMULA)
 				{
@@ -147,60 +138,55 @@ public class ExtractorLicentaInfoID
 							continue;
 				
 						String value1=getValue(workbook,cell1);
-//						if(value1.isEmpty() || value1.equals("0"))
-//							continue;
 						
 						values.add(value1);
 
-						System.out.println(value1);
+						//System.out.println(value1);
 					}
-					System.out.println("\n");
 				}
 				
-				try
-				{
-					if (values.size() > 10)
+				try {
+					if (values.size() >= 11)
 					{
-						index=0;
-						while (index < values.size()) {
-							// Setăm valorile pentru fiecare coloană
-						
-							statement1.setString(4, values.get(index++)); 
-							statement1.setString(1, index < values.size() ? values.get(index++) : null);
-							statement1.setInt(3, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setString(2, index < values.size() ? values.get(index++) : null); 
-							statement1.setInt(8, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(11, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(9, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(10, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(6, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setString(7, index < values.size() ? values.get(index++) : null); 
-							statement1.setInt(5, index < values.size() ? Integer.parseInt(values.get(index++)) : 0);    
+			            index=0;
+						DisciplinaId di = new DisciplinaId();
+							
+						di.setNume(values.get(index++));
+						di.setCod(index < values.size() ? values.get(index++) : null);
+						di.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						di.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
+						di.setNumarOreActivitatiAutoinstruire(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						di.setNumarOreActivitatiTutorat(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						di.setNumarTemeDeControl(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						di.setNumarActivitatiAplicativeAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						di.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						di.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
+						di.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							
+						disciplinaIdRepository.save(di);
+						pil.getListaDisciplinaId().add(di);
+											
+				        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 
-							}
-						// Executăm interogarea
-						statement1.executeUpdate();
-					
-		            System.out.println(values.size() + "   Date introduse în baza de date disciplina! \n");
-		                
-//						values.clear();
-					}
-				
-					if (values.size()>=11)
 						values.clear();
-				
-				} catch (NumberFormatException e)
+					}
+					
+				}catch (NumberFormatException e)
 				{
-					log.error("Invalid number format for value: {}", value, e);
+					System.out.println("Invalid format ");
+
 				}
+				
 			}
+			planInvatamantLicentaRepository.save(pil);
+
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		
-		System.out.println("Stopping... "+i+" "+j);
+		//System.out.println("Stopping... ");
 	}
 	
 	@SuppressWarnings("incomplete-switch")

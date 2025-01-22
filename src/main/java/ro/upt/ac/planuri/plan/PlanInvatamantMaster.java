@@ -64,11 +64,11 @@ public class PlanInvatamantMaster extends PlanInvatamant
 		this.codDomeniuStudiiMaster = codDomeniuStudiiMaster;
 	}
 
-	public List<DisciplinaMaster> getListaDisciplina() {
+	public List<DisciplinaMaster> getListaDisciplinaMaster() {
 		return listaDisciplinaMaster;
 	}
 
-	public void setListaDisciplina(List<DisciplinaMaster> listaDisciplinaMaster) {
+	public void setListaDisciplinaMaster(List<DisciplinaMaster> listaDisciplinaMaster) {
 		this.listaDisciplinaMaster = listaDisciplinaMaster;
 	}
 }

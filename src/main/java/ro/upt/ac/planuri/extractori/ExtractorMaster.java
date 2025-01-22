@@ -1,8 +1,6 @@
 package ro.upt.ac.planuri.extractori;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,18 +12,24 @@ import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-
-// merge la toate cele 12 mastere
+import ro.upt.ac.planuri.disciplina.DisciplinaMaster;
+import ro.upt.ac.planuri.disciplina.DisciplinaMasterRepository;
+import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
+import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 
 @Component
 public class ExtractorMaster 
 {
+    @Autowired
+    PlanInvatamantMasterRepository planInvatamantMasterRepository;
+    
+    @Autowired
+    DisciplinaMasterRepository disciplinaMasterRepository;
 	
-    private static final Logger log = LoggerFactory.getLogger(ExtractorMaster.class);
+    //private static final Logger log = LoggerFactory.getLogger(ExtractorMaster.class);
     
     public void processFilesMaster() {
         
@@ -44,34 +48,27 @@ public class ExtractorMaster
             );
 
             files.forEach(filePath -> {
-                log.info("Processing file: {}", filePath);
+                //log.info("Processing file: {}", filePath);
                 extractData(filePath);
             });
-
-            log.info("Finished processing all files.");
+            //log.info("Finished processing all files.");
     }
 
 //	@SuppressWarnings({ "resource", "incomplete-switch" })
 	public void extractData(String filePath) 
 	{
-        log.info("Starting extraction...", filePath);
-        
+        //log.info("Starting extraction...", filePath);
 		try (FileInputStream file = new FileInputStream(filePath);
 	             XSSFWorkbook workbook = new XSSFWorkbook(file))
-		{	
-			
+		{
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
-			Connection connection = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
-            String insertSQL = "INSERT INTO plan_invatamant_master (an_calendaristic, ciclu, cod_domeniu_fundamental, cod_ramura_de_stiinta, codul_programului_de_studii, domeniu_de_licenta, domeniu_fundamental, facultate, ramura_de_stiinta, universitate, cod_domeniu_studii_master, domeniu_studii_master, durata_studiilor, format_invatamant, program_master) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
-            PreparedStatement statement = connection.prepareStatement(insertSQL);
-			
 			int n = sheet.getLastRowNum();
-			
 			int c=0, r=0, index=0;
 			
+			PlanInvatamantMaster pim = new PlanInvatamantMaster();
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
@@ -98,33 +95,28 @@ public class ExtractorMaster
 						continue;
 					
 					values.add(value);
-					
 					//System.out.println(value);
 				}
+            index=0;
+            
+            pim.setUniversitate(values.get(index++));
+            pim.setFacultate(index < values.size() ? values.get(index++) : null); 
+            pim.setCodDomeniuFundamental(index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
+            pim.setCodRamuraDeStiinta(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+            pim.setCodDomeniuStudiiMaster(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+            pim.setCiclu(index < values.size() ? values.get(index++) : null);
+            pim.setCodulProgramuluiDeStudii(index < values.size() ? values.get(index++) : null);
+            pim.setAnCalendaristic(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+            pim.setDomeniuDeLicenta(index < values.size() ? values.get(index++) : null);
+            pim.setProgramMaster(index < values.size() ? values.get(index++) : null);
+            pim.setFormatInvatamant(index < values.size() ? values.get(index++) : null);
+            pim.setDurataStudiilor(index < values.size() ? values.get(index++) : null);
+            pim.setDomeniuFundamental(index < values.size() ? values.get(index++) : null);
+            pim.setRamuraDeStiinta(index < values.size() ? values.get(index++) : null);
+            pim.setDomeniuStudiiMaster(index < values.size() ? values.get(index++) : null);
 			
-			while (index < values.size()) {
-                // Setăm valorile pentru fiecare coloană
-                statement.setString(10, values.get(index++)); 
-                statement.setString(8, index < values.size() ? values.get(index++) : null); 
-                statement.setString(3, index < values.size() ? values.get(index++) : null); 
-                statement.setString(4, index < values.size() ? values.get(index++) : null);
-                statement.setString(11, index < values.size() ? values.get(index++) : null);  
-                statement.setString(2, index < values.size() ? values.get(index++) : null); 
-                statement.setString(5, index < values.size() ? values.get(index++) : null); 
-                statement.setString(1, index < values.size() ? values.get(index++) : null); 
-                statement.setString(6, index < values.size() ? values.get(index++) : null); 
-                statement.setString(15, index < values.size() ? values.get(index++) : null);
-                statement.setString(14, index < values.size() ? values.get(index++) : null);
-                statement.setString(13, index < values.size() ? values.get(index++) : null); 
-                statement.setString(7, index < values.size() ? values.get(index++) : null); 
-                statement.setString(9, index < values.size() ? values.get(index++) : null); 
-                statement.setString(12, index < values.size() ? values.get(index++) : null); 
-
-			}
-            // Executăm interogarea
-            statement.executeUpdate();
-			
-            System.out.println("Date introduse în baza de date!");
+            //System.out.println("Datele planului introduse în baza de date!");
+            
             values.clear();
             
 			Map<Integer, Integer> rAdjustments=Map.of(
@@ -135,10 +127,6 @@ public class ExtractorMaster
 				    226, 235,
 				    246, n-1
 					);
-			
-			Connection connection1 = DatabaseConnection.getConnection(); // Obținem conexiunea la DB
-            String insertSQL1 = "INSERT INTO disciplina_master (cod, forma_evaluare, numar_credite_transferabile, nume, volum_ore_necesara_pregatiri_individuale, volum_ore_necesare_activitatilor_partial_asistate, categorie_formativa_master, numar_ore_curs, numar_ore_laborator, numar_ore_proiect, numar_ore_seminar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Query-ul pentru inserare
-            PreparedStatement statement1 = connection1.prepareStatement(insertSQL1);
             
 			for(c=1;c<14;c+=12)
 			for(r=22;r<n;r++)
@@ -162,8 +150,8 @@ public class ExtractorMaster
 				if(value.isEmpty() || value.equals("0"))
 					continue;
 				
-				System.out.println(value);
 				values.add(value);
+				//System.out.println(value);
 
 				if (cell.getCellType() == CellType.FORMULA)
 				{
@@ -174,60 +162,51 @@ public class ExtractorMaster
 							continue;
 				
 						String value1=getValue(workbook,cell1);
-//						if(value1.isEmpty() || value1.equals("0"))
-//							continue;
 						values.add(value1);
-						
-						System.out.println(value1);
+						//System.out.println(value1);
 					}
-					System.out.println("\n");
 				}
 				
-				try
-				{
-					if (values.size() == 11)
+				try {
+					if (values.size() >= 11)
 					{
-						index=0;
-						while (index < values.size()) {
-							// Setăm valorile pentru fiecare coloană
-						
-							statement1.setString(4, values.get(index++)); 
-							statement1.setString(1, index < values.size() ? values.get(index++) : null);
-							statement1.setInt(3, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setString(2, index < values.size() ? values.get(index++) : null); 
-							statement1.setInt(8, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(11, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(9, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(10, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setInt(6, index < values.size() ? Integer.parseInt(values.get(index++)) : 0); 
-							statement1.setString(7, index < values.size() ? values.get(index++) : null); 
-							statement1.setInt(5, index < values.size() ? Integer.parseInt(values.get(index++)) : 0);    
+			            index=0;
+						DisciplinaMaster dm = new DisciplinaMaster();
+							
+						dm.setNume(values.get(index++));
+						dm.setCod(index < values.size() ? values.get(index++) : null);
+						dm.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dm.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
+						dm.setNumarOreCurs(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dm.setNumarOreSeminar(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dm.setNumarOreLaborator(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dm.setNumarOreProiect(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dm.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+						dm.setCategorieFormativaMaster(index < values.size() ? values.get(index++) : null);
+						dm.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							
+						disciplinaMasterRepository.save(dm);
+						pim.getListaDisciplinaMaster().add(dm);
+											
+				        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 
-							}
-						// Executăm interogarea
-						statement1.executeUpdate();
-					
-		            System.out.println(values.size() + "   Date introduse în baza de date disciplina! \n");
-		                
-					}
-				
-					if (values.size()>=11)
 						values.clear();
-				
-				} catch (NumberFormatException e)
+					}
+					
+				}catch (NumberFormatException e)
 				{
-					log.error("Invalid number format for value: {}", value, e);
+					System.out.println("Invalid format ");
+
 				}
 				
 			}
-		
+			planInvatamantMasterRepository.save(pim);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
-        log.info("Extraction complete.");
+        //log.info("Extraction complete.");
 	}
 	
 	@SuppressWarnings("incomplete-switch")
