@@ -21,7 +21,7 @@ import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
 import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 
 @Component
-public class ExtractorMaster 
+public class ExtractorMaster extends ProcessFiles
 {
     @Autowired
     PlanInvatamantMasterRepository planInvatamantMasterRepository;

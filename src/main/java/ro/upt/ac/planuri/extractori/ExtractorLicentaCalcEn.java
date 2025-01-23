@@ -19,7 +19,7 @@ import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
 @Component
-public class ExtractorLicentaCalcEn
+public class ExtractorLicentaCalcEn extends ProcessFiles
 {	
     @Autowired
     PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
