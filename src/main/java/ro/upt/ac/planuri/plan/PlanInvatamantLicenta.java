@@ -17,7 +17,6 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 	private int codStudii;
 	private int durataStudiiLicenta;
 
-	// un plan de invatamant are mai multe discipline
 	@OneToMany
 	private List<DisciplinaZi> listaDisciplinaZi=new ArrayList<DisciplinaZi>();
 	

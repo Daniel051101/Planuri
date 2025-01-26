@@ -15,24 +15,6 @@ public class PlanInvatamantMasterController
 	@Autowired
 	PlanInvatamantMasterRepository planInvatamantMasterRepository;
 
-//	@GetMapping("/")
-//	public String index()
-//	{
-//		return "index";
-//	}
-//	
-//	@GetMapping("/login")
-//	public String login()
-//	{
-//		return "login";
-//	}
-//	
-//	@GetMapping("/signup")
-//	public String signup()
-//	{
-//		return "signup";
-//	}
-
 	@GetMapping("/planInvatamantMaster-create")
 	public String create(PlanInvatamantMaster planInvatamantMaster)
 	{

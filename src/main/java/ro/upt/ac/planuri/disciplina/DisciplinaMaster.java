@@ -1,4 +1,4 @@
-package ro.upt.ac.planuri.disciplina;
+ package ro.upt.ac.planuri.disciplina;
 
 import jakarta.persistence.Entity;
 
