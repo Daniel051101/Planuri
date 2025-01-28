@@ -16,8 +16,6 @@
 	                <li><a href="/" class="nav-link px-2 text-white"><i class="fas fa-home"></i> Acasă</a></li>
 	                <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri Licență</a></li>
 	                <li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri Master</a></li>
-	                <li><a href="/disciplinaZi-read" class="nav-link px-2 text-white">Discipline Zi</a></li>
-	                <li><a href="/disciplinaId-read" class="nav-link px-2 text-white">Discipline Id</a></li>
 	            </ul>
 
 	            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -95,15 +93,19 @@
       <div class="text-center mt-4">
         <a href="/planInvatamantLicenta-edit/{id}" th:href="@{/planInvatamantLicenta-edit/{id}(id=${planInvatamantLicenta.id})}" class="btn btn-primary">Editeaza</a>
         <a href="/planInvatamantLicenta-delete/{id}" th:href="@{/planInvatamantLicenta-delete/{id}(id=${planInvatamantLicenta.id})}" class="btn btn-danger">Sterge</a>
-        <a href="/planInvatamantLicenta-read" class="btn btn-secondary">Acasa</a>
+        <a href="/" class="btn btn-secondary">Acasa</a>
 		<a href="/disciplinaZi-read/{id}" th:href="@{/disciplinaZi-read/{id}(id=${planInvatamantLicenta.id})}" class="btn btn-primary">Afișare discipline</a>
       </div>
     </div>
   </div>
 </main>
 
-<footer class="text-muted py-3 bg-light text-center">
-  <p>&copy; 2024 Universitatea Example</p>
+<footer class="text-muted text-center">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Plan Invatamant. Toate drepturile rezervate.</p>
+        <p class="mb-0"><a href="#">Sus</a></p>
+    </div>
 </footer>
+
 </body>
 </html>
