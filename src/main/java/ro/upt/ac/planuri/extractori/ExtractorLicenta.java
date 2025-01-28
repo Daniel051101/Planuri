@@ -171,12 +171,12 @@ public class ExtractorLicenta extends Extractor
 						}
 					}
 					
+					DisciplinaZi dz = new DisciplinaZi();
 					try 
 					{
 						if (values.size() >= 11)
 						{
 				            index=0;
-							DisciplinaZi dz = new DisciplinaZi();
 							
 							dz.setNume(values.get(index++));
 							dz.setCod(index < values.size() ? values.get(index++) : null);
@@ -201,7 +201,7 @@ public class ExtractorLicenta extends Extractor
 					}
 					catch (NumberFormatException e)
 					{
-						System.out.println("Invalid format");
+						System.out.println("Invalid format: "+dz.toString());
 					}
 					
 				}

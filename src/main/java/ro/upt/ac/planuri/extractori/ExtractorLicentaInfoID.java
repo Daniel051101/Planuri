@@ -199,7 +199,7 @@ public class ExtractorLicentaInfoID extends Extractor
 					}
 					catch (NumberFormatException e)
 					{
-						System.out.println("Invalid format "+di.toString());
+						System.out.println("Invalid format: "+di.toString());
 					}
 				}
 				pil.setDurataStudiiLicenta(semesterMax/2);

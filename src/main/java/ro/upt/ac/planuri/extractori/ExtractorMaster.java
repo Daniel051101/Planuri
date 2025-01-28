@@ -183,12 +183,12 @@ public class ExtractorMaster extends Extractor
 						}
 					}
 					
+					DisciplinaMaster dm = new DisciplinaMaster();
 					try 
 					{
 						if (values.size() >= 11)
 						{
 				            index=0;
-							DisciplinaMaster dm = new DisciplinaMaster();
 								
 							dm.setNume(values.get(index++));
 							dm.setCod(index < values.size() ? values.get(index++) : null);
@@ -210,7 +210,7 @@ public class ExtractorMaster extends Extractor
 					}
 					catch (NumberFormatException e)
 					{
-						System.out.println("Invalid format ");
+						System.out.println("Invalid format: "+dm.toString());
 	
 					}
 				}

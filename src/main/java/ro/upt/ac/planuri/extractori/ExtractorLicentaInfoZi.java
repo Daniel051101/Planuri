@@ -186,7 +186,7 @@ public class ExtractorLicentaInfoZi extends Extractor
 					}
 					catch(NumberFormatException e)
 					{
-						System.out.println("Invalid format "+dz.toString());
+						System.out.println("Invalid format: "+dz.toString());
 					}				
 				}
 				pil.setDurataStudiiLicenta(semesterMax/2);				
