@@ -13,11 +13,13 @@ import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 
 // pentru calc ro, ti, is
+@Component
 public class ExtractorLicenta extends Extractor
 {	
 	private PlanInvatamantLicenta pil=new PlanInvatamantLicenta();

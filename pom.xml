@@ -9,12 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>ro.upt.ac.conventii</groupId>
-	<artifactId>mete</artifactId>
+	<groupId>ro.upt.ac.planuri</groupId>
+	<artifactId>planuri</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>conventii</name>
+	<name>planuri</name>
 
-	<description>Conventii</description>
+	<description>Planuri de invatamant</description>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,9 +67,7 @@
     		<artifactId>jakarta.persistence-api</artifactId>
     		<version>3.1.0</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
-		</dependencies>
-	
-	
+	</dependencies>
 	
 	<build>
 		<plugins>
