@@ -19,22 +19,23 @@ import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
 @Component
-public class ExtractorLicentaCalcEn extends ProcessFiles
-{	
-    @Autowired
-    PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
-    
-    @Autowired
-    DisciplinaZiRepository disciplinaZiRepository;
-    	
-//	@SuppressWarnings({ "resource", "incomplete-switch" })
-	public void extractDataLicentaCalcEn() 
+public class ExtractorLicentaCalcEn extends Extractor
+{    	
+	private PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
+
+	public void extract()
+	{
+		extract("./data/licenta/2023-2027_AC_PI_C-EN.xlsx");
+	}
+	
+	//@SuppressWarnings({ "resource", "incomplete-switch" })
+	public void extract(String path) 
 	{
 		//System.out.println("Starting...");
 		try
 		{
 			
-			FileInputStream file = new FileInputStream("./data/licenta/2023-2027_AC_PI_C-EN.xlsx ");
+			FileInputStream file = new FileInputStream(path);
 
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
@@ -45,11 +46,11 @@ public class ExtractorLicentaCalcEn extends ProcessFiles
 			int c=0, r=0, index=0, semesterNumber = 0, semesterMax=0;
 			String semesterNumberStr;
 			
-			PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
 			for(c=0; c<10; c++)
+			{
 				for (r=0; r<13; r++)
 				{
 					Row row=sheet.getRow(r);
@@ -75,6 +76,7 @@ public class ExtractorLicentaCalcEn extends ProcessFiles
 					
 					//System.out.println(value);
 				}
+			}
 			index=0;
 			
             pil.setUniversitate(values.get(index++));
@@ -161,7 +163,8 @@ public class ExtractorLicentaCalcEn extends ProcessFiles
 					}
 				}
 				
-				try {
+				try 
+				{
 					if (values.size() >= 11)
 					{
 			            index=0;
@@ -180,62 +183,23 @@ public class ExtractorLicentaCalcEn extends ProcessFiles
 						dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
 						dz.setSemestru(semesterNumber);
 							
-						disciplinaZiRepository.save(dz);
 						pil.getListaDisciplinaZi().add(dz);
 											
 				        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 						values.clear();
 					}
-					
-				}catch (NumberFormatException e)
+				}
+				catch (NumberFormatException e)
 				{
 					System.out.println("Invalid format ");
-
 				}
-				
 			}
-			pil.setDurataStudiiLicenta(semesterMax/2);
-			
-			planInvatamantLicentaRepository.save(pil);
+			pil.setDurataStudiiLicenta(semesterMax/2);			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		//System.out.println("Stopping...);
-	}
-	
-	@SuppressWarnings("incomplete-switch")
-	public static String getValue(XSSFWorkbook workbook,Cell cell)
-	{
-		XSSFFormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator(); 
-		
-		switch (cell.getCellType()) 
-		{
-			case NUMERIC:
-				return (int)cell.getNumericCellValue() + "";
-			case STRING:
-				return cell.getStringCellValue() + "";
-			case FORMULA:
-				try 
-				{
-					switch (evaluator.evaluateFormulaCell(cell))
-					{
-			        	case BOOLEAN:
-				       		return ""+cell.getBooleanCellValue();
-				       	case NUMERIC:
-				       		return ""+(int)cell.getNumericCellValue();
-				       	case STRING:
-			        		return cell.getStringCellValue();
-					}
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			break;
-		}
-		
-		return "0";
 	}
 }

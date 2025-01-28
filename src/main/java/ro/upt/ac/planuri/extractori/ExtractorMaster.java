@@ -21,41 +21,30 @@ import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
 import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 
 @Component
-public class ExtractorMaster extends ProcessFiles
+public class ExtractorMaster extends Extractor
 {
-    @Autowired
-    PlanInvatamantMasterRepository planInvatamantMasterRepository;
-    
-    @Autowired
-    DisciplinaMasterRepository disciplinaMasterRepository;
-	
-    //private static final Logger log = LoggerFactory.getLogger(ExtractorMaster.class);
-    
-    public void processFilesMaster() {
+
+	public void extract()
+	{
+        List<String> paths = Arrays.asList(
+            "./data/master/2023-2025 AC AES masterat.xlsx ",
+            "./data/master/2023-2025 AC GD masterat.xlsx ",
+            "./data/master/2023-2025 AC ISA masterat.xlsx ",
+            "./data/master/2023-2025 AC SIAPS masterat.xlsx ",
+            "./data/master/2023-2025 AC SIIS masterat.xlsx ",
+            "./data/master/2023-2025 AC SISC masterat.xlsx ",
+            "./data/master/2023-2025_AC_PI_Info_TI.xlsx ",
+            "./data/master/2023-2025_AC_PI_Master_CI.xlsx ",
+            "./data/master/2023-2025_AC_PI_Master_IT.xlsx ",
+            "./data/master/2023-2025_AC_PI_Master_ML.xlsx ",
+            "./data/master/2023-2025_AC_PI_Master_SE.xlsx "
+        );
         
-        List<String> files = Arrays.asList(
-                "./data/master/2023-2025 AC AES masterat.xlsx ",
-                "./data/master/2023-2025 AC GD masterat.xlsx ",
-                "./data/master/2023-2025 AC ISA masterat.xlsx ",
-                "./data/master/2023-2025 AC SIAPS masterat.xlsx ",
-                "./data/master/2023-2025 AC SIIS masterat.xlsx ",
-                "./data/master/2023-2025 AC SISC masterat.xlsx ",
-                "./data/master/2023-2025_AC_PI_Info_TI.xlsx ",
-                "./data/master/2023-2025_AC_PI_Master_CI.xlsx ",
-                "./data/master/2023-2025_AC_PI_Master_IT.xlsx ",
-                "./data/master/2023-2025_AC_PI_Master_ML.xlsx ",
-                "./data/master/2023-2025_AC_PI_Master_SE.xlsx "
-            );
-
-            files.forEach(filePath -> {
-                //log.info("Processing file: {}", filePath);
-                extractData(filePath);
-            });
-            //log.info("Finished processing all files.");
-    }
-
-//	@SuppressWarnings({ "resource", "incomplete-switch" })
-	public void extractData(String filePath) 
+        extract(paths);
+	}
+	
+    //@SuppressWarnings({ "resource", "incomplete-switch" })
+	public void extract(String filePath) 
 	{
         //log.info("Starting extraction...", filePath);
 		try (FileInputStream file = new FileInputStream(filePath);
@@ -141,133 +130,96 @@ public class ExtractorMaster extends ProcessFiles
 					);
             
 			for(c=1;c<14;c+=12)
-			for(r=21;r<n;r++)
-			{		
-		        if (rAdjustments.containsKey(r)) 
-		            r = rAdjustments.get(r);
-				
-				Row row=sheet.getRow(r);
-				
-				if(row==null)
-					continue;
-				
-				Cell cell=row.getCell(c);
-				
-				if(cell==null)
-					continue;
-				
-				String value=getValue(workbook,cell);
-				value=value.replaceAll("\n", " ");
-				
-				if(value.isEmpty() || value.equals("0"))
-					continue;
-				
-				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
-				{
-				    // Extragem doar numărul sub formă de String
-				    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
-				    
-				    // Convertim șirul în int
-				    semesterNumber = Integer.parseInt(semesterNumberStr);
-				    
-				    //System.out.println("Detected semester: " + semesterNumber);
-				    continue;
-				}
-				else
-				{
-					values.add(value);
-					//System.out.println(value);
-				}
-
-				if (cell.getCellType() == CellType.FORMULA)
-				{
-					for (int k=3; k<12; k++)
+			{
+				for(r=21;r<n;r++)
+				{		
+			        if (rAdjustments.containsKey(r)) 
+			            r = rAdjustments.get(r);
+					
+					Row row=sheet.getRow(r);
+					
+					if(row==null)
+						continue;
+					
+					Cell cell=row.getCell(c);
+					
+					if(cell==null)
+						continue;
+					
+					String value=getValue(workbook,cell);
+					value=value.replaceAll("\n", " ");
+					
+					if(value.isEmpty() || value.equals("0"))
+						continue;
+					
+					if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
 					{
-						Cell cell1=row.getCell(c+k);
-						if(cell1==null)
-							continue;
-				
-						String value1=getValue(workbook,cell1);
-						values.add(value1);
-						//System.out.println(value1);
+					    // Extragem doar numărul sub formă de String
+					    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
+					    
+					    // Convertim șirul în int
+					    semesterNumber = Integer.parseInt(semesterNumberStr);
+					    
+					    //System.out.println("Detected semester: " + semesterNumber);
+					    continue;
 					}
-				}
-				
-				try {
-					if (values.size() >= 11)
+					else
 					{
-			            index=0;
-						DisciplinaMaster dm = new DisciplinaMaster();
-							
-						dm.setNume(values.get(index++));
-						dm.setCod(index < values.size() ? values.get(index++) : null);
-						dm.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dm.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
-						dm.setNumarOreCurs(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dm.setNumarOreSeminar(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dm.setNumarOreLaborator(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dm.setNumarOreProiect(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dm.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dm.setCategorieFormativaMaster(index < values.size() ? values.get(index++) : null);
-						dm.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dm.setSemestru(semesterNumber);
-							
-						disciplinaMasterRepository.save(dm);
-						pim.getListaDisciplinaMaster().add(dm);
-											
-				        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
-
-						values.clear();
+						values.add(value);
+						//System.out.println(value);
+					}
+	
+					if (cell.getCellType() == CellType.FORMULA)
+					{
+						for (int k=3; k<12; k++)
+						{
+							Cell cell1=row.getCell(c+k);
+							if(cell1==null)
+								continue;
+					
+							String value1=getValue(workbook,cell1);
+							values.add(value1);
+							//System.out.println(value1);
+						}
 					}
 					
-				}catch (NumberFormatException e)
-				{
-					System.out.println("Invalid format ");
-
+					try 
+					{
+						if (values.size() >= 11)
+						{
+				            index=0;
+							DisciplinaMaster dm = new DisciplinaMaster();
+								
+							dm.setNume(values.get(index++));
+							dm.setCod(index < values.size() ? values.get(index++) : null);
+							dm.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dm.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
+							dm.setNumarOreCurs(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dm.setNumarOreSeminar(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dm.setNumarOreLaborator(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dm.setNumarOreProiect(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dm.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dm.setCategorieFormativaMaster(index < values.size() ? values.get(index++) : null);
+							dm.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dm.setSemestru(semesterNumber);							
+							pim.getListaDisciplinaMaster().add(dm);
+					        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
+							values.clear();
+						}
+						
+					}
+					catch (NumberFormatException e)
+					{
+						System.out.println("Invalid format ");
+	
+					}
 				}
-				
 			}
-			planInvatamantMasterRepository.save(pim);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
         //log.info("Extraction complete.");
-	}
-	
-	@SuppressWarnings("incomplete-switch")
-	public static String getValue(XSSFWorkbook workbook,Cell cell)
-	{
-		XSSFFormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator(); 
-		
-		switch (cell.getCellType()) 
-		{
-			case NUMERIC:
-				return (int)cell.getNumericCellValue() + "";
-			case STRING:
-				return cell.getStringCellValue() + "";
-			case FORMULA:
-				try 
-				{
-					switch (evaluator.evaluateFormulaCell(cell))
-					{
-			        	case BOOLEAN:
-				       		return ""+cell.getBooleanCellValue();
-				       	case NUMERIC:
-				       		return ""+(int)cell.getNumericCellValue();
-				       	case STRING:
-			        		return cell.getStringCellValue();
-					}
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			break;
-		}
-		
-		return "0";
-	}
-	
+	}	
 }

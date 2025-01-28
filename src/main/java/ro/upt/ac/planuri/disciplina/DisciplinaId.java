@@ -54,4 +54,9 @@ public class DisciplinaId extends Disciplina
 	public void setCategorieFormativaLicenta(String categorieFormativaLicenta) {
 		this.categorieFormativaLicenta = categorieFormativaLicenta;
 	}
+	
+	public String toString()
+	{
+		return ""+categorieFormativaLicenta+" "+numarOreActivitatiAutoinstruire+" "+numarOreActivitatiTutorat+" "+numarTemeDeControl+" "+numarActivitatiAplicativeAsistate;
+	}
 }

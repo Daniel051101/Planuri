@@ -69,13 +69,13 @@ public class Application
 	    return (args) -> {	
 			log.info("Starting extractor...");
 			
-			extractorLicenta.processFilesLicenta();
+			extractorLicenta.extract();
 			
-			extractorLicentaCalcEn.extractDataLicentaCalcEn();
+			extractorLicentaCalcEn.extract();
 			
-			extractorLicentaInfoID.extracDataLicentaInfoID();
+			extractorLicentaInfoID.extract();
 			
-			extractorLicentaInfoZi.extractDataLicentaInfoZi();
+			extractorLicentaInfoZi.extract();
 
 			log.info("Extractor finished");
 	    };
@@ -87,7 +87,7 @@ public class Application
 	    return (args) -> {	
 			log.info("Starting extractor...");
 			
-			extractorMaster.processFilesMaster();
+			extractorMaster.extract();
 
 			log.info("Extractor finished");
 	    };

@@ -13,43 +13,26 @@ import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
-import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
-import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
 // pentru calc ro, ti, is
-@Component
-public class ExtractorLicenta extends ProcessFiles
+public class ExtractorLicenta extends Extractor
 {	
-    @Autowired
-    PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
-    
-    @Autowired
-    DisciplinaZiRepository disciplinaZiRepository;
-    
-    //private static final Logger log = LoggerFactory.getLogger(ExtractorLicenta.class);
+	private PlanInvatamantLicenta pil=new PlanInvatamantLicenta();
 
-	public void processFilesLicenta()
+	public void extract()
 	{
-        List<String> files = Arrays.asList(
-                "./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ",
-                "./data/licenta/2023-2027_AC_PI_C-RO.xlsx ",
-                "./data/licenta/2023-2027_AC_PI_TI.xlsx "
+        List<String> paths = Arrays.asList(
+            "./data/licenta/2023-2027 AC AIA licenta (anul 1).xlsx ",
+            "./data/licenta/2023-2027_AC_PI_C-RO.xlsx ",
+            "./data/licenta/2023-2027_AC_PI_TI.xlsx "
             );
-
-            files.forEach(filePath -> {
-                //log.info("Processing file: {}", filePath);
-                extractData(filePath);
-            });
-
-            //log.info("Finished processing all files.");
+        extract(paths);
 	}
 	
-	public void extractData(String filePath) 
+	public void extract(String filePath) 
 	{
         //log.info("Starting extraction...", filePath);
 		try (FileInputStream file = new FileInputStream(filePath);
@@ -70,6 +53,7 @@ public class ExtractorLicenta extends ProcessFiles
 			
 			//uni, facultate, coduri
 			for(c=0; c<10; c++)
+			{
 				for (r=0; r<13; r++)
 				{
 					Row row=sheet.getRow(r);
@@ -95,6 +79,7 @@ public class ExtractorLicenta extends ProcessFiles
 					
 					//System.out.println(value);
 				}
+			}
 			index=0;
 			
             pil.setUniversitate(values.get(index++));
@@ -126,107 +111,105 @@ public class ExtractorLicenta extends ProcessFiles
 					);
 			
 			for(c=1;c<38;c+=12)
-			for(r=17;r<n;r++)
-			{		
-		        if (rAdjustments.containsKey(r)) 
-		            r = rAdjustments.get(r);
-				
-				Row row=sheet.getRow(r);
-				
-				if(row==null)
-					continue;
-				
-				Cell cell=row.getCell(c);
-				
-				if(cell==null)
-					continue;
-				
-				String value=getValue(workbook,cell);
-				value=value.replaceAll("\n", " ");
-				
-				if(value.isEmpty() || value.equals("0"))
-					continue;
-				
-				if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
-				{
-				    // Extragem doar numărul sub formă de String
-				    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
-				    
-				    // Convertim șirul în int
-				    semesterNumber = Integer.parseInt(semesterNumberStr);
-				    
-				    if (semesterNumber > semesterMax)
-				    	semesterMax = semesterNumber;
-				    
-				    //System.out.println("Detected semester: " + semesterNumber);
-				    continue;
-				}
-				else
-				{
-					values.add(value);
-					//System.out.println(value);
-				}
-
-				if (cell.getCellType() == CellType.FORMULA)
-				{
-					for (int k=3; k<12; k++)
+			{
+				for(r=17;r<n;r++)
+				{		
+			        if (rAdjustments.containsKey(r)) 
+			            r = rAdjustments.get(r);
+					
+					Row row=sheet.getRow(r);
+					
+					if(row==null)
+						continue;
+					
+					Cell cell=row.getCell(c);
+					
+					if(cell==null)
+						continue;
+					
+					String value=getValue(workbook,cell);
+					value=value.replaceAll("\n", " ");
+					
+					if(value.isEmpty() || value.equals("0"))
+						continue;
+					
+					if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
 					{
-						Cell cell1=row.getCell(c+k);
-						if(cell1==null)
-							continue;
-				
-						String value1=getValue(workbook,cell1);
-						
-						values.add(value1);
-
-						//System.out.println(value1);
+					    // Extragem doar numărul sub formă de String
+					    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
+					    
+					    // Convertim șirul în int
+					    semesterNumber = Integer.parseInt(semesterNumberStr);
+					    
+					    if (semesterNumber > semesterMax)
+					    	semesterMax = semesterNumber;
+					    
+					    //System.out.println("Detected semester: " + semesterNumber);
+					    continue;
 					}
-				}
-				
-				try {
-					if (values.size() >= 11)
+					else
 					{
-			            index=0;
-						DisciplinaZi dz = new DisciplinaZi();
+						values.add(value);
+						//System.out.println(value);
+					}
+	
+					if (cell.getCellType() == CellType.FORMULA)
+					{
+						for (int k=3; k<12; k++)
+						{
+							Cell cell1=row.getCell(c+k);
+							if(cell1==null)
+								continue;
+					
+							String value1=getValue(workbook,cell1);
 							
-						dz.setNume(values.get(index++));
-						dz.setCod(index < values.size() ? values.get(index++) : null);
-						dz.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dz.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
-						dz.setNumarOreCurs(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dz.setNumarOreSeminar(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dz.setNumarOreLaborator(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dz.setNumarOreProiect(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dz.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
-						dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-						dz.setSemestru(semesterNumber);
-							
-						disciplinaZiRepository.save(dz);
-						pil.getListaDisciplinaZi().add(dz);
-											
-				        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
-
-						values.clear();
+							values.add(value1);
+	
+							//System.out.println(value1);
+						}
 					}
 					
-				}catch (NumberFormatException e)
-				{
-					System.out.println("Invalid format ");
-
+					try 
+					{
+						if (values.size() >= 11)
+						{
+				            index=0;
+							DisciplinaZi dz = new DisciplinaZi();
+							
+							dz.setNume(values.get(index++));
+							dz.setCod(index < values.size() ? values.get(index++) : null);
+							dz.setNumarCrediteTransferabile(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dz.setFormaEvaluare(index < values.size() ? values.get(index++) : null);
+							dz.setNumarOreCurs(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dz.setNumarOreSeminar(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dz.setNumarOreLaborator(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dz.setNumarOreProiect(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dz.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
+							dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
+							dz.setSemestru(semesterNumber);
+								
+							pil.getListaDisciplinaZi().add(dz);
+												
+					        //System.out.println(values.size() + "Datele disciplinei introduse în baza de date ! \n");
+	
+							values.clear();
+						}
+						
+					}
+					catch (NumberFormatException e)
+					{
+						System.out.println("Invalid format");
+					}
+					
 				}
-				
+				pil.setDurataStudiiLicenta(semesterMax/2);
 			}
-			pil.setDurataStudiiLicenta(semesterMax/2);
-			
-			planInvatamantLicentaRepository.save(pil);
-			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
 	public String getValue(XSSFWorkbook workbook,Cell cell)
