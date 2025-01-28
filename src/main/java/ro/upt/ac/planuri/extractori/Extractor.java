@@ -24,7 +24,7 @@ abstract public class Extractor
 	{
 		XSSFFormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator(); 
 		
-		switch (cell.getCellType()) 
+		switch(cell.getCellType()) 
 		{
 			case NUMERIC:
 				return (int)cell.getNumericCellValue() + "";

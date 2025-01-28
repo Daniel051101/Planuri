@@ -89,7 +89,7 @@ public class Application
 			
 			extractorMaster.extract();
 
-			log.info("Extractor finished");
+			log.info("Stopping extractor...");
 	    };
 	}
 	
