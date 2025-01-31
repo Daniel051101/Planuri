@@ -57,6 +57,6 @@ public class DisciplinaId extends Disciplina
 	
 	public String toString()
 	{
-		return ""+categorieFormativaLicenta+" "+numarOreActivitatiAutoinstruire+" "+numarOreActivitatiTutorat+" "+numarTemeDeControl+" "+numarActivitatiAplicativeAsistate;
+		return toStringD()+categorieFormativaLicenta+" "+numarOreActivitatiAutoinstruire+" "+numarOreActivitatiTutorat+" "+numarTemeDeControl+" "+numarActivitatiAplicativeAsistate;
 	}
 }

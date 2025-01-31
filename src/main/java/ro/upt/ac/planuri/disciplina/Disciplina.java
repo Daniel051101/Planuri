@@ -89,8 +89,8 @@ abstract public class Disciplina
 		this.semestru = semestru;
 	}
 	
-	public String toString()
+	public String toStringD()
 	{
-		return ""+nume+" "+cod+" "+numarCrediteTransferabile+" "+formaEvaluare+" "+volumOreNecesareActivitatilorPartialAsistate+" "+volumOreNecesaraPregatiriIndividuale+" "+semestru;
+		return ""+nume+" "+cod+" "+numarCrediteTransferabile+" "+formaEvaluare+" "+volumOreNecesareActivitatilorPartialAsistate+" "+volumOreNecesaraPregatiriIndividuale+" "+semestru+" ";
 	}	
 }

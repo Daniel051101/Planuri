@@ -23,14 +23,12 @@ public class ExtractorLicentaInfoZi extends Extractor
 		extract("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx");
 	}
 	
-	//@SuppressWarnings({ "resource", "incomplete-switch" })
 	public void extract(String path) 
 	{
 		//System.out.println("Starting...");
 		try
 		{
 			FileInputStream file = new FileInputStream(path);
-
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -49,12 +47,10 @@ public class ExtractorLicentaInfoZi extends Extractor
 				for (r=0; r<13; r++)
 				{
 					Row row=sheet.getRow(r);
-					
 					if(row==null)
 						continue;
 					
 					Cell cell=row.getCell(c);
-					
 					if(cell==null)
 						continue;
 					
@@ -68,7 +64,6 @@ public class ExtractorLicentaInfoZi extends Extractor
 						continue;
 					
 					values.add(value);
-					
 					//System.out.println(value);
 				}
 			}
@@ -89,7 +84,6 @@ public class ExtractorLicentaInfoZi extends Extractor
             pil.setProgramDeStudiiLicenta(index < values.size() ? values.get(index++) : null);
 			
             //System.out.println("Datele planului introduse în baza de date!");
-            
             values.clear();
                 
 			Map<Integer, Integer> rAdjustments=Map.of(
@@ -110,12 +104,10 @@ public class ExtractorLicentaInfoZi extends Extractor
 			            r = rAdjustments.get(r);
 					
 					Row row=sheet.getRow(r);
-					
 					if(row==null)
 						continue;
 					
 					Cell cell=row.getCell(c);
-					
 					if(cell==null)
 						continue;
 					
@@ -127,15 +119,11 @@ public class ExtractorLicentaInfoZi extends Extractor
 					
 					if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
 					{
-					    // Extragem doar numărul sub formă de String
 					    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
-					    
-					    // Convertim șirul în int
 					    semesterNumber = Integer.parseInt(semesterNumberStr);
 					    
 					    if (semesterNumber > semesterMax)
 					    	semesterMax = semesterNumber;
-					    
 					    //System.out.println("Detected semester: " + semesterNumber);
 					    continue;
 					}
@@ -145,7 +133,7 @@ public class ExtractorLicentaInfoZi extends Extractor
 						//System.out.println(value);
 					}
 	
-					if (cell.getCellType() == CellType.FORMULA)
+					if (cell.getCellType() == CellType.FORMULA || value.equals("Valoare indisponibilă"))
 					{
 						for (int k=3; k<12; k++)
 						{
@@ -182,7 +170,6 @@ public class ExtractorLicentaInfoZi extends Extractor
 					        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 							values.clear();
 						}
-						
 					}
 					catch(NumberFormatException e)
 					{

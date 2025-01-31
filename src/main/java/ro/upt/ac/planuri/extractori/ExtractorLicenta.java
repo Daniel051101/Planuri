@@ -10,7 +10,6 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.IOUtils;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
@@ -22,7 +21,7 @@ import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 @Component
 public class ExtractorLicenta extends Extractor
 {	
-	private PlanInvatamantLicenta pil=new PlanInvatamantLicenta();
+	private PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
 
 	public void extract()
 	{
@@ -36,21 +35,17 @@ public class ExtractorLicenta extends Extractor
 	
 	public void extract(String filePath) 
 	{
-        //log.info("Starting extraction...", filePath);
 		try (FileInputStream file = new FileInputStream(filePath);
 	             XSSFWorkbook workbook = new XSSFWorkbook(file))
 		{
-		
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
             int n = sheet.getLastRowNum();  
 			int c=0, r=0, index=0, semesterNumber = 0, semesterMax=0;
-			
 			String semesterNumberStr;
 			
-			PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
@@ -78,7 +73,6 @@ public class ExtractorLicenta extends Extractor
 						continue;
 					
 					values.add(value);
-					
 					//System.out.println(value);
 				}
 			}
@@ -137,17 +131,13 @@ public class ExtractorLicenta extends Extractor
 					
 					if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
 					{
-					    // Extragem doar numărul sub formă de String
 					    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
-					    
-					    // Convertim șirul în int
 					    semesterNumber = Integer.parseInt(semesterNumberStr);
 					    
 					    if (semesterNumber > semesterMax)
 					    	semesterMax = semesterNumber;
-					    
-					    //System.out.println("Detected semester: " + semesterNumber);
 					    continue;
+					    //System.out.println("Detected semester: " + semesterNumber);
 					}
 					else
 					{
@@ -155,7 +145,7 @@ public class ExtractorLicenta extends Extractor
 						//System.out.println(value);
 					}
 	
-					if (cell.getCellType() == CellType.FORMULA)
+					if (cell.getCellType() == CellType.FORMULA || value.equals("Valoare indisponibilă"))
 					{
 						for (int k=3; k<12; k++)
 						{
@@ -164,9 +154,7 @@ public class ExtractorLicenta extends Extractor
 								continue;
 					
 							String value1=getValue(workbook,cell1);
-							
 							values.add(value1);
-	
 							//System.out.println(value1);
 						}
 					}
@@ -190,20 +178,16 @@ public class ExtractorLicenta extends Extractor
 							dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
 							dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
 							dz.setSemestru(semesterNumber);
-								
+							
 							pil.getListaDisciplinaZi().add(dz);
-												
 					        //System.out.println(values.size() + "Datele disciplinei introduse în baza de date ! \n");
-	
 							values.clear();
 						}
-						
 					}
 					catch (NumberFormatException e)
 					{
 						System.out.println("Invalid format: "+dz.toString());
 					}
-					
 				}
 				pil.setDurataStudiiLicenta(semesterMax/2);
 			}
@@ -212,42 +196,5 @@ public class ExtractorLicenta extends Extractor
 		{
 			e.printStackTrace();
 		}		
-	}
-	
-	public String getValue(XSSFWorkbook workbook,Cell cell)
-	{
-		XSSFFormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator(); 
-		
-		switch (cell.getCellType()) 
-		{
-			case NUMERIC:
-				return (int)cell.getNumericCellValue() + "";
-			case STRING:
-				return cell.getStringCellValue() + "";
-			case FORMULA:
-				try 
-				{
-					switch (evaluator.evaluateFormulaCell(cell))
-					{
-			        	case BOOLEAN:
-				       		return ""+cell.getBooleanCellValue();
-				       	case NUMERIC:
-				       		return ""+(int)cell.getNumericCellValue();
-				       	case STRING:
-			        		return cell.getStringCellValue();
-					default:
-						break;
-					}
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-				break;
-			case _NONE:
-			default:
-		}
-		
-		return "0";
 	}
 }

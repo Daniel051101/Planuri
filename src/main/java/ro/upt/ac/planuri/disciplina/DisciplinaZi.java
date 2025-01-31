@@ -54,4 +54,9 @@ public class DisciplinaZi extends Disciplina
 	public void setCategorieFormativaLicenta(String categorieFormativaLicenta) {
 		this.categorieFormativaLicenta = categorieFormativaLicenta;
 	}
+	
+	public String toString()
+	{
+		return toStringD()+categorieFormativaLicenta+" "+numarOreCurs+" "+numarOreSeminar+" "+numarOreLaborator+" "+numarOreProiect;
+	}
 }

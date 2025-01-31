@@ -7,16 +7,12 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.IOUtils;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaId;
-import ro.upt.ac.planuri.disciplina.DisciplinaIdRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
-import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
 @Component
 public class ExtractorLicentaInfoID extends Extractor
@@ -27,14 +23,12 @@ public class ExtractorLicentaInfoID extends Extractor
 		extract("./data/licenta/2023-2026_AC_PI_Info_InfoID.xlsx");
 	}
 	
-    //@SuppressWarnings({ "resource", "incomplete-switch" })
 	public void extract(String path) 
 	{
 		//System.out.println("Starting...");
 		try
 		{
 			FileInputStream file = new FileInputStream(path);
-
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
 
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -49,15 +43,14 @@ public class ExtractorLicentaInfoID extends Extractor
 			
 			//uni, facultate, coduri
 			for(c=0; c<10; c++)
+			{
 				for (r=0; r<13; r++)
 				{
 					Row row=sheet.getRow(r);
-					
 					if(row==null)
 						continue;
 					
 					Cell cell=row.getCell(c);
-					
 					if(cell==null)
 						continue;
 					
@@ -71,10 +64,9 @@ public class ExtractorLicentaInfoID extends Extractor
 						continue;
 					
 					values.add(value);
-					
 					//System.out.println(value);
 				}
-			
+			}
 			index=0;
 			
             pil.setUniversitate(values.get(index++));
@@ -92,7 +84,6 @@ public class ExtractorLicentaInfoID extends Extractor
             pil.setProgramDeStudiiLicenta(index < values.size() ? values.get(index++) : null);
 			
             //System.out.println("Date introduse în baza de date!");
-            
             values.clear();
                 
 			Map<Integer, Integer> rAdjustments=Map.of(
@@ -115,14 +106,12 @@ public class ExtractorLicentaInfoID extends Extractor
 			        }
 			        
 					Row row=sheet.getRow(r);
-					
 					if(row==null)
 					{
 						continue;
 					}
 					
 					Cell cell=row.getCell(c);
-					
 					if(cell==null)
 					{
 						continue;
@@ -138,17 +127,13 @@ public class ExtractorLicentaInfoID extends Extractor
 					
 					if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
 					{
-					    // Extragem doar numărul sub formă de String
 					    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
-					    
-					    // Convertim șirul în int
 					    semesterNumber = Integer.parseInt(semesterNumberStr);
 					    
 					    if (semesterNumber > semesterMax)
 					    {
 					    	semesterMax = semesterNumber;
 					    }
-					    
 					    //System.out.println("Detected semester: " + semesterNumber);
 					    continue;
 					}
@@ -158,7 +143,7 @@ public class ExtractorLicentaInfoID extends Extractor
 						//System.out.println(value);
 					}
 	
-					if (cell.getCellType() == CellType.FORMULA)
+					if (cell.getCellType() == CellType.FORMULA || value.equals("Valoare indisponibilă"))
 					{
 						for (int k=3; k<12; k++)
 						{
@@ -195,7 +180,6 @@ public class ExtractorLicentaInfoID extends Extractor
 					        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 							values.clear();
 						}
-						
 					}
 					catch (NumberFormatException e)
 					{
@@ -209,7 +193,6 @@ public class ExtractorLicentaInfoID extends Extractor
 		{
 			e.printStackTrace();
 		}
-		
 		//System.out.println("Stopping... ");
 	}	
 }

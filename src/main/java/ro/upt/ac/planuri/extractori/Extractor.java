@@ -3,6 +3,9 @@ package ro.upt.ac.planuri.extractori;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CellValue;
+import org.apache.poi.ss.usermodel.FormulaError;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -26,21 +29,33 @@ abstract public class Extractor
 		
 		switch(cell.getCellType()) 
 		{
-			case NUMERIC:
-				return (int)cell.getNumericCellValue() + "";
-			case STRING:
-				return cell.getStringCellValue() + "";
+	       	case NUMERIC:
+	       		return ""+(int)cell.getNumericCellValue();
+	       	case STRING:
+	    		return cell.getStringCellValue();
+	    	case BOOLEAN:
+	       		return ""+cell.getBooleanCellValue();
 			case FORMULA:
 				try 
 				{
+	                CellValue cellValue = evaluator.evaluate(cell);
+	                if (cellValue.getCellType() == CellType.ERROR) 
+	                {
+	                    FormulaError error = FormulaError.forInt(cellValue.getErrorValue());
+	                    if (error == FormulaError.NA) 
+	                    {
+	                        return "Valoare indisponibilă";
+	                    }
+	                    return "FORMULA_ERROR: " + error.getString();
+	                }
 					switch (evaluator.evaluateFormulaCell(cell))
 					{
-			        	case BOOLEAN:
-				       		return ""+cell.getBooleanCellValue();
 				       	case NUMERIC:
 				       		return ""+(int)cell.getNumericCellValue();
 				       	case STRING:
 			        		return cell.getStringCellValue();
+			        	case BOOLEAN:
+				       		return ""+cell.getBooleanCellValue();
 					}
 				}
 				catch(Exception e)

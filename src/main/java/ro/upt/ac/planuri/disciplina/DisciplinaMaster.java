@@ -54,4 +54,9 @@ public class DisciplinaMaster extends Disciplina
 	public void setNumarOreProiect(int numarOreProiect) {
 		this.numarOreProiect = numarOreProiect;
 	}
+	
+	public String toString()
+	{
+		return toStringD()+categorieFormativaMaster+" "+numarOreCurs+" "+numarOreSeminar+" "+numarOreLaborator+" "+numarOreProiect;
+	}
 }

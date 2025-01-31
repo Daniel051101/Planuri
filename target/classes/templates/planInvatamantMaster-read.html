@@ -33,6 +33,37 @@
 		  justify-content: space-between; /* Distribuie elementele uniform */
 		}
 		
+		.bd-placeholder-img {
+		    font-size: 1.125rem;
+		    text-anchor: middle;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    user-select: none;
+		}
+
+		@media (min-width: 768px) {
+		    .bd-placeholder-img-lg {
+		        font-size: 3.5rem;
+		    }
+		}
+
+		.content {
+		    flex: 1; /* Împinge footer-ul în jos */
+			display: grid; /* Activează grid layout */
+			place-items: center; /* Centrează pe verticală și orizontală */
+			text-align: center; /* Text aliniat central */
+		}
+
+		footer {
+		    background-color: #f8f9fa;
+		    padding: 20px 0;
+			text-align: center;
+		}
+
+		.welcome {
+		    padding: 40px 0;
+		    text-align: center;
+		}
     </style>
     
 </head>
@@ -47,10 +78,6 @@
 		        <li><a href="/planInvatamantLicenta-read" class="nav-link px-2 text-white">Planuri Licență</a></li>
 				<li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri Master</a></li>
 		      </ul>
-
-		      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-		        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-		      </form>
 
 		      <div class="text-end">
 		        <a class="btn btn-outline-light me-2" href="/login" role="button">Login</a>
@@ -67,8 +94,8 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Planuri Master</h1>
         <p>
-          <a href="/planInvatamantMaster-create" class="btn btn-primary my-2">Adauga plan</a>
-		  <a href="/disciplinaMaster-read" class="btn btn-primary my-2">Discipline Master</a>
+          <a href="/planInvatamantMaster-create" class="btn btn-primary my-2">Adaugă plan</a>
+		  <a href="/" class="btn btn-primary my-2">Inserare plan</a>
         </p>
       </div>
     </div>

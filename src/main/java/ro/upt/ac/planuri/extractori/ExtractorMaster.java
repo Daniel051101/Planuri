@@ -9,7 +9,6 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.IOUtils;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,11 @@ import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 @Component
 public class ExtractorMaster extends Extractor
 {
+    @Autowired
+    PlanInvatamantMasterRepository planInvatamantMasterRepository;
+    
+    @Autowired
+    DisciplinaMasterRepository disciplinaMasterRepository;
 
 	public void extract()
 	{
@@ -39,19 +43,15 @@ public class ExtractorMaster extends Extractor
             "./data/master/2023-2025_AC_PI_Master_ML.xlsx ",
             "./data/master/2023-2025_AC_PI_Master_SE.xlsx "
         );
-        
         extract(paths);
 	}
 	
-    //@SuppressWarnings({ "resource", "incomplete-switch" })
 	public void extract(String filePath) 
 	{
-        //log.info("Starting extraction...", filePath);
 		try (FileInputStream file = new FileInputStream(filePath);
 	             XSSFWorkbook workbook = new XSSFWorkbook(file))
 		{
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
-
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
 			int n = sheet.getLastRowNum();
@@ -63,15 +63,14 @@ public class ExtractorMaster extends Extractor
 			
 			//uni, facultate, coduri
 			for(c=0; c<10; c++)
+			{
 				for (r=0; r<18; r++)
 				{
 					Row row=sheet.getRow(r);
-					
 					if(row==null)
 						continue;
 					
 					Cell cell=row.getCell(c);
-					
 					if(cell==null)
 						continue;
 					
@@ -87,7 +86,6 @@ public class ExtractorMaster extends Extractor
 					if (value.matches("(?i)\\d+\\s+ani"))
 					{
 						durataStr = value.replaceAll("(?i)\\s+ani", "");
-											
 						values.add(durataStr);	
 						continue;
 					}
@@ -96,8 +94,8 @@ public class ExtractorMaster extends Extractor
 						values.add(value);
 						//System.out.println(value);
 					}
-
 				}
+			}
             index=0;
             
             pim.setUniversitate(values.get(index++));
@@ -117,14 +115,13 @@ public class ExtractorMaster extends Extractor
             pim.setDomeniuStudiiMaster(index < values.size() ? values.get(index++) : null);
 			
             //System.out.println("Datele planului introduse în baza de date!");
-            
             values.clear();
             
 			Map<Integer, Integer> rAdjustments=Map.of(
 					52, 63,
 					94, 111,
 				    141, 149,
-				    179, 214,
+				    180, 214,
 				    226, 234,
 				    246, n-1
 					);
@@ -137,12 +134,10 @@ public class ExtractorMaster extends Extractor
 			            r = rAdjustments.get(r);
 					
 					Row row=sheet.getRow(r);
-					
 					if(row==null)
 						continue;
 					
 					Cell cell=row.getCell(c);
-					
 					if(cell==null)
 						continue;
 					
@@ -154,14 +149,10 @@ public class ExtractorMaster extends Extractor
 					
 					if(value.matches("(?i)SEMESTRUL\\s+\\d+"))
 					{
-					    // Extragem doar numărul sub formă de String
 					    semesterNumberStr = value.replaceAll("(?i)SEMESTRUL\\s+", "");
-					    
-					    // Convertim șirul în int
 					    semesterNumber = Integer.parseInt(semesterNumberStr);
-					    
-					    //System.out.println("Detected semester: " + semesterNumber);
 					    continue;
+					    //System.out.println("Detected semester: " + semesterNumber);
 					}
 					else
 					{
@@ -169,7 +160,7 @@ public class ExtractorMaster extends Extractor
 						//System.out.println(value);
 					}
 	
-					if (cell.getCellType() == CellType.FORMULA)
+					if (cell.getCellType() == CellType.FORMULA  || value.equals("Valoare indisponibilă"))
 					{
 						for (int k=3; k<12; k++)
 						{
@@ -205,21 +196,21 @@ public class ExtractorMaster extends Extractor
 							pim.getListaDisciplinaMaster().add(dm);
 					        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 							values.clear();
+							
+							disciplinaMasterRepository.save(dm);
 						}
-						
 					}
 					catch (NumberFormatException e)
 					{
 						System.out.println("Invalid format: "+dm.toString());
-	
 					}
 				}
 			}
+			planInvatamantMasterRepository.save(pim);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-        //log.info("Extraction complete.");
 	}	
 }

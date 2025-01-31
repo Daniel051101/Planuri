@@ -12,26 +12,54 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-		
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
+		/* Forțează cardurile să aibă aceeași înălțime și lățime pe rând */
+		.row.row-cols-1 .col,
+		.row.row-cols-2 .col,
+		.row.row-cols-3 .col {
+		  display: flex;
+		}
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+		.card {
+		  display: flex;
+		  flex-direction: column;
+		  height: 100%; /* Cardurile au aceeași înălțime */
+		  width: 100%; /* Cardurile ocupă lățimea completă disponibilă în coloană */
+		}
 
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-        }
-		
+		.card-body {
+		  flex-grow: 1;
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: space-between; /* Distribuie elementele uniform */
+		}
+
+		.bd-placeholder-img {
+		    font-size: 1.125rem;
+		    text-anchor: middle;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    user-select: none;
+		}
+
+		@media (min-width: 768px) {
+		    .bd-placeholder-img-lg {
+		        font-size: 3.5rem;
+		    }
+		}
+
+		.content {
+		    flex: 1; /* Împinge footer-ul în jos */
+			display: grid; /* Activează grid layout */
+			place-items: center; /* Centrează pe verticală și orizontală */
+			text-align: center; /* Text aliniat central */
+		}
+
+		footer {
+		    background-color: #f8f9fa;
+		    padding: 20px 0;
+			text-align: center;
+		}
+
 		.welcome {
 		    padding: 40px 0;
 		    text-align: center;
@@ -48,10 +76,6 @@
                 <li><a href="/planInvatamantMaster-read" class="nav-link px-2 text-white">Planuri Master</a></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-            </form>
-
             <div class="text-end">
                 <a class="btn btn-outline-light me-2" href="/login" role="button">Login</a>
                 <a class="btn btn-warning" href="/signup" role="button">Sign-up</a>
@@ -66,9 +90,8 @@
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Planuri Licenta</h1>
                 <p>
-                    <a href="/planInvatamantLicenta-create" class="btn btn-primary my-2">Adauga plan</a>
-					<a href="/disciplinaZi-read" class="btn btn-primary my-2">Discipline Zi</a>
-					<a href="/disciplinaId-read" class="btn btn-primary my-2">Discipline Id</a>
+                    <a href="/planInvatamantLicenta-create" class="btn btn-primary my-2">Adaugă plan</a>
+					<a href="/" class="btn btn-primary my-2">Inserare plan</a>
                 </p>
             </div>
         </div>
