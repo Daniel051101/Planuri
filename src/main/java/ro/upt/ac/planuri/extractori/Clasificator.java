@@ -23,17 +23,20 @@ public class Clasificator extends Extractor
 			
 			 Row row = sheet.getRow(24);
 			 Cell cell = row.getCell(9);
+			 
+			 ExtractorLicenta el = new ExtractorLicenta();
+			 ExtractorLicentaCalcEn elce = new ExtractorLicentaCalcEn();
 			 			 
 			 switch (getValue(workbook,cell))
 			 {
 			 case "AUTOMATICĂ ȘI INFORMATICĂ APLICATĂ":
-				 return null;
+				 return el;
 			 case "CALCULATOARE (în limba engleză)":
-				 return null;
+				 return elce;
 			 case "CALCULATOARE":
-				 return null;
+				 return el;
 			 case "TEHNOLOGIA INFORMAȚIEI":
-				 return null;
+				 return el;
 			 default:
 				 break; 
 			 }
@@ -41,14 +44,18 @@ public class Clasificator extends Extractor
 			 row = sheet.getRow(34);
 			 cell = row.getCell(9);
 			 
+			 ExtractorLicentaInfoID elii = new ExtractorLicentaInfoID();
+			 ExtractorLicentaInfoZi eliz = new ExtractorLicentaInfoZi();
+			 ExtractorMaster em = new ExtractorMaster();
+			 
 			 switch (getValue(workbook,cell))
 			 {
 			 case "Invatamant la distanta":
-				 return null;
+				 return elii;
 			 case "IF - Invatamant cu frecventa":
-				 return null;
+				 return eliz;
 			 case "2 ani / 120 credite":
-				 return null;
+				 return em;
 			 default:
 				 break; 
 			 }
