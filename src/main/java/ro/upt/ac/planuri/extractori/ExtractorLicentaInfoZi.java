@@ -20,7 +20,7 @@ public class ExtractorLicentaInfoZi extends Extractor
 
 	public void extract()
 	{
-		extract("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx");
+		extract("C:\\Users\\Daniel\\Documents\\GitHub\\Planuri\\uploads\\2023-2026_AC_PI_Info_InfoID.xlsx");
 	}
 	
 	public void extract(String path) 

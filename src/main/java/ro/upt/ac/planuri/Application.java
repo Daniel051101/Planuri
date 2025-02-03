@@ -26,12 +26,12 @@ public class Application
 		SpringApplication.run(Application.class, args);
 	}
 		
-//	@Bean
-//	public CommandLineRunner runExtractorLicenta (ExtractorLicenta extractorLicenta, ExtractorLicentaCalcEn extractorLicentaCalcEn, ExtractorLicentaInfoID extractorLicentaInfoID, ExtractorLicentaInfoZi extractorLicentaInfoZi)
-//	{
-//	    return (args) -> {	
-//			log.info("Starting extractor...");
-//			
+	@Bean
+	public CommandLineRunner runExtractorLicenta (ExtractorLicenta extractorLicenta, ExtractorLicentaCalcEn extractorLicentaCalcEn, ExtractorLicentaInfoID extractorLicentaInfoID, ExtractorLicentaInfoZi extractorLicentaInfoZi)
+	{
+	    return (args) -> {	
+			log.info("Starting extractor licenta...");
+			
 //			extractorLicenta.extract();
 //			
 //			extractorLicentaCalcEn.extract();
@@ -39,33 +39,33 @@ public class Application
 //			extractorLicentaInfoID.extract();
 //			
 //			extractorLicentaInfoZi.extract();
-//
-//			log.info("Extractor finished");
-//	    };
-//	}
-	
-	@Bean
-	public CommandLineRunner runExtractorMaster (ExtractorMaster extractorMaster)
-	{
-	    return (args) -> {	
-			log.info("Starting extractor...");
-			
-			extractorMaster.extract();
 
 			log.info("Stopping extractor...");
 	    };
 	}
 	
-//	@Bean
-//	public CommandLineRunner runExtractorTest (ExtractorTest extractorTest)
-//	{
-//	    return (args) -> {	
-//			log.info("Starting extractor...");
-//			
+	@Bean
+	public CommandLineRunner runExtractorMaster (ExtractorMaster extractorMaster)
+	{
+	    return (args) -> {	
+			log.info("Starting extractor master...");
+			
+//			extractorMaster.extract();
+
+			log.info("Stopping extractor...");
+	    };
+	}
+	
+	@Bean
+	public CommandLineRunner runExtractorTest (ExtractorTest extractorTest)
+	{
+	    return (args) -> {	
+			log.info("Starting extractor test...");
+			
 //			extractorTest.extract();
-//
-//			log.info("Stopping extractor...");
-//	    };
-//	}
+
+			log.info("Stopping extractor...");
+	    };
+	}
 	
 }

@@ -39,7 +39,6 @@ public class ExtractorLicenta extends Extractor
 	             XSSFWorkbook workbook = new XSSFWorkbook(file))
 		{
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
-
 			XSSFSheet sheet = workbook.getSheetAt(1);
 			
             int n = sheet.getLastRowNum();  

@@ -1,68 +1,75 @@
 package ro.upt.ac.planuri.extractori;
 
 import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+
 import org.apache.poi.util.IOUtils;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
 
-public class Clasificator extends Extractor
+@Component
+public class Clasificator
 {
-    //@SuppressWarnings({ "resource", "incomplete-switch" })
+    private final Map<String, Extractor> extractors = new HashMap<>();
+
+    public Clasificator(ExtractorLicenta extractorLicenta, ExtractorLicentaCalcEn extractorLicentaCalcEn, ExtractorLicentaInfoID extractorLicentaInfoID, ExtractorLicentaInfoZi extractorLicentaInfoZi, ExtractorMaster extractorMaster) 
+    {
+        extractors.put("AUTOMATICĂ ȘI INFORMATICĂ APLICATĂ", extractorLicenta);
+        extractors.put("CALCULATOARE (în limba engleză)", extractorLicentaCalcEn);
+        extractors.put("CALCULATOARE", extractorLicenta);
+        extractors.put("TEHNOLOGIA INFORMAȚIEI", extractorLicenta);
+        extractors.put("Invatamant la distanta", extractorLicentaInfoID);
+        extractors.put("IF - Invatamant cu frecventa", extractorLicentaInfoZi);
+        extractors.put("2 ani / 120 credite", extractorMaster);
+    }
+	
 	public Extractor clasifica(String path)
 	{
+		
+		System.out.println(path);
+		
 		try (FileInputStream file = new FileInputStream(path);
 	             XSSFWorkbook workbook = new XSSFWorkbook(file))
 		{
 			IOUtils.setByteArrayMaxOverride(Integer.MAX_VALUE);
-
-			XSSFSheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
 			
-			 Row row = sheet.getRow(24);
-			 Cell cell = row.getCell(9);
-			 
-			 ExtractorLicenta el = new ExtractorLicenta();
-			 ExtractorLicentaCalcEn elce = new ExtractorLicentaCalcEn();
-			 			 
-			 switch (getValue(workbook,cell))
-			 {
-			 case "AUTOMATICĂ ȘI INFORMATICĂ APLICATĂ":
-				 return el;
-			 case "CALCULATOARE (în limba engleză)":
-				 return elce;
-			 case "CALCULATOARE":
-				 return el;
-			 case "TEHNOLOGIA INFORMAȚIEI":
-				 return el;
-			 default:
-				 break; 
-			 }
-			 
-			 row = sheet.getRow(34);
-			 cell = row.getCell(9);
-			 
-			 ExtractorLicentaInfoID elii = new ExtractorLicentaInfoID();
-			 ExtractorLicentaInfoZi eliz = new ExtractorLicentaInfoZi();
-			 ExtractorMaster em = new ExtractorMaster();
-			 
-			 switch (getValue(workbook,cell))
-			 {
-			 case "Invatamant la distanta":
-				 return elii;
-			 case "IF - Invatamant cu frecventa":
-				 return eliz;
-			 case "2 ani / 120 credite":
-				 return em;
-			 default:
-				 break; 
-			 }
+            Row row = sheet.getRow(24);
+            Cell cell = row.getCell(9);
+            String planName = cell.getStringCellValue();
+
+            Extractor extractor = extractors.get(planName);
+            
+            if (extractor != null) 
+            {
+            	extractor.extract(path);
+            }
+
+            row = sheet.getRow(34);
+            cell = row.getCell(9);
+            planName = cell.getStringCellValue();
+            extractor = extractors.get(planName);
+
+            if (extractor != null) 
+            {
+            	extractor.extract(path);
+            } 
+            else 
+            {
+                System.out.println("Extractor necunoscut pentru fișierul: " + path);
+            }
+            
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-	}	
+		return null;
+	}
+	
 }

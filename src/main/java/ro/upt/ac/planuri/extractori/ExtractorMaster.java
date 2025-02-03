@@ -27,7 +27,7 @@ public class ExtractorMaster extends Extractor
     
     @Autowired
     DisciplinaMasterRepository disciplinaMasterRepository;
-
+    
 	public void extract()
 	{
         List<String> paths = Arrays.asList(

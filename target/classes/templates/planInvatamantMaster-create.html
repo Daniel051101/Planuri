@@ -43,16 +43,6 @@
 <main class="container py-5">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
-		<div class="mb-3">
-		  <label for="uploadFiles" class="form-label">Încărcare Documente</label>
-		  <div id="dropZone" class="border border-primary rounded p-3 text-center" 
-		       style="background-color: #f8f9fa; cursor: pointer;">
-		    Trageți și plasați fișierele aici sau faceți clic pentru a le selecta.
-		  </div>
-		  <input type="file" id="uploadFiles" name="uploadFiles" class="form-control" 
-		         style="display: none;" multiple>
-		  <div id="fileList" class="mt-2"></div>
-		</div>
       <form action="#" th:action="@{/planInvatamantMaster-create-save}" th:object="${planInvatamanMaster}" method="post">
         <div class="mb-3">
           <label for="universitate" class="form-label">Universitate</label>
