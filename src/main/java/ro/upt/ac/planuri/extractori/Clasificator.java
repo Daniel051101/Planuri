@@ -30,9 +30,7 @@ public class Clasificator
 	
 	public Extractor clasifica(String path)
 	{
-		
-		System.out.println(path);
-		
+				
 		try (FileInputStream file = new FileInputStream(path);
 	             XSSFWorkbook workbook = new XSSFWorkbook(file))
 		{

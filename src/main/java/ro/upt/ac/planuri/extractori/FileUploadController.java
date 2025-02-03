@@ -5,10 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.ui.Model;
@@ -16,7 +19,11 @@ import java.nio.file.Path;
 
 @Controller
 public class FileUploadController {
-
+	
+    // Obține valoarea limitei de fișiere din configurație
+    @Value("${spring.servlet.multipart.max-file-size}")
+    private String maxFileSize;
+	
     private final String UPLOAD_DIR = "uploads/";
     private final Clasificator clasificator;
 
@@ -44,14 +51,22 @@ public class FileUploadController {
             return "upload";
         }
 
-        try {
-            // Salvare fișier în directorul local
+        try 
+        {
             File directory = new File(UPLOAD_DIR);
             if (!directory.exists()) 
             {
-                directory.mkdirs();
+                directory.mkdirs(); // Creează directorul dacă nu există
             }
             
+            // Verificare dacă fișierul există deja
+            File existingFile = new File(directory, fileName);
+            if (existingFile.exists()) {
+                model.addAttribute("message", "Fișierul '" + fileName + "' a fost deja încărcat!");
+                return "upload";
+            }
+            
+            // Salvare fișier în directorul local
             Path path = Paths.get(UPLOAD_DIR + fileName);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
             
@@ -69,6 +84,13 @@ public class FileUploadController {
         }
 
         return "upload";
+    }
+    
+    // Handler pentru fișiere care depășesc dimensiunea maximă
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public String handleMaxSizeException(MaxUploadSizeExceededException e, Model model) {
+        model.addAttribute("message", "Fișierul este prea mare! Dimensiunea maximă permisă este de " + maxFileSize + ".");
+        return "upload"; // Returnează utilizatorul la pagina de upload
     }
 }
 
