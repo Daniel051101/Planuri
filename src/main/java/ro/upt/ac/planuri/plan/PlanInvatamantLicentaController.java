@@ -15,24 +15,6 @@ public class PlanInvatamantLicentaController
 	@Autowired
 	PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
 
-	@GetMapping("/")
-	public String index()
-	{
-		return "index";
-	}
-	
-	@GetMapping("/login")
-	public String login()
-	{
-		return "login";
-	}
-	
-	@GetMapping("/signup")
-	public String signup()
-	{
-		return "signup";
-	}
-
 	@GetMapping("/planInvatamantLicenta-create")
 	public String create(PlanInvatamantLicenta planInvatamantLicenta)
 	{

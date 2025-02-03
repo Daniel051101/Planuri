@@ -57,16 +57,16 @@
   <body class="text-center">
     <main class="form-signin">
       <!-- Formul de autentificare -->
-      <form>
+      <form action="/login" method="post">
         <h1 class="h4 fw-bold">Autentificare</h1>
 
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" aria-label="Adresa de email">
-          <label for="floatingInput">Adresa de email</label>
+			<input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-label="Nume utilizator">
+			<label for="username">Nume utilizator</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Parola" aria-label="Parola">
-          <label for="floatingPassword">Parola</label>
+			<input type="password" class="form-control" id="password" name="password" placeholder="Parola" aria-label="Parola">
+			<label for="password">Parola</label>
         </div>
 
         <div class="checkbox mb-3">
