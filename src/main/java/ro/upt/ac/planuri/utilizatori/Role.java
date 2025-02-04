@@ -36,6 +36,13 @@ public class Role {
     )
     private Set<Privilege> privileges = new HashSet<>();
 
+    public Role() {}
+
+    public Role(String name) 
+    {
+        this.name = name;
+    }
+    
 	public Long getId() {
 		return id;
 	}

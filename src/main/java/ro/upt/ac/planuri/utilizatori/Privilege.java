@@ -25,6 +25,13 @@ public class Privilege {
     @ManyToMany(mappedBy = "privileges")
     private Set<Role> roles = new HashSet<>();
 
+    public Privilege() {}
+
+    public Privilege(String name) 
+    {
+        this.name = name;
+    }
+    
 	public Long getId() {
 		return id;
 	}

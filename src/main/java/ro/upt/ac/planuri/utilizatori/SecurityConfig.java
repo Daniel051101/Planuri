@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -22,24 +23,29 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // Dezactivare CSRF pentru API
+            .csrf(csrf -> csrf
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Activează CSRF cu token în cookie
+            )
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/home", "/login", "/signup").permitAll() // Permite accesul la pagina de login
-                    .anyRequest().authenticated()
+                .requestMatchers("/", "/home", "/login", "/signup", "/css/**", "/js/**").permitAll()
+                .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                .loginPage("/login") // Specifică ruta paginii de login
+                .loginPage("/login")
+                .loginProcessingUrl("/login")  // Asigură-te că procesarea este setată corect
                 .defaultSuccessUrl("/home", true)
                 .permitAll()
             )
             .logout(logout -> logout
-        	    .logoutUrl("/logout")
-        	    .logoutSuccessUrl("/home") // După logout, redirecționează către /home
-        	    .permitAll()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/home")
+                .permitAll()
             );
 
         return http.build();
     }
+
+
 
 
     @Bean

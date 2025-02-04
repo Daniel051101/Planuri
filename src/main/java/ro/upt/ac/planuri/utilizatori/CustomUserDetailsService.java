@@ -21,19 +21,23 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
     {
+        System.out.println("Autentificare încercată pentru utilizatorul: " + username);
+
         User user = userRepository.findByUsername(username)
-            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            .orElseThrow(() -> new UsernameNotFoundException("Utilizator negasit"));
+        
+        System.out.println("Utilizator găsit: " + user.getUsername());
+        
         return new org.springframework.security.core.userdetails.User(
             user.getUsername(),
             user.getPassword(),
-            user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList())
+            mapRolesToAuthorities(user.getRoles())
+
         );
     }
 
-    @SuppressWarnings("unused")
-	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles) {
+	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles) 
+    {
         return roles.stream()
             .flatMap(role -> role.getPrivileges().stream()
                 .map(privilege -> new SimpleGrantedAuthority(privilege.getName()))

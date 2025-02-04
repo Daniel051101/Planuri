@@ -57,26 +57,24 @@
   <body class="text-center">
     <main class="form-signin">
       <!-- Formul de autentificare -->
-      <form action="/login" method="post">
-        <h1 class="h4 fw-bold">Autentificare</h1>
+	  <form action="/login" method="post">
+		
+		  <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+		
+	      <h1 class="h4 fw-bold">Autentificare</h1>
 
-        <div class="form-floating mb-3">
-			<input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-label="Nume utilizator">
-			<label for="username">Nume utilizator</label>
-        </div>
-        <div class="form-floating mb-3">
-			<input type="password" class="form-control" id="password" name="password" placeholder="Parola" aria-label="Parola">
-			<label for="password">Parola</label>
-        </div>
+	      <div class="form-floating mb-3">
+	          <input type="text" class="form-control" id="username" name="username" placeholder="Nume utilizator" required>
+	          <label for="username">Nume utilizator</label>
+	      </div>
 
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Ține-mă minte
-          </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit" aria-label="Conectează-te">Conectează-te</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2025 Plan Invatamant</p>
-      </form>
+	      <div class="form-floating mb-3">
+	          <input type="password" class="form-control" id="password" name="password" placeholder="Parola" required>
+	          <label for="password">Parola</label>
+	      </div>
+
+	      <button class="w-100 btn btn-lg btn-primary" type="submit">Conectează-te</button>
+	  </form>
     </main>
   </body>
 </html>
