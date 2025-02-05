@@ -24,7 +24,8 @@ public class DataInitializer {
     private PasswordEncoder passwordEncoder;
 
     @PostConstruct
-    public void init() {
+    public void init() 
+    {
         // Creare privilegii
         Privilege createCourses = createPrivilegeIfNotFound("CREATE_COURSES");
         Privilege manageCourses = createPrivilegeIfNotFound("MANAGE_COURSES");
@@ -36,9 +37,9 @@ public class DataInitializer {
         Role studentRole = createRoleIfNotFound("ROLE_STUDENT", List.of(viewCourses));
 
         // Creare utilizatori și asignare roluri
-        createUserIfNotFound("admin", "admin@upt.ro", "admin123", List.of(adminRole));
-        createUserIfNotFound("profesor", "profesor@upt.ro", "profesor123", List.of(teacherRole));
-        createUserIfNotFound("student", "student@upt.ro", "student123", List.of(studentRole));
+        createUserIfNotFound("admin", "admin@upt.ro", "123", List.of(adminRole));
+        createUserIfNotFound("profesor", "profesor@upt.ro", "123", List.of(teacherRole));
+        createUserIfNotFound("student", "student@upt.ro", "123", List.of(studentRole));
     }
 
     // Metodă pentru crearea unui privilegiu dacă nu există
