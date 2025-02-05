@@ -4,6 +4,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
+
+import ro.upt.ac.planuri.plan.PlanInvatamant;
+import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
 
 import org.springframework.ui.Model;
 import java.nio.file.Path;
@@ -33,20 +38,24 @@ public class FileUploadController {
     }
     
     @GetMapping("/inserare")
-    public String showUploadForm() {
+    public String showUploadForm() 
+    {
         return "upload";
     }
 
     @PostMapping("/upload")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {
-        if (file.isEmpty()) {
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) 
+    {
+        if (file.isEmpty()) 
+        {
             model.addAttribute("message", "Fișierul este gol!");
             return "upload";
         }
 
         // Verificare extensie fișier
         String fileName = file.getOriginalFilename();
-        if (fileName == null || !fileName.toLowerCase().endsWith(".xlsx")) {
+        if (fileName == null || !fileName.toLowerCase().endsWith(".xlsx")) 
+        {
             model.addAttribute("message", "Doar fișiere .xlsx sunt permise!");
             return "upload";
         }
@@ -56,24 +65,39 @@ public class FileUploadController {
             File directory = new File(UPLOAD_DIR);
             if (!directory.exists()) 
             {
-                directory.mkdirs(); // Creează directorul dacă nu există
+            	// Creează directorul dacă nu există
+            	directory.mkdirs(); 
             }
             
             // Verificare dacă fișierul există deja
             File existingFile = new File(directory, fileName);
-            if (existingFile.exists()) {
+            if (existingFile.exists()) 
+            {
                 model.addAttribute("message", "Fișierul '" + fileName + "' a fost deja încărcat!");
                 return "upload";
             }
             
             // Salvare fișier în directorul local
-            Path path = Paths.get(UPLOAD_DIR + fileName);
+            String tab[]= fileName.split("\\.");
+            String name=tab[0];
+            String ext=tab[1];
+            Path path = Paths.get(UPLOAD_DIR + name + new SimpleDateFormat(" - yyyy.MM.dd-HH.mm.ss.SS.").format(new Date())+ext);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
             
             String filePathString = path.toAbsolutePath().toString();
             System.out.println("Fișierul a fost salvat la: " + filePathString);
             
-            clasificator.clasifica(filePathString);
+            Extractor extractor=clasificator.clasifica(filePathString);
+            if (extractor != null) 
+            {
+            	extractor.extract(filePathString);
+            	extractor.save();
+            } 
+            else 
+            {
+                System.out.println("Extractor necunoscut pentru fișierul: " + path);
+            }
+            
 
             // Afișare rezultat clasificare
             model.addAttribute("message", "Fișier încărcat cu succes: " + fileName);

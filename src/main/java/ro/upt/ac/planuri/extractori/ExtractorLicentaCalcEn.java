@@ -9,20 +9,31 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
+import ro.upt.ac.planuri.plan.PlanInvatamant;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
 @Component
 public class ExtractorLicentaCalcEn extends Extractor
-{    	
+{
+    @Autowired
+    private PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
+    
 	private PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
-
+	
 	public void extract()
 	{
 		extract("./data/licenta/2023-2027_AC_PI_C-EN.xlsx");
 	}
+
+    public void save()
+    {
+    	planInvatamantLicentaRepository.save(pil);
+    }
 	
 	public void extract(String path) 
 	{

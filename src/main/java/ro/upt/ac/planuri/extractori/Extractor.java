@@ -9,10 +9,13 @@ import org.apache.poi.ss.usermodel.FormulaError;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import ro.upt.ac.planuri.plan.PlanInvatamant;
+
 abstract public class Extractor 
 {
 	public abstract void extract();
 	public abstract void extract(String path);
+	public abstract void save();
 	
 	public void extract(List<String> paths)
 	{

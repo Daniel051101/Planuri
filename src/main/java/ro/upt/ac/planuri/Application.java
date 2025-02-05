@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import ro.upt.ac.planuri.extractori.ExtractorMaster;
-import ro.upt.ac.planuri.extractori.ExtractorTest;
 import ro.upt.ac.planuri.extractori.ExtractorLicenta;
 import ro.upt.ac.planuri.extractori.ExtractorLicentaCalcEn;
 import ro.upt.ac.planuri.extractori.ExtractorLicentaInfoID;
@@ -54,18 +53,5 @@ public class Application
 
 			log.info("Stopping extractor...");
 	    };
-	}
-	
-	@Bean
-	public CommandLineRunner runExtractorTest (ExtractorTest extractorTest)
-	{
-	    return (args) -> {	
-			log.info("Starting extractor test...");
-			
-//			extractorTest.extract();
-
-			log.info("Stopping extractor...");
-	    };
-	}
-	
+	}	
 }

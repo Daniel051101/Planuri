@@ -9,20 +9,33 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
+import ro.upt.ac.planuri.plan.PlanInvatamant;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
 @Component
 public class ExtractorLicentaInfoZi extends Extractor
 {	
+    @Autowired
+    private PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
+	
+	private PlanInvatamantLicenta pil=null;
 
 	public void extract()
 	{
+		//TODO
 		extract("C:\\Users\\Daniel\\Documents\\GitHub\\Planuri\\uploads\\2023-2026_AC_PI_Info_InfoID.xlsx");
 	}
 	
+    public void save()
+    {
+    	planInvatamantLicentaRepository.save(pil);
+    }
+		
 	public void extract(String path) 
 	{
 		//System.out.println("Starting...");
@@ -38,7 +51,7 @@ public class ExtractorLicentaInfoZi extends Extractor
 			int c=0, r=0, index, semesterNumber = 0, semesterMax=0;
 			String semesterNumberStr;
 			
-			PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
+			pil = new PlanInvatamantLicenta();
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri

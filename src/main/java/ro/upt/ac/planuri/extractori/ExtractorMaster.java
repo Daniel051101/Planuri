@@ -23,10 +23,17 @@ import ro.upt.ac.planuri.plan.PlanInvatamantMasterRepository;
 public class ExtractorMaster extends Extractor
 {
     @Autowired
-    PlanInvatamantMasterRepository planInvatamantMasterRepository;
-    
+    private PlanInvatamantMasterRepository planInvatamantMasterRepository;
+
     @Autowired
-    DisciplinaMasterRepository disciplinaMasterRepository;
+    private DisciplinaMasterRepository disciplinaMasterRepository;
+
+    private PlanInvatamantMaster pim=null;
+    
+    public void save()
+    {
+    	planInvatamantMasterRepository.save(pim);
+    }
     
 	public void extract()
 	{
@@ -58,7 +65,7 @@ public class ExtractorMaster extends Extractor
 			int c=0, r=0, index=0, semesterNumber = 0;
 			String semesterNumberStr, durataStr;
 			
-			PlanInvatamantMaster pim = new PlanInvatamantMaster();
+			pim = new PlanInvatamantMaster();
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
@@ -206,11 +213,12 @@ public class ExtractorMaster extends Extractor
 					}
 				}
 			}
+			
 			planInvatamantMasterRepository.save(pim);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-	}	
+	}
 }

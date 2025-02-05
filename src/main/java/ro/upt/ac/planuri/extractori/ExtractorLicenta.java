@@ -12,17 +12,22 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
+import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
 // pentru calc ro, ti, is
 @Component
 public class ExtractorLicenta extends Extractor
 {	
+    @Autowired
+    private PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
+    
 	private PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
-
+	
 	public void extract()
 	{
         List<String> paths = Arrays.asList(
@@ -32,7 +37,12 @@ public class ExtractorLicenta extends Extractor
             );
         extract(paths);
 	}
-	
+
+    public void save()
+    {
+    	planInvatamantLicentaRepository.save(pil);
+    }
+
 	public void extract(String filePath) 
 	{
 		try (FileInputStream file = new FileInputStream(filePath);

@@ -30,6 +30,7 @@ public class Clasificator
 	
 	public Extractor clasifica(String path)
 	{
+		Extractor extractor=null;
 				
 		try (FileInputStream file = new FileInputStream(path);
 	             XSSFWorkbook workbook = new XSSFWorkbook(file))
@@ -41,33 +42,27 @@ public class Clasificator
             Cell cell = row.getCell(9);
             String planName = cell.getStringCellValue();
 
-            Extractor extractor = extractors.get(planName);
-            
-            if (extractor != null) 
+            extractor = extractors.get(planName);            
+            if(extractor!=null)
             {
-            	extractor.extract(path);
+            	return extractor;
             }
-
+            
             row = sheet.getRow(34);
             cell = row.getCell(9);
             planName = cell.getStringCellValue();
-            extractor = extractors.get(planName);
-
-            if (extractor != null) 
-            {
-            	extractor.extract(path);
-            } 
-            else 
-            {
-                System.out.println("Extractor necunoscut pentru fișierul: " + path);
-            }
             
+            extractor = extractors.get(planName);
+            if(extractor!=null)
+            {
+            	return extractor;
+            }
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return null;
-	}
-	
+		
+		return extractor;
+	}	
 }
