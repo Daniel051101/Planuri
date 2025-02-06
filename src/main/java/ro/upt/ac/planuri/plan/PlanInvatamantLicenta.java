@@ -16,6 +16,7 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 	private int codDomeniuDeLicenta;
 	private int codStudii;
 	private int durataStudiiLicenta;
+	private boolean invatamantDistanta;
 
 	@OneToMany
 	private List<DisciplinaZi> listaDisciplinaZi=new ArrayList<DisciplinaZi>();
@@ -80,6 +81,14 @@ public class PlanInvatamantLicenta extends PlanInvatamant
 
 	public void setDurataStudiiLicenta(int durataStudiiLicenta) {
 		this.durataStudiiLicenta = durataStudiiLicenta;
+	}
+
+	public boolean isInvatamantDistanta() {
+		return invatamantDistanta;
+	}
+
+	public void setInvatamantDistanta(boolean invatamantDistanta) {
+		this.invatamantDistanta = invatamantDistanta;
 	}
 
 }

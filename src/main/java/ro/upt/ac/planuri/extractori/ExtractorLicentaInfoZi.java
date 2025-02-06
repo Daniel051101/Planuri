@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
-import ro.upt.ac.planuri.plan.PlanInvatamant;
+import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
@@ -22,6 +22,9 @@ public class ExtractorLicentaInfoZi extends Extractor
 {	
     @Autowired
     private PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
+    
+    @Autowired
+    private DisciplinaZiRepository disciplinaZiRepository;
 	
 	private PlanInvatamantLicenta pil=null;
 
@@ -178,10 +181,13 @@ public class ExtractorLicentaInfoZi extends Extractor
 							dz.setVolumOreNecesareActivitatilorPartialAsistate(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
 							dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
 							dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
-							dz.setSemestru(semesterNumber);								
+							dz.setSemestru(semesterNumber);		
+							
 							pil.getListaDisciplinaZi().add(dz);
 					        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 							values.clear();
+							
+							disciplinaZiRepository.save(dz);
 						}
 					}
 					catch(NumberFormatException e)
@@ -189,13 +195,13 @@ public class ExtractorLicentaInfoZi extends Extractor
 						System.out.println("Invalid format: "+dz.toString());
 					}				
 				}
-				pil.setDurataStudiiLicenta(semesterMax/2);				
+				pil.setDurataStudiiLicenta(semesterMax/2);	
+				pil.setInvatamantDistanta(false);
 			}
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		//System.out.println("Stopping... ");
 	}	
 }

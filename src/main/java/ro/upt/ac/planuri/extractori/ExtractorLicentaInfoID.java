@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaId;
-import ro.upt.ac.planuri.plan.PlanInvatamant;
+import ro.upt.ac.planuri.disciplina.DisciplinaIdRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
@@ -22,6 +22,9 @@ public class ExtractorLicentaInfoID extends Extractor
 {	
     @Autowired
     private PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
+    
+    @Autowired
+    private DisciplinaIdRepository disciplinaIdRepository;
     
 	private PlanInvatamantLicenta pil=null;
 		
@@ -191,6 +194,8 @@ public class ExtractorLicentaInfoID extends Extractor
 							pil.getListaDisciplinaId().add(di);							
 					        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 							values.clear();
+							
+							disciplinaIdRepository.save(di);
 						}
 					}
 					catch (NumberFormatException e)
@@ -199,7 +204,8 @@ public class ExtractorLicentaInfoID extends Extractor
 					}
 				}
 				pil.setDurataStudiiLicenta(semesterMax/2);
-			}
+				pil.setInvatamantDistanta(true);
+				}
 		}
 		catch(Exception e)
 		{

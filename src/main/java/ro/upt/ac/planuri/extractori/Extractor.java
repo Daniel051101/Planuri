@@ -9,8 +9,6 @@ import org.apache.poi.ss.usermodel.FormulaError;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import ro.upt.ac.planuri.plan.PlanInvatamant;
-
 abstract public class Extractor 
 {
 	public abstract void extract();
@@ -49,7 +47,7 @@ abstract public class Extractor
 	                    {
 	                        return "Valoare indisponibilă";
 	                    }
-	                    return "FORMULA_ERROR: " + error.getString();
+	                    return "Null";
 	                }
 					switch (evaluator.evaluateFormulaCell(cell))
 					{

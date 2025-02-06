@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ro.upt.ac.planuri.disciplina.DisciplinaZi;
-import ro.upt.ac.planuri.plan.PlanInvatamant;
+import ro.upt.ac.planuri.disciplina.DisciplinaZiRepository;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicenta;
 import ro.upt.ac.planuri.plan.PlanInvatamantLicentaRepository;
 
@@ -23,7 +23,10 @@ public class ExtractorLicentaCalcEn extends Extractor
     @Autowired
     private PlanInvatamantLicentaRepository planInvatamantLicentaRepository;
     
-	private PlanInvatamantLicenta pil = new PlanInvatamantLicenta();
+    @Autowired
+    private DisciplinaZiRepository disciplinaZiRepository;
+    
+	private PlanInvatamantLicenta pil = null;
 	
 	public void extract()
 	{
@@ -49,6 +52,7 @@ public class ExtractorLicentaCalcEn extends Extractor
 			int c=0, r=0, index=0, semesterNumber = 0, semesterMax=0;
 			String semesterNumberStr;
 			
+			pil = new PlanInvatamantLicenta();
 			ArrayList<String> values = new ArrayList<>();
 			
 			//uni, facultate, coduri
@@ -176,11 +180,12 @@ public class ExtractorLicentaCalcEn extends Extractor
 							dz.setCategorieFormativaLicenta(index < values.size() ? values.get(index++) : null);
 							dz.setVolumOreNecesaraPregatiriIndividuale(index < values.size() ? Integer.parseInt(values.get(index++)) : 0);
 							dz.setSemestru(semesterNumber);
-								
-							pil.getListaDisciplinaZi().add(dz);
-												
+							
+							pil.getListaDisciplinaZi().add(dz);		
 					        //System.out.println(values.size() + "   Datele disciplinei introduse în baza de date ! \n");
 							values.clear();
+							
+							disciplinaZiRepository.save(dz);
 						}
 					}
 					catch (NumberFormatException e)
@@ -190,11 +195,11 @@ public class ExtractorLicentaCalcEn extends Extractor
 				}
 			}
 			pil.setDurataStudiiLicenta(semesterMax/2);
+			pil.setInvatamantDistanta(false);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		//System.out.println("Stopping...);
 	}
 }
