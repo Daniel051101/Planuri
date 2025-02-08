@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
-import ro.upt.ac.planuri.plan.PlanInvatamant;
-import ro.upt.ac.planuri.plan.PlanInvatamantMaster;
-
 import org.springframework.ui.Model;
 import java.nio.file.Path;
 

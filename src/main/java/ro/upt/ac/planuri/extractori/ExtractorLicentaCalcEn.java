@@ -196,6 +196,7 @@ public class ExtractorLicentaCalcEn extends Extractor
 			}
 			pil.setDurataStudiiLicenta(semesterMax/2);
 			pil.setInvatamantDistanta(false);
+			planInvatamantLicentaRepository.save(pil);
 		}
 		catch(Exception e)
 		{

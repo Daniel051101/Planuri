@@ -113,7 +113,7 @@
                                     <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantLicenta-view/{id}(id=${planInvatamantLicenta.id})}" role="button">Afiseaza</a>
                                     <a class="btn btn-sm btn-outline-secondary" th:href="@{/planInvatamantLicenta-edit/{id}(id=${planInvatamantLicenta.id})}" role="button">Editeaza</a>
                                     <a class="btn btn-sm btn-outline-danger" th:href="@{/planInvatamantLicenta-delete/{id}(id=${planInvatamantLicenta.id})}" role="button">Sterge</a>
-									<a class="btn btn-sm btn-outline-secondary" th:href="@{/disciplinaZi-read/{id}(id=${planInvatamantLicenta.id})}" role="button">Afișare discipline</a>
+									<a class="btn btn-sm btn-outline-secondary" th:href="@{${planInvatamantLicenta.invatamantDistanta} ? '/disciplinaId-read/' + ${planInvatamantLicenta.id} : '/disciplinaZi-read/' + ${planInvatamantLicenta.id}}" role="button">Afișare discipline</a>
                                 </div>
                             </div>
                         </div>

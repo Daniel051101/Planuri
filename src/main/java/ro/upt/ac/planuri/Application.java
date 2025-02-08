@@ -32,12 +32,12 @@ public class Application
 			log.info("Starting extractor licenta...");
 			
 //			extractorLicenta.extract();
-//			
+			
 //			extractorLicentaCalcEn.extract();
-//			
-//			extractorLicentaInfoID.extract();
-//			
-//			extractorLicentaInfoZi.extract();
+			
+			extractorLicentaInfoID.extract();
+			
+			extractorLicentaInfoZi.extract();
 
 			log.info("Stopping extractor...");
 	    };

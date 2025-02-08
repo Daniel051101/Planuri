@@ -88,6 +88,26 @@
     		<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		
+		<dependency>
+    		<groupId>io.rest-assured</groupId>
+    		<artifactId>rest-assured</artifactId>
+    		<version>5.3.0</version>
+    		<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-java</artifactId>
+		    <version>4.9.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.testng</groupId>
+		    <artifactId>testng</artifactId>
+		    <version>7.8.0</version> <!-- Folosește cea mai recentă versiune disponibilă -->
+		    <scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	
 	<build>

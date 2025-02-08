@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface DisciplinaMasterRepository extends JpaRepository<DisciplinaMaster,Integer>
 {
 	DisciplinaMaster findById(int id);
+	
 }

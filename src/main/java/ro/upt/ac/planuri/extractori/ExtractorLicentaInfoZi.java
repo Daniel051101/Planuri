@@ -31,7 +31,7 @@ public class ExtractorLicentaInfoZi extends Extractor
 	public void extract()
 	{
 		//TODO
-		extract("C:\\Users\\Daniel\\Documents\\GitHub\\Planuri\\uploads\\2023-2026_AC_PI_Info_InfoID.xlsx");
+		extract("./data/licenta/2023-2026_AC_PI_Info_InfoZi.xlsx");
 	}
 	
     public void save()
@@ -198,6 +198,7 @@ public class ExtractorLicentaInfoZi extends Extractor
 				pil.setDurataStudiiLicenta(semesterMax/2);	
 				pil.setInvatamantDistanta(false);
 			}
+			planInvatamantLicentaRepository.save(pil);
 		}
 		catch(Exception e)
 		{
