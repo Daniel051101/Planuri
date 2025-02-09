@@ -111,7 +111,7 @@
 				
 				<div class="mb-3">
 				    <label for="semestru" class="form-label">Semestru</label>
-				    <input type="text" class="form-control" th:field="*{semesteru}" id="semestru" placeholder="Semestru" required>
+				    <input type="text" class="form-control" th:field="*{semestru}" id="semestru" placeholder="Semestru" required>
 				    <div class="invalid-feedback" th:if="${#fields.hasErrors('semestru')}" th:errors="*{semestru}"></div>
 				</div>
 

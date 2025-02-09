@@ -49,8 +49,8 @@ public class DisciplinaIdController
 	public String readByPlan(@PathVariable("id") int id, Model model) 
 	{
 		PlanInvatamantLicenta pil = planInvatamantLicentaRepository.findById(id);
-	    model.addAttribute("disciplinaMaster",pil.getListaDisciplinaId());
-	    return "disciplinaMaster-read";
+	    model.addAttribute("disciplinaId",pil.getListaDisciplinaId());
+	    return "disciplinaId-read";
 	}
 	
 	@GetMapping("/disciplinaId-edit/{id}")
