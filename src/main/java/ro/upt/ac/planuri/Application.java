@@ -31,13 +31,13 @@ public class Application
 	    return (args) -> {	
 			log.info("Starting extractor licenta...");
 			
-//			extractorLicenta.extract();
+			extractorLicenta.extract();
 			
-//			extractorLicentaCalcEn.extract();
+			extractorLicentaCalcEn.extract();
 			
-			extractorLicentaInfoID.extract();
+//			extractorLicentaInfoID.extract();
 			
-			extractorLicentaInfoZi.extract();
+//			extractorLicentaInfoZi.extract();
 
 			log.info("Stopping extractor...");
 	    };
@@ -49,7 +49,7 @@ public class Application
 	    return (args) -> {	
 			log.info("Starting extractor master...");
 			
-//			extractorMaster.extract();
+			extractorMaster.extract();
 
 			log.info("Stopping extractor...");
 	    };

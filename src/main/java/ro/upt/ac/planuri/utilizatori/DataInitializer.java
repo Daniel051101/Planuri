@@ -37,7 +37,7 @@ public class DataInitializer {
         Role studentRole = createRoleIfNotFound("ROLE_STUDENT", List.of(viewCourses));
 
         // Creare utilizatori și asignare roluri
-        createUserIfNotFound("admin", "admin@upt.ro", "123", List.of(adminRole));
+        createUserIfNotFound("admin", "admin@upt.ro", "admin123", List.of(adminRole));
         createUserIfNotFound("profesor", "profesor@upt.ro", "123", List.of(teacherRole));
         createUserIfNotFound("student", "student@upt.ro", "123", List.of(studentRole));
     }
