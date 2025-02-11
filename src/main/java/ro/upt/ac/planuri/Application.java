@@ -35,9 +35,9 @@ public class Application
 			
 			extractorLicentaCalcEn.extract();
 			
-//			extractorLicentaInfoID.extract();
+			extractorLicentaInfoID.extract();
 			
-//			extractorLicentaInfoZi.extract();
+			extractorLicentaInfoZi.extract();
 
 			log.info("Stopping extractor...");
 	    };
