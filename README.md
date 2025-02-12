@@ -49,28 +49,22 @@ Această aplicație web permite gestionarea eficientă a planurilor de învăț�
 ### 🔹 Autentificare
 
 - `POST /api/auth/login` - Login utilizator
-- `POST /api/auth/register` - Înregistrare utilizator nou
+- `POST /api/auth/signup` - Înregistrare utilizator nou
 - `GET /api/auth/logout` - Logout utilizator
 
 ### 🔹 Administrare Planuri
 
 - `POST /api/plans/inserare` - Import planuri de învățământ din Excel
-- `GET /api/plans` - Listă planuri existente
-- `GET /api/plans/{id}` - Detalii plan specific
-- `DELETE /api/plans/{id}` - Șterge un plan
+- `GET /api/planInvatamant-read` - Listă planuri existente
+- `GET /api/planInvatamant-read/{id}` - Detalii plan specific
+- `DELETE /api/planInvatamant-delete/{id}` - Șterge un plan
 
 ### 🔹 Administrare Discipline
 
-- `GET /api/disciplines` - Listă discipline
-- `POST /api/disciplines` - Adaugă o disciplină nouă
-- `GET /api/disciplines/{id}` - Detalii disciplină
-- `DELETE /api/disciplines/{id}` - Șterge disciplină
-
-### 🔹 Utilizatori
-
-- `GET /api/users` - Listă utilizatori
-- `GET /api/users/{id}` - Detalii utilizator
-- `POST /api/users/assign-teacher` - Atribuire profesor la disciplină
+- `GET /api/discipline-read` - Listă discipline
+- `POST /api/discipline-create` - Adaugă o disciplină nouă
+- `GET /api/discipline-read/{id}` - Detalii disciplină
+- `DELETE /api/discipline-delete/{id}` - Șterge disciplină
 
 ## 🤝 Contribuție
 
@@ -86,5 +80,5 @@ Acest proiect este licențiat sub ****.
 
 ## 👨‍💻 Autor
 
-**Daniel-Ionuț Mîrza** - [GitHub](https://github.com/utilizator) | [LinkedIn](https://linkedin.com/in/utilizator)
+**Daniel-Ionuț Mîrza** - [GitHub](https://github.com/Daniel051101) 
 
