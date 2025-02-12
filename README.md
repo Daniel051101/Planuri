@@ -80,5 +80,5 @@ Acest proiect este licențiat sub ****.
 
 ## 👨‍💻 Autor
 
-**Daniel-Ionuț Mîrza** - [GitHub](https://github.com/Daniel051101/Planuri) 
+**Daniel-Ionuț Mîrza** - [GitHub](https://github.com/Daniel051101) 
 
