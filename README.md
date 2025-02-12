@@ -44,28 +44,6 @@ Această aplicație web permite gestionarea eficientă a planurilor de învăț�
    mvn spring-boot:run
    ```
 
-## 📡 Ghid Rapid API-uri
-
-### 🔹 Autentificare
-
-- `POST /api/auth/login` - Login utilizator
-- `POST /api/auth/signup` - Înregistrare utilizator nou
-- `GET /api/auth/logout` - Logout utilizator
-
-### 🔹 Administrare Planuri
-
-- `POST /api/plans/inserare` - Import planuri de învățământ din Excel
-- `GET /api/planInvatamant-read` - Listă planuri existente
-- `GET /api/planInvatamant-read/{id}` - Detalii plan specific
-- `DELETE /api/planInvatamant-delete/{id}` - Șterge un plan
-
-### 🔹 Administrare Discipline
-
-- `GET /api/discipline-read` - Listă discipline
-- `POST /api/discipline-create` - Adaugă o disciplină nouă
-- `GET /api/discipline-read/{id}` - Detalii disciplină
-- `DELETE /api/discipline-delete/{id}` - Șterge disciplină
-
 ## 🤝 Contribuție
 
 Dacă vrei să contribui:
@@ -73,10 +51,6 @@ Dacă vrei să contribui:
 1. **Forkuiește proiectul** 🍴
 2. **Creează un branch nou:** `feature/noua-functionalitate` 🚀
 3. **Fă un Pull Request** 📥
-
-## 📝 Licență
-
-Acest proiect este licențiat sub ****.
 
 ## 👨‍💻 Autor
 
